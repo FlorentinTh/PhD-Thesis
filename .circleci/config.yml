@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: florentinth/texlive-full:latest
+    steps:
+      - checkout
+      - run:
+          name: Copy Files
+          command: 'cp -R ./src/* .'
+      - run:
+          name: Build LaTeX 
+          command: 'make build'
+      - run:
+          name: Copy Artifact
+          command: |
+            mkdir /tmp/artifacts;
+            cp main.pdf /tmp/artifacts/;
+      - store_artifacts:
+          path: /tmp/artifacts
