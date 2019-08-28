@@ -48,6 +48,14 @@ $ docker start latex
 
 > If you're not familiar with LaTeX, you can [download](https://github.com/FlorentinTh/PhD-Thesis/archive/master.zip) the sources of this repository, extract the archive and upload the content of the ```src``` folder on [Overleaf](https://overleaf.com/).
 
+## Related Repositories
+
+* [**PhD-Schematics**](https://github.com/FlorentinTh/PhD-Schematics)
+  > Repository that contains all sourced schematics used in this thesis.
+
+* [**PhD-ThesisProject**](https://github.com/FlorentinTh/PhD-ThesisProject)
+  > Repository that contains the first main parts of this thesis. They may have been changed since last release in this repo.
+
 ## Licence
 
 This project is licensed under MIT License - see the [LICENSE](LICENSE) file for details.
