@@ -9,7 +9,7 @@ jobs:
           name: Copy Files
           command: 'cp -R ./src/* .'
       - run:
-          name: Build LaTeX 
+          name: Build LaTeX
           command: 'make build'
       - run:
           name: Copy Artifact

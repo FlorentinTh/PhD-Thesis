@@ -124,8 +124,8 @@
 \WarningsOff
 
 % interligne simple
-\def\mystretch{1}             			   	 
-\def\baselinestretch{\mystretch}  
+\def\mystretch{1}
+\def\baselinestretch{\mystretch}
 
 \newlength{\simpleinter}
 \setlength{\simpleinter}{\baselineskip}
@@ -277,7 +277,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Redéfinition des termes 
+%% Redéfinition des termes
 %% en Francais et en anglais
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -330,9 +330,8 @@
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                                      {3ex\@plus .2ex \@minus .2ex}%
                                      {2ex \@plus .2ex}%
-                                     {\normalsize\bfseries\MakeUppercase}}   
+                                     {\normalsize\bfseries\MakeUppercase}}
 
-                  
 %\let\oldsection\section
 %\renewcommand{\section}{\leftskip=0cm \oldsection}
 
@@ -362,9 +361,9 @@
 
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
-  \sbox\@tempboxa{{#1} #2}  
+  \sbox\@tempboxa{{#1} #2}
   \ifdim \wd\@tempboxa >\hsize
-    {#1} #2\par            
+    {#1} #2\par
   \else
     \global \@minipagefalse
     \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
@@ -418,7 +417,7 @@
 \renewcommand\AlCapFnt{\bfseries\small}
 \renewcommand{\AlCapNameSty}{\bfseries\small}
 
-%% Formatage des captions pour les figures et les tableaux 
+%% Formatage des captions pour les figures et les tableaux
 \captionsetup[figure]{position=bottom, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, justification=centering}
 \captionsetup[subfloat]{labelfont={small, stretch=1.17}, textfont={small, stretch=1.17}, justification=centering}
 \captionsetup[table]{position=top, margin=0.5cm, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, aboveskip=6pt, belowskip=12pt, justification=centering}
@@ -705,7 +704,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{dedic}{%
-
 \ifthenelse{\equal{\@uqacfrench}{true}}{%
   	\chapter*{\textbf{\MakeUppercase{D\'edicace}}}
 }{
@@ -719,9 +717,11 @@
 }{
   	\addcontentsline{toc}{chapter}{\bfseries\UpperRef{Dedication}}
 }
-
+\raggedleft
 \vspace*{.35cm}
-\baselineskip=\simpleinter}
+\baselineskip=1.5\baselineskip
+% \baselineskip=\simpleinter
+\itshape}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -811,7 +811,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Pagination 
+%% Pagination
 %% en bas à droite de la page
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -824,7 +824,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Définitions des différentes  
+%% Définitions des différentes
 %% parties du document
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -50,10 +50,10 @@ $ docker start latex
 
 ## Related Repositories
 
-* [**PhD-Schematics**](https://github.com/FlorentinTh/PhD-Schematics)
+- [**PhD-Schematics**](https://github.com/FlorentinTh/PhD-Schematics)
   > Repository that contains all sourced schematics used in this thesis.
 
-* [**PhD-ThesisProject**](https://github.com/FlorentinTh/PhD-ThesisProject)
+- [**PhD-ThesisProject**](https://github.com/FlorentinTh/PhD-ThesisProject)
   > Repository that contains the first main parts of this thesis. They may have been changed since last release in this repo.
 
 ## Licence
