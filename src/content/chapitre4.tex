@@ -1,2 +1,110 @@
 \chapter{Un \textit{wearable device} pour la reconnaissance des sols}
 \label{chap:4}
+
+\section{Introduction}
+
+Au cours des dernières années, les \textit{wearable devices} ont gagné en popularité, poussée par les grands fabricants de matériel tels que \textit{Apple}, \textit{Samsung}, \textit{Garmin} ou encore \textit{Fitbit}. En effet, selon le rapport réalisé par \cite{Nielsen2014}, 70\% des consommateurs interrogés connaissent cette technologie et 15\% d'entre eux se servent d'un \textit{wearable device} dans leur vie de tous les jours en plus de leur téléphone intelligent. Ces dispositifs ont permis l'exploitation de nouveaux types de capteurs, en comparaison de ceux qui étaient déjà présents dans les téléphones (\textit{p. ex.} les capteurs cardiaques) et ils ont permis d'accélérer l'adoption de technologies comme le \acs{BLE} \citep{Taplett}. En ce sens, et puisqu'ils représentent un moyen pratique et portable pour enregistrer des données physiologiques,  les \textit{wearable devices} ont été rapidement et massivement adoptés principalement pour assurer le suivi des activités sportives. Il est donc devenu possible pour leurs utilisateurs de récolter une quantité considérable de données dans le but de produire des analyses statistiques et ainsi surveiller les évolutions dans la réalisation d'activités quotidiennes, qu'elles soient sportives ou non. Néanmoins, avec les avancements en matière d'apprentissage machine, il est possible d'affirmer que les applications développées spécifiquement pour les \textit{wearables devices} peuvent être améliorées pour devenir plus ubiquitaires.
+
+L'objectif de ce chapitre est donc de présenter un nouveau cas d'utilisation d'un wearable device ou la réponse à la question suivante : \textit{« Est-il possible de reconnaître les types de sols à l'aide de données inertielles produites par la démarche humaine avec un wearable device\textemdash quel que soit l'endroit où il se trouve et par qui il est porté ? »} est le principal sujet discuté dans deux publications respectivement présentées aux conférences \textit{IEEE 14th International Conference on Ubiquitous Intelligence and Computing (UIC)} qui s'est déroulée en août 2017 à San Francisco aux États-Unis \citep{Thullier2017a} et \textit{IEEE 15th International Conference on Ubiquitous Intelligence and Computing (UIC)} qui s'est déroulée en octobre 2018 à Guangzhou en Chine \citep{Thullier2018}.
+
+Ce chapitre commence par présenter un état de l'art des recherches menées au sujet de la reconnaissance des sols par le biais de données inertielles. Ensuite, après avoir présenté la solution proposée ainsi que les expérimentations réalisées, ce chapitre va analyser les résultats obtenus suivis d'une discussion de ceux-ci. Finalement, la dernière partie dresse une conclusion de ce premier travail.
+
+\section{État de l'art}
+
+L'idée de reconnaître des types de sols par le biais de données inertielles produites par une centrale inertielle vient du domaine de la robotique. En effet, \cite{Vail2004} ont tout d'abord expérimenté la détection de surface grâce à des données inertielles produites par un robot quadrupède. Pour réaliser l'apprentissage, les auteurs ont opté pour un algorithme dont le modèle est un arbre de décision ($C4.5$), car ils estiment qu'il s'agit d'un algorithme suffisamment rapide et facile à représenter et à implémenter. Pour quantifier la précision de leur modèle d'apprentissage, \citeauthor{Vail2004} ont utilisé la technique de la validation croisée en 10-plis \citep{Kohavi1995}, ce qui leur a permis d'obtenir un taux de reconnaissance global de 84.9\% (ciment: 91\%; tapis: 81.2\%; champs: 81.2\%).
+
+Par ailleurs, \cite{Bibuli2007} ont proposé une méthode de reconnaissance des sols pour un robot à quatre roues équipé de plusieurs types de capteurs, dont une centrale inertielle. Pour ce faire, ils ont tout d'abord calculé les composantes fréquentielles du signal inertiel \textit{via} l'algorithme de la transformée de fourrier discrète (\acl{DFT} ou \acs{DFT}), pour chacun des axes du capteur. Chaque ensemble a ensuite été entrainé distinctement par son propre réseau de neurones artificiels (\acs{ANN}). Par conséquent, les meilleurs résultats ont été obtenus avec les données de l'axe $x$ du gyroscope, soit respectivement 90\%, 71.2\%, 70\%, 98.8\% et 83.5\% pour les sols en graviers, en gazon, en sable, en asphalte et en terre.
+
+Aussi, \cite{Weiss2007} 
+
+% In the same way, \citet{Weiss2007} proposed a comparison of terrain recognition for a four-wheeled robot between the Support Vector Machine (SVM) and several other classification techniques. Input data for the SVM algorithm were either a log-scaled Power Spectral Density, or a 128-point FFT features vector. Authors performed the experiment over different velocities of the robot (\textit{i.e.} 0.2, 0.4 and 0.6 m/s) and they obtained most accurate results with SVM rather than other algorithms, such as Probabilistic Neural Network (PNN), $k$-Nearest Neighbors ($k$-NN), Na\"ive Bayes and C4.5. 
+
+% Conversely, \citet{Kertesz2016} recently introduced a rigidity-based surface recognition for a four-legged robot using features extracted through the Fast Fourier Transform (FFT), then, classified with the Random Forest algorithm. The model was evaluated thanks to the 10-folds cross validation method. Authors found that the Random Forest outperformed every other algorithms it was compared to, as they obtained an accuracy of 96.2\%.
+
+% Although such a related literature was relevant in understanding how to answer hypotheses we formulated, all of these methods are not suitable for soil-types-recognition in a human walking context. Nevertheless, based on our current knowledge, we report a more recent study suggested by \citet{Otis2016} that introduced a terrain discrimination analysis to reduce the risk of falling through a three-axis accelerometer embedded in a shoe. A clustering algorithm was employed in order to segment FFT-based discriminating features. These characteristics were obtained from raw signals recorded on broken stone, concrete, sand, stone dust, snow and ice. As regards obtained results, authors reported a misidentification rate between 1\% and 5\% in the laboratory setup, while it rose up to 20\% in real conditions.
+
+% Furthermore, since it is known that human activity recognition performed thanks to accelerometers achieve excellent results \cite{Bayat2014, Bussmann2001, Cleland2013, Gao2014, Kwapisz2011, Ravi2005, Shoaib2013, Tuncel2009}, this work aims at combining these techniques with terrain discrimination methods reported above in order to recognize soil types based on the human gait.
+
+% The rest of the paper is structured as follows: section 2 details the suggested method for soil type recognition based on inertial data. Next, section 3 describes experiments we conducted in order to assess the three previously expressed hypotheses. Section 5 exposes and discusses results we obtained. Finally, section 6 draws a conclusion and section 7 provides future works.
+
+\section{Solution proposée}
+
+\subsection{Matériel}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{device.pdf}
+        \caption{Plateforme Arduino 101 et son \textit{shield} de prototypage incluant une carte SD (1) ainsi qu'une centrale inertielle : \textit{LSM9DS1} (2).}
+	\label{fig:device}
+\end{figure}
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{soil_types_firmware.pdf}
+        \caption{Représentation graphique de l'implémentation du \textit{firmware} embarqué sur le \textit{wearable device}.}
+	\label{fig:soil_types_firmware}
+\end{figure}
+
+\subsection{Logiciel}
+
+\subsubsection{Apprentissage}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=12cm]{algo_random_forest.pdf}
+        \caption{Exemple de l'algorithme \textit{Random Forest} utilisant $B=3$ arbres.}
+	\label{fig:algo_random_forest}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{algo_knn.pdf}
+        \caption{Exemple de l'algoritme des $k$ plus proches voisins où $k=3$.}
+	\label{fig:algo_knn}
+\end{figure}
+
+\section{Expérimentations}
+
+\subsection{Mise en \oe{}uvre}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{box.pdf}
+        \caption{Boîte utilisée lors des expérimentations remplie de gravier et de sable.}
+	\label{fig:box}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{application.pdf}
+        \caption{Captures d'écran de l'application \textit{Android} pairée avec le \textit{wearable device} permettant de piloter et d'étiquetter les données enregistrées.}
+	\label{fig:application}
+\end{figure}
+
+\subsection{Procédure}
+
+\begin{figure}[H]
+    \centering
+	\subfloat[De gauche à droite, positionnement du \textit{wearable device} dans les poches de droite (1) et de gauche (2) ainsi qu'à l'intérieur d'un sac à dos ordinaire de 20L.]{
+		\includegraphics[width=.7\linewidth]{positions_a.pdf}
+		\label{fig:positions_a}
+    }
+    \\[30pt]
+	\subfloat[Positionnement du \textit{wearable device} à l'intérieur d'un sac bandoulière porté sur les épaules de droite et de gauche.]{
+		\includegraphics[width=.7\linewidth]{positions_b.pdf}
+		\label{fig:positions_b}
+    }
+    \caption{Illustration des cinq emplacements où le \textit{wearable device} est positionné pendant l'expérimentation.}
+    \label{fig:positions}
+\end{figure}
+
+\section{Résultats et discussion}
+
+\subsection{Ensembles de données}
+
+\subsection{Résultats obtenus}
+
+\subsection{Discussion des résultats obtenus}
+
+\section{Conclusion}
