@@ -187,7 +187,7 @@ Dès que la connexion est établie, la communication entre le dispositif central
     }
     \\[30pt]
 	\subfloat[Échange de données en mode connexion]{
-		\includegraphics[width=.8\linewidth]{ble_connect_process.pdf}
+		\includegraphics[width=.9\linewidth]{ble_connect_process.pdf}
 		\label{fig:ble_connect_process}
 	}
 	\caption{Illustration du processus d'échange de données dans les deux modes de fonctionnement du \acs{BLE}, soit les modes diffusion et connexion.}
@@ -205,8 +205,6 @@ Le protocole \ac{SOAP}, tout comme le modèle \textit{publish/subscribe}, est lu
 
 Un message \ac{SOAP} est un document \ac{XML} qui contient un en-tête (\textit{header}) ainsi qu'un corps (\textit{body}), le tout encapsulé dans une enveloppe. Cette dernière indique que le document XML correspond à un message \ac{SOAP} et identifie le début ainsi que la fin de du message. L'en-tête, qui demeure facultatif, peut contenir différents attributs relatifs au message. Le corps, quant à lui obligatoire, contient les informations soit de la requête faite par le client, soit de la réponse du serveur, ainsi que des informations à propos des erreurs qui pourraient survenir. Les informations contenues dans le corps du message \ac{SOAP} sont organisées sous forme de blocs. La figure \ref{fig:soap_msg} montre un exemple d'échange de messages \ac{SOAP} à travers \ac{HTTP} qui permet d'obtenir la valeur du capteur cardiaque d'un dispositif quelconque.
 
-L'avantage principal de l'utilisation de \ac{SOAP} comme méthode de communication est principalement la sécurité qu'offre ce protocole. En effet, ce dernier peut être implémenté par dessus une couche de chiffrement \ac{SSL}, mais il permet également d'exploiter la spécification \textit{Web Services Security ou WS-Security} qui apporte des fonctionnalités de sécurité supplémentaires appréciées des entreprises. Cependant, il demeure un protocole peu flexible et relativement lourd et complexe à mettre en place.
-
 \begin{figure}[H]
     \centering
 	\subfloat[Requête \acs{SOAP}]{
@@ -221,6 +219,8 @@ L'avantage principal de l'utilisation de \ac{SOAP} comme méthode de communicati
     \caption{Exemple d'un échange de messages \acs{SOAP} entre un client et un serveur pour obtenir la valeur du capteur cardiaque.}
     \label{fig:soap_msg}
 \end{figure}
+
+L'avantage principal de l'utilisation de \ac{SOAP} comme méthode de communication est principalement la sécurité qu'offre ce protocole. En effet, ce dernier peut être implémenté par dessus une couche de chiffrement \ac{SSL}, mais il permet également d'exploiter la spécification \textit{Web Services Security ou WS-Security} qui apporte des fonctionnalités de sécurité supplémentaires appréciées des entreprises. Cependant, il demeure un protocole peu flexible et relativement lourd et complexe à mettre en place.
 
 \subsubsection{L'architecture \ac{REST}}
 

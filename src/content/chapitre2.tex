@@ -75,6 +75,7 @@ Le processus d'apprentissage pour la reconnaissance d'activités est un ensemble
 \end{figure}
 
 \subsection{Les étapes préliminaires}
+\label{sec:prel_steps}
 
 Avant d'être en mesure d'utiliser les algorithmes d'apprentissage, il est nécessaire que les données brutes issues des capteurs passent par un ensemble d'étapes préliminaires pour être transformées en caractéristiques discriminantes. Ainsi, cette section va présente les méthodes les plus utilisées en ce qui concerne le prétraitement et la segmentation des données, mais également l'extraction de caractéristiques et la réduction du nombre qui en est produit, c'est-à-dire la réduction de la dimensionnalité.
 
@@ -157,14 +158,17 @@ Enfin, la segmentation par fenêtre glissante peut se traduire comme étant la t
 L'extraction de caractéristiques est une phase importante dans le processus d'apprentissage pour reconnaître des activités. L'objectif de cette opération consiste à produire un vecteur de caractéristiques discriminantes pour chaque fragment du signal généré, grâce à un certain nombre de fonctions mathématiques. Il existe deux principaux domaines auxquels appartiennent les différentes techniques d'extraction : le domaine temporel et le domaine fréquentiel \citep{Huynh2005, Figo2010, Cleland2013a}. Les caractéristiques issues du domaine temporel demeurent les plus simples à obtenir. Il est notamment possible d'y retrouver des métriques statistiques comme la moyenne, la variance, l'écart type, l'asymétrie ou encore le kurtosis (la courbure) du signal, mais également des métriques dites \og enveloppe \fg comme la médiane, le minimum ou le maximum du signal. De plus, de nombreuses autres métriques temporelles peuvent être utilisées dans la reconnaissance d'activités, comme la corrélation entre deux signaux ou encore le \textit{zero crossing rate}\textemdash qui correspond au taux de changement de signe d'un signal. Les formules de l'asymétrie $S$, du kurtosis $K$ et de la corrélation $\rho$ de deux signaux $n \mbox{ et } n'$ sont respectivement données par :
 
 \begin{equation}
+	\label{eq:asymetrie}
 	S \left(n\right) = \frac{N}{(N-1)(N-2)} \cdot \left(\sum_{i=1}^{N}{\frac{(n_i-\bar{n})^3}{\sigma_n^3}}\right)
 \end{equation}
 
 \begin{equation}
+	\label{eq:kurtosis}
 	K \left(n\right) = \frac{N(N+1)}{(N-1)(N-2)(N-3)} \cdot \left(\sum_{i=1}^{N}{\frac{(n_i-\bar{n})^4}{\sigma_n^4}-\frac{3(N-1)^2}{(N-2)(N-3)}}\right)
 \end{equation}
 
 \begin{equation}
+	\label{eq:correlation}
 	\rho\left(n, n^{\prime}\right) = \frac{cov\left(n, n^{\prime}\right)}{\sigma_n\cdot\sigma_{n^{\prime}}}
 \end{equation}
 
