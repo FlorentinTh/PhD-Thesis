@@ -67,7 +67,7 @@
 \begin{table}[H]\renewcommand{\arraystretch}{0.5}
 	\centering
 	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme des $k$ plus proches voisins configuré avec $k=1$ et de haut en bas la distance Euclidienne et la distance de Manhattan pour la version 1 du \textit{wearable device}.}
-	\label{tab:rf-300-wear-v1}
+	\label{tab:knn-wear-v1}
 	\begin{tabular}{@{}rccc@{}}
 		\toprule
 			\textbf{Jeu de données} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
@@ -89,46 +89,356 @@
 
 \section{\textit{Wearable device} : version 2}
 
+%-- OK
 \begin{table}[H]\renewcommand{\arraystretch}{0.5}
 	\centering
-	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=300$ arbres et $F=f1$ pour la version 2 du \textit{wearable device}.}
-	\label{tab:my-table}
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=150$ arbres et $F=f0$ pour la version 2 du \textit{wearable device}.}
+	\label{tab:tab:rf-150-f0-wear-v2}
 	\begin{tabular}{@{}rccc@{}}
 		\toprule
 			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
 		\midrule
-			soil\_type\_wear\_v2\_6 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_wear\_v2\_9 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_wear\_v2\_12 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_people\_wear\_v2\_6 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_people\_wear\_v2\_9 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_people\_wear\_v2\_12 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_position\_wear\_v2\_6 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_position\_wear\_v2\_9 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_position\_wear\_v2\_12 & 0.xx & 0.xx & 0.xx \\
+			soil\_type\_wear\_v2\_6 & 0.86 & 0.86 & 0.82 \\
+			soil\_type\_wear\_v2\_9 & 0.91 & 0.91 & 0.86 \\
+			soil\_type\_wear\_v2\_12 & 0.89 & 0.89 & 0.83 \\
+			soil\_type\_people\_wear\_v2\_6 & 0.88 & 0.88 & 0.88 \\
+			soil\_type\_people\_wear\_v2\_9 & 0.91 & 0.91 & 0.90 \\
+			soil\_type\_people\_wear\_v2\_12 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_position\_wear\_v2\_6 & 0.91 & 0.90 & 0.90 \\
+			soil\_type\_position\_wear\_v2\_9 & 0.93 & 0.92 & 0.92 \\
+			soil\_type\_position\_wear\_v2\_12 & 0.92 & 0.92 & 0.91 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%--OK
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=150$ arbres et $F=f1$ pour la version 2 du \textit{wearable device}.}
+	\label{tab:tab:rf-150-f1-wear-v2}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_wear\_v2\_6 & 0.86 & 0.86 & 0.81 \\
+			soil\_type\_wear\_v2\_9 & 0.91 & 0.91 & 0.87 \\
+			soil\_type\_wear\_v2\_12 & 0.89 & 0.89 & 0.83 \\
+			soil\_type\_people\_wear\_v2\_6 & 0.88 & 0.88 & 0.87 \\
+			soil\_type\_people\_wear\_v2\_9 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_people\_wear\_v2\_12 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_wear\_v2\_6 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_wear\_v2\_9 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_position\_wear\_v2\_12 & 0.92 & 0.92 & 0.92 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- OK
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=150$ arbres et $F=f2$ pour la version 2 du \textit{wearable device}.}
+	\label{tab:tab:rf-150-f2-wear-v2}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_wear\_v2\_6 & 0.86 & 0.86 & 0.81 \\
+			soil\_type\_wear\_v2\_9 & 0.90 & 0.90 & 0.85 \\
+			soil\_type\_wear\_v2\_12 & 0.90 & 0.90 & 0.85 \\
+			soil\_type\_people\_wear\_v2\_6 & 0.86 & 0.86 & 0.85 \\
+			soil\_type\_people\_wear\_v2\_9 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_people\_wear\_v2\_12 & 0.91 & 0.91 & 0.90 \\
+			soil\_type\_position\_wear\_v2\_6 & 0.91 & 0.90 & 0.90 \\
+			soil\_type\_position\_wear\_v2\_9 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_position\_wear\_v2\_12 & 0.91 & 0.91 & 0.91 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- OK
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=300$ arbres et $F=f0$ pour la version 2 du \textit{wearable device}.}
+	\label{tab:tab:rf-300-f0-wear-v2}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_wear\_v2\_6 & 0.86 & 0.86 & 0.82 \\
+			soil\_type\_wear\_v2\_9 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_wear\_v2\_12 & 0.90 & 0.90 & 0.85 \\
+			soil\_type\_people\_wear\_v2\_6 & 0.88 & 0.88 & 0.88 \\
+			soil\_type\_people\_wear\_v2\_9 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_people\_wear\_v2\_12 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_wear\_v2\_6 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_wear\_v2\_9 & 0.93 & 0.93 & 0.92 \\
+			soil\_type\_position\_wear\_v2\_12 & 0.92 & 0.92 & 0.91 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+% ---- ok
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=300$ arbres et $F=f1$ pour la version 2 du \textit{wearable device}.}
+	\label{tab:tab:rf-300-f1-wear-v2}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_wear\_v2\_6 & 0.87 & 0.87 & 0.83 \\
+			soil\_type\_wear\_v2\_9 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_wear\_v2\_12 & 0.90 & 0.90 & 0.84 \\
+			soil\_type\_people\_wear\_v2\_6 & 0.88 & 0.88 & 0.88 \\
+			soil\_type\_people\_wear\_v2\_9 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_people\_wear\_v2\_12 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_wear\_v2\_6 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_wear\_v2\_9 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_wear\_v2\_12 & 0.92 & 0.92 & 0.91 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- OK
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=300$ arbres et $F=f2$ pour la version 2 du \textit{wearable device}.}
+	\label{tab:tab:rf-300-f2-wear-v2}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_wear\_v2\_6 & 0.86 & 0.86 & 0.82 \\
+			soil\_type\_wear\_v2\_9 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_wear\_v2\_12 & 0.91 & 0.91 & 0.86 \\
+			soil\_type\_people\_wear\_v2\_6 & 0.87 & 0.87 & 0.86 \\
+			soil\_type\_people\_wear\_v2\_9 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_people\_wear\_v2\_12 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_wear\_v2\_6 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_wear\_v2\_9 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_wear\_v2\_12 & 0.92 & 0.92 & 0.92 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- OK
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme des $k$ plus proches voisins configuré avec $k=1$ et la distance Euclidienne pour la version 2 du \textit{wearable device}.}
+	\label{tab:tab:knn-dE-wear-v2}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_wear\_v2\_6 & 0.91 & 0.91 & 0.87 \\
+			soil\_type\_wear\_v2\_9 & 0.90 & 0.90 & 0.85 \\
+			soil\_type\_wear\_v2\_12 & 0.84 & 0.84 & 0.76 \\
+			soil\_type\_people\_wear\_v2\_6 & 0.87 & 0.88 & 0.87 \\
+			soil\_type\_people\_wear\_v2\_9 & 0.90 & 0.90 & 0.89 \\
+			soil\_type\_people\_wear\_v2\_12 & 0.87 & 0.87 & 0.86 \\
+			soil\_type\_position\_wear\_v2\_6 & 0.84 & 0.84 & 0.83 \\
+			soil\_type\_position\_wear\_v2\_9 & 0.88 & 0.88 & 0.88 \\
+			soil\_type\_position\_wear\_v2\_12 & 0.83 & 0.83 & 0.82 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- OK
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme des $k$ plus proches voisins configuré avec $k=1$ et la distance de Manhattan pour la version 2 du \textit{wearable device}.}
+	\label{tab:tab:knn-dM-wear-v2}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_wear\_v2\_6 & 0.92 & 0.92 & 0.90 \\
+			soil\_type\_wear\_v2\_9 & 0.93 & 0.93 & 0.89 \\
+			soil\_type\_wear\_v2\_12 & 0.90 & 0.90 & 0.85 \\
+			soil\_type\_people\_wear\_v2\_6 & 0.89 & 0.89 & 0.89 \\
+			soil\_type\_people\_wear\_v2\_9 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_people\_wear\_v2\_12 & 0.90 & 0.90 & 0.89 \\
+			soil\_type\_position\_wear\_v2\_6 & 0.87 & 0.87 & 0.86 \\
+			soil\_type\_position\_wear\_v2\_9 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_wear\_v2\_12 & 0.87 & 0.87 & 0.86 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
 \section{Téléphone intelligent}
 
+%-- 
 \begin{table}[H]\renewcommand{\arraystretch}{0.5}
 	\centering
 	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=300$ arbres et $F=f1$ pour le téléphone intelligent.}
-	\label{tab:my-table}
+	\label{tab:rf-300-cell}
 	\begin{tabular}{@{}rccc@{}}
 		\toprule
 			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
 		\midrule
-			soil\_type\_wear\_v2\_6 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_wear\_v2\_9 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_wear\_v2\_12 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_people\_wear\_v2\_6 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_people\_wear\_v2\_9 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_people\_wear\_v2\_12 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_position\_wear\_v2\_6 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_position\_wear\_v2\_9 & 0.xx & 0.xx & 0.xx \\
-			soil\_type\_position\_wear\_v2\_12 & 0.xx & 0.xx & 0.xx \\
+			soil\_type\_cell\_6 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_9 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_12 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_people\_cell\_6 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_people\_cell\_9 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_people\_cell\_12 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_cell\_6 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_position\_cell\_9 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_cell\_12 & 0.92 & 0.92 & 0.91 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- 
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=300$ arbres et $F=f1$ pour le téléphone intelligent.}
+	\label{tab:rf-300-cell}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_cell\_6 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_9 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_12 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_people\_cell\_6 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_people\_cell\_9 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_people\_cell\_12 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_cell\_6 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_position\_cell\_9 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_cell\_12 & 0.92 & 0.92 & 0.91 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- 
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=300$ arbres et $F=f1$ pour le téléphone intelligent.}
+	\label{tab:rf-300-cell}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_cell\_6 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_9 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_12 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_people\_cell\_6 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_people\_cell\_9 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_people\_cell\_12 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_cell\_6 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_position\_cell\_9 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_cell\_12 & 0.92 & 0.92 & 0.91 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- 
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=300$ arbres et $F=f1$ pour le téléphone intelligent.}
+	\label{tab:rf-300-cell}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_cell\_6 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_9 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_12 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_people\_cell\_6 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_people\_cell\_9 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_people\_cell\_12 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_cell\_6 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_position\_cell\_9 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_cell\_12 & 0.92 & 0.92 & 0.91 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- OK
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=300$ arbres et $F=f1$ pour le téléphone intelligent.}
+	\label{tab:rf-300-cell}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_cell\_6 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_9 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_12 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_people\_cell\_6 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_people\_cell\_9 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_people\_cell\_12 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_cell\_6 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_position\_cell\_9 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_cell\_12 & 0.92 & 0.92 & 0.91 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- 
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme \textit{Random Forest} configuré avec $B=300$ arbres et $F=f1$ pour le téléphone intelligent.}
+	\label{tab:rf-300-cell}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_cell\_6 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_9 & 0.92 & 0.92 & 0.88 \\
+			soil\_type\_cell\_12 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_people\_cell\_6 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_people\_cell\_9 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_people\_cell\_12 & 0.91 & 0.91 & 0.91 \\
+			soil\_type\_position\_cell\_6 & 0.92 & 0.92 & 0.91 \\
+			soil\_type\_position\_cell\_9 & 0.92 & 0.92 & 0.92 \\
+			soil\_type\_position\_cell\_12 & 0.92 & 0.92 & 0.91 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- 
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme des $k$ plus proches voisins configuré avec $k=1$ et la distance de Manhattan pour le téléphone intelligent.}
+	\label{tab:tab:knn-cell}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_cell\_6 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_cell\_9 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_cell\_12 & 0.92 & 0.92 & 0.89 \\
+			soil\_type\_people\_cell\_6 & 0.89 & 0.89 & 0.89 \\
+			soil\_type\_people\_cell\_9 & 0.90 & 0.90 & 0.89 \\
+			soil\_type\_people\_cell\_12 & 0.89 & 0.89 & 0.89 \\
+			soil\_type\_position\_cell\_6 & 0.90 & 0.90 & 0.89 \\
+			soil\_type\_position\_cell\_9 & 0.89 & 0.89 & 0.88 \\
+			soil\_type\_position\_cell\_12 & 0.91 & 0.91 & 0.90 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+%-- OK
+\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+	\centering
+	\caption{Résulats détaillés de la reconnaissance des sols avec l'algorithme des $k$ plus proches voisins configuré avec $k=1$ et la distance de Manhattan pour le téléphone intelligent.}
+	\label{tab:tab:knn-cell}
+	\begin{tabular}{@{}rccc@{}}
+		\toprule
+			\textbf{Dataset} & \textbf{Justesse} & \textbf{F-Mesure} & \textbf{$k$} \\
+		\midrule
+			soil\_type\_cell\_6 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_cell\_9 & 0.92 & 0.92 & 0.87 \\
+			soil\_type\_cell\_12 & 0.92 & 0.92 & 0.89 \\
+			soil\_type\_people\_cell\_6 & 0.89 & 0.89 & 0.89 \\
+			soil\_type\_people\_cell\_9 & 0.90 & 0.90 & 0.89 \\
+			soil\_type\_people\_cell\_12 & 0.89 & 0.89 & 0.89 \\
+			soil\_type\_position\_cell\_6 & 0.90 & 0.90 & 0.89 \\
+			soil\_type\_position\_cell\_9 & 0.89 & 0.89 & 0.88 \\
+			soil\_type\_position\_cell\_12 & 0.91 & 0.91 & 0.90 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
