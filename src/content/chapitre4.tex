@@ -32,18 +32,20 @@ Dans une première version, la reconnaissance des types de sols a été réalis�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\linewidth]{device.pdf}
+	\includegraphics[width=.8\linewidth]{chapter4/device.pdf}
         \caption{\acs{SOC} Arduino 101 et son \textit{shield} de prototypage incluant une carte mémoire (1) ainsi que la centrale inertielle \textit{LSM9DS1} (2) présente sur la version 2 du dispositif.}
 	\label{fig:device}
 \end{figure}
 
 \subsection{Le \textit{firmware}}
 
-Pour assurer le bon fonctionnement du matériel qui compose le \textit{wearable device} il était tout d'abord nécessaire de développer un \textit{firmware} \citep{Thullier2019}. Le fonctionnement de celui-ci s'articule autour de trois composants logiciels principaux qui sont illustrés en figure \ref{fig:soil_types_firmware}.
+% \citep{Thullier2019}
+
+Pour assurer le bon fonctionnement du matériel qui compose le \textit{wearable device} il était tout d'abord nécessaire de développer un \textit{firmware} \footnote{\url{https://github.com/FlorentinTh/SoilTypesRecognitionWearable-Firmware}}. Le fonctionnement de celui-ci s'articule autour de trois composants logiciels principaux qui sont illustrés en figure \ref{fig:soil_types_firmware}.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{soil_types_firmware.pdf}
+	\includegraphics[width=12cm]{chapter4/soil_types_firmware.pdf}
         \caption{Représentation graphique de l'implémentation du \textit{firmware} embarqué sur le \textit{wearable device}.}
 	\label{fig:soil_types_firmware}
 \end{figure}
@@ -98,7 +100,7 @@ Selon \cite{Breiman2001}, une forêt d'arbres décisionnels est une combinaison 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=12cm]{algo_random_forest.pdf}
+	\includegraphics[width=12cm]{chapter4/algo_random_forest.pdf}
         \caption{Exemple de l'algorithme \textit{Random Forest} utilisant $B=3$ arbres.}
 	\label{fig:algo_random_forest}
 \end{figure}
@@ -121,7 +123,7 @@ D'autre part, l'algorithme des $k$ plus proches voisins est considéré comme un
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{algo_knn.pdf}
+	\includegraphics[width=10cm]{chapter4/algo_knn.pdf}
         \caption{Exemple de l'algoritme des $k$ plus proches voisins où $k=3$.}
 	\label{fig:algo_knn}
 \end{figure}
@@ -133,14 +135,14 @@ D'autre part, l'algorithme des $k$ plus proches voisins est considéré comme un
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\linewidth]{box.pdf}
+	\includegraphics[width=.8\linewidth]{chapter4/box.pdf}
         \caption{Boîte utilisée lors des expérimentations remplie de gravier et de sable.}
 	\label{fig:box}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\linewidth]{application.pdf}
+	\includegraphics[width=.8\linewidth]{chapter4/application.pdf}
         \caption{Captures d'écran de l'application \textit{Android} qui permet de piloter et d'étiquetter les données enregistrées.}
 	\label{fig:application}
 \end{figure}
@@ -154,12 +156,12 @@ D'autre part, l'algorithme des $k$ plus proches voisins est considéré comme un
 \begin{figure}[H]
     \centering
 	\subfloat[De gauche à droite, positionnement du \textit{wearable device} dans les poches de droite (1) et de gauche (2) ainsi qu'à l'intérieur d'un sac à dos ordinaire de 20L.]{
-		\includegraphics[width=.7\linewidth]{positions_a.pdf}
+		\includegraphics[width=.7\linewidth]{chapter4/positions_a.pdf}
 		\label{fig:positions_a}
     }
     \\[30pt]
 	\subfloat[Positionnement du \textit{wearable device} à l'intérieur d'un sac bandoulière porté sur les épaules de droite et de gauche.]{
-		\includegraphics[width=.7\linewidth]{positions_b.pdf}
+		\includegraphics[width=.7\linewidth]{chapter4/positions_b.pdf}
 		\label{fig:positions_b}
     }
     \caption{Illustration des cinq emplacements où le \textit{wearable device} est positionné pendant l'expérimentation.}
@@ -192,12 +194,12 @@ D'autre part, l'algorithme des $k$ plus proches voisins est considéré comme un
 \begin{figure}[H]
     \centering
 	\subfloat[RF]{
-		\includegraphics[width=.8\linewidth]{results_wear_v1_rf.pdf}
+		\includegraphics[width=.8\linewidth]{chapter4/results_wear_v1_rf.pdf}
 		\label{fig:results_wear_v1_rf}
     }
     \\[20pt]
 	\subfloat[KNN]{
-		\includegraphics[width=.8\linewidth]{results_wear_v1_knn.pdf}
+		\includegraphics[width=.8\linewidth]{chapter4/results_wear_v1_knn.pdf}
 		\label{fig:results_wear_v1_knn}
     }
     \caption{Résultats.}
@@ -207,43 +209,50 @@ D'autre part, l'algorithme des $k$ plus proches voisins est considéré comme un
 \begin{figure}[H]
     \centering
 	\subfloat[RF]{
-		\includegraphics[width=.8\linewidth]{pos_ind_rf_wear_1.pdf}
+		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_rf_wear_1.pdf}
 		\label{fig:pos_ind_rf_wear_1}
     }
     \\[20pt]
 	\subfloat[KNN]{
-		\includegraphics[width=.8\linewidth]{pos_ind_knn_wear_1.pdf}
+		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_knn_wear_1.pdf}
 		\label{fig:pos_ind_knn_wear_1}
     }
     \caption{Indépendance de posisition.}
     \label{fig:pos_ind_wear_v1}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-	\subfloat[RF]{
-		\includegraphics[width=.8\linewidth]{user_ind_rf_wear_1.pdf}
-		\label{fig:user_ind_rf_wear_1}
-    }
-    \\[20pt]
-	\subfloat[KNN]{
-		\includegraphics[width=.8\linewidth]{user_ind_knn_wear_1.pdf}
-		\label{fig:user_ind_knn_wear_1}
-    }
-    \caption{Indépendance de posisition.}
-    \label{fig:user_ind_wear_v1}
-\end{figure}
-
 \subsubsection{\textit{Version 2 du wearable device}}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\linewidth]{results_wear_v2.pdf}
+	\includegraphics[width=.8\linewidth]{chapter4/results_wear_v2.pdf}
         \caption{Résultats.}
 	\label{fig:results_wear_v2}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+	\subfloat[RF]{
+		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_rf_wear_2.pdf}
+		\label{fig:pos_ind_rf_wear_2}
+    }
+    \\[20pt]
+	\subfloat[KNN]{
+		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_knn_wear_2.pdf}
+		\label{fig:pos_ind_knn_wear_2}
+    }
+    \caption{Indépendance de posisition.}
+    \label{fig:pos_ind_wear_v2}
+\end{figure}
+
 \subsubsection{\textit{Téléphone intelligent}}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{chapter4/results_cell.pdf}
+        \caption{Résultats.}
+	\label{fig:results_cell}
+\end{figure}
 
 \subsection{Discussion des résultats obtenus}
 

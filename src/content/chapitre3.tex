@@ -32,12 +32,12 @@ Certains dispositifs considérés comme des \textit{wearable devices} tels que l
 \begin{figure}[H]
     \centering
 	\subfloat[Capteur de courbure]{
-		\includegraphics[width=.35\linewidth]{flex_sensor.pdf}
+		\includegraphics[width=.35\linewidth]{chapter3/flex_sensor.pdf}
 		\label{fig:flex_sensor}
     }
     \hspace*{2cm}
 	\subfloat[Capteur de force (\acs{FSR})]{
-		\includegraphics[width=.35\linewidth]{force_sensor.pdf}
+		\includegraphics[width=.35\linewidth]{chapter3/force_sensor.pdf}
 		\label{fig:force_sensor}
     }
     \caption{Exemples de capteurs de courbure (a) et de force (b).}
@@ -73,27 +73,27 @@ Avant d'entrer dans le détail des technologies de communication utilisées par 
 \begin{figure}[H]
     \centering
     \subfloat[Diffusion]{
-        \includegraphics[width=.2\linewidth]{topo_broadcast.pdf}
+        \includegraphics[width=.2\linewidth]{chapter3/topo_broadcast.pdf}
         \label{fig:topo_broadcast}
     }
     \hspace*{.2\linewidth}
     \subfloat[Étoile]{
-        \includegraphics[width=.22\linewidth]{topo_star.pdf}
+        \includegraphics[width=.22\linewidth]{chapter3/topo_star.pdf}
         \label{fig:topo_star}
     }
     \\[30pt]
     \subfloat[Pair-à-Pair]{
-		\includegraphics[width=.3\linewidth]{topo_p2p.pdf}
+		\includegraphics[width=.3\linewidth]{chapter3/topo_p2p.pdf}
 		\label{fig:topo_p2p}
     }
     \hspace*{.1\linewidth}
 	\subfloat[Maillé]{
-		\includegraphics[width=.3\linewidth]{topo_mesh.pdf}
+		\includegraphics[width=.3\linewidth]{chapter3/topo_mesh.pdf}
 		\label{fig:topo_mesh}
     }
     \\[30pt]
     \subfloat[Mode scan]{
-		\includegraphics[width=.22\linewidth]{topo_scan.pdf}
+		\includegraphics[width=.22\linewidth]{chapter3/topo_scan.pdf}
 		\label{fig:topo_scan}
     }
 	\caption{Représentation des topologies réseaux pour les technologies de communication sans-fil.}
@@ -160,7 +160,7 @@ Le modèle \textit{publish/subscribe} est une alternative au modèle client/serv
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{pub_sub.pdf}
+	\includegraphics[width=10cm]{chapter3/pub_sub.pdf}
         \caption{Illustration du fonctionnement du modèle \textit{publish/subscribe}.}
 	\label{fig:pub_sub}
 \end{figure}
@@ -182,12 +182,12 @@ Dès que la connexion est établie, la communication entre le dispositif central
 \begin{figure}[H]
 	\centering
 	\subfloat[Échange de données en mode diffusion]{
-		\includegraphics[width=.9\linewidth]{ble_broadcast_process.pdf}
+		\includegraphics[width=.9\linewidth]{chapter3/ble_broadcast_process.pdf}
 		\label{fig:ble_broadcast_process}
     }
     \\[30pt]
 	\subfloat[Échange de données en mode connexion]{
-		\includegraphics[width=.9\linewidth]{ble_connect_process.pdf}
+		\includegraphics[width=.9\linewidth]{chapter3/ble_connect_process.pdf}
 		\label{fig:ble_connect_process}
 	}
 	\caption{Illustration du processus d'échange de données dans les deux modes de fonctionnement du \acs{BLE}, soit les modes diffusion et connexion.}
@@ -208,12 +208,12 @@ Un message \ac{SOAP} est un document \ac{XML} qui contient un en-tête (\textit{
 \begin{figure}[H]
     \centering
 	\subfloat[Requête \acs{SOAP}]{
-		\includegraphics[width=.85\linewidth]{soap_req.pdf}
+		\includegraphics[width=.85\linewidth]{chapter3/soap_req.pdf}
 		\label{fig:soap_req}
     }
     \\[30pt]
 	\subfloat[Réponse \acs{SOAP}]{
-		\includegraphics[width=.85\linewidth]{soap_res.pdf}
+		\includegraphics[width=.85\linewidth]{chapter3/soap_res.pdf}
 		\label{fig:soap_res}
     }
     \caption{Exemple d'un échange de messages \acs{SOAP} entre un client et un serveur pour obtenir la valeur du capteur cardiaque.}
@@ -243,7 +243,7 @@ Lorsqu'elle est définie sur \ac{HTTP}, une architecture \ac{REST} manipule ses 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{rest_get.pdf}
+	\includegraphics[width=10cm]{chapter3/rest_get.pdf}
         \caption{Illustration d'un échange de messages entre un client et un serveur dans une architecture \ac{REST} basée sur \ac{HTTP} qui permet de récupérer la valeur d'un capteur cardiaque.}
 	\label{fig:rest_get}
 \end{figure}
@@ -275,7 +275,7 @@ Pour mettre en place une architecture \ac{REST}, \ac{COAP} reprend plusieurs con
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=10cm]{coap_get.pdf}
+	\includegraphics[width=10cm]{chapter3/coap_get.pdf}
         \caption{Illustration d'un échange de messages entre un client et un serveur dans une architecture \ac{REST} basée sur \ac{COAP} qui permet de récupérer la valeur d'un capteur cardiaque.}
 	\label{fig:coap_get}
 \end{figure}
