@@ -159,13 +159,9 @@ Par ailleurs, le fonctionnement de la seconde application \textit{Android}\footn
 
 \subsection{Procédure}
 
-Pour effectuer la collecte de données, il était nécessaire que les expérimentations soient conduites dans des situations se rapprochant le plus possible de cas d'utilisation réels. En ce sens, trois emplacements ont été adoptés comme étant les plus probables d'être choisis par les utilisateurs du \textit{wearable device}. Le premier est à l'intérieur d'un sac porté sur les épaules grâce aux anses. La seconde possibilité identifiée pour le port du dispositif est à l'intérieur d'un sac à dos et enfin, le dernier positionnement demeure simplement à l'intérieur d'une poche d'une veste. Cependant, puisque ce travail s'intéresse à déterminer avec précision l'impact de l'emplacement du \textit{wearable device} sur la reconnaissance des types de sols, il a été demandé aux participants de l'expérimentation de porter le dispositif à la fois sur l'épaule de droite et l'épaule de gauche pour le sac à main, tel qu'illustré par la figure \ref{fig:positions_a}. Aussi, 
+Pour effectuer la collecte de données, il était nécessaire que les expérimentations soient conduites dans des situations se rapprochant le plus possible de cas d'utilisation réels. En ce sens, trois emplacements ont été adoptés comme étant les plus probables d'être choisis par les utilisateurs du \textit{wearable device}. Le premier est à l'intérieur d'un sac porté sur les épaules grâce aux anses, comme un sac à main. La seconde possibilité identifiée pour le port du dispositif est à l'intérieur d'un sac à dos et enfin, le dernier positionnement demeure simplement à l'intérieur de la poche d'une veste. Cependant, puisque ce travail s'intéresse à déterminer avec précision l'impact de l'emplacement du \textit{wearable device} sur la reconnaissance des types de sols, il a été demandé aux participants de l'expérimentation de porter le dispositif à la fois sur l'épaule de droite et l'épaule de gauche pour le sac à main, tel qu'illustré par la figure \ref{fig:positions_a}. Aussi, celui-ci était lesté avec une masse supplémentaire d'un kilogramme. De la même manière, les participants ont été invités à porter le dispositif à l'intérieur des poches à droite et à gauche de la veste, comme montré par la figure \ref{fig:positions_b}, où une attention particulière a été portée sur le fait de conserver la veste fermée\textemdash ceci dans l'objectif de réduire le bruit potentiel induit sur les données inertielles par l'oscillation des bras lors de la marche. Finalement, en ce qui concerne le sac à dos, sa contenance était de $20\:L$ et il était lesté avec un poids supplémentaire de $3\:kg$. De plus, le \textit{wearable device} a été positionné dans la même poche du sac et dans la même direction pour tous les participants de l'expérimentation.
 
-
-
-% Moreover, such a bag was ballasted with an extra weight of 1 kg. In the same way, participants were requested, to wear the device both inside the right and left pockets of the jacket, as illustrated in the left of Figure \ref{fig:positions}, where a special attention was placed on keeping the jacket closed. We have formulated such a requirement in order to reduce variable noise that may have been created on inertial data because of the proper arm balancing of each participant. Finally, the last position we have experienced here, concerns the positioning inside a standard 20 L hiking backpack which weighed approximately 3 kg. The device was placed in both the same pocket and direction for each participant as demonstrated in the right of Figure \ref{fig:positions}
-
-% Once participants were introduced how to wear the device, they were invited to perform six round trips on each soil types, for each given position. A supervisor, in charge of the management of the device through the \textit{Android} application, let them know both when to start and stop walking. Firstly, they were asked to begin by gravels that were placed inside the box described previously. Secondly they were requested to perform the same operation on the floor next to the container that is considered to be a kind of cement. Then, we have invited participants to go outside to perform another six round trip in the snow. In order to remain consistent with the characteristics of records we collected inside, a measuring tape\textemdash respecting the length of the box\textemdash was placed over the snow to inform participants where to turn around. Finally, since we needed to replace gravels inside the container, participants were called back\textemdash at another stage\textemdash to perform the experiment once more, on the sand.
+Dès lors que les instructions au sujet du positionnement du dispositif ont été présentées aux participants, ils ont été invités à effectuer six allers-retours sur chaque type de sol, pour chaque position donnée. Il leur était indiqué, à la fois quand commencer et s’arrêter de marcher par un superviseur en charge de la gestion du \textit{wearable device} par l'intermédiaire de l’application \textit{Android}. Tout d'abord, il leur a été demandé de commencer par les graviers placés à l'intérieur du bac décrit précédemment. Dans un second temps, ils ont été invités à effectuer la même opération sur le sol, à côté du bac, considéré comme étant une sorte de ciment. Les participants ont ensuite été invités à sortir pour effectuer six autres allers et retours dans la neige. Afin de rester cohérents avec la procédure de l'expérimentation réaliser au sein du laboratoire, un ruban à mesurer respectant la longueur du bac a été placé sur la neige pour indiquer aux participants où faire demie tour. Enfin, puisque les graviers à l'intérieur du bac devaient être remplacés, les participants ont été recontactés pour effectuer l'expérimentation sur le sable ultérieurement. Cette même procédure a été répétée aussi bien avec la version 2 du \textit{wearable device} ($wear_v2$), ainsi qu'avec le téléphone intelligent ($cell$) à l'exception faite des enregistrements récoltés sur la neige, puisque la période de l'année durant laquelle cette deuxième partie de l'expérimentation a été conduite ne le permettait pas.
 
 \begin{figure}[H]
 	\centering
@@ -186,20 +182,28 @@ Pour effectuer la collecte de données, il était nécessaire que les expérimen
 
 \subsection{Ensembles de données}
 
-\begin{table}[H]\renewcommand{\arraystretch}{0.5}
+% \footnote{\url{https://old.datahub.io/dataset/soil-types-recognition}}
+
+Afin de valider que la méthode de reconnaissance des types de sols proposée dans ce premier travail est suffisamment précise et fiable, il a été nécessaire de produire plusieurs jeux de données, dont la liste est fournie par le tableau \ref{tab:datasets}. En effet, les expérimentations faites par les participants ont seulement permis l'échantillonnage de données brutes à une fréquence stabilisée à $60\:Hz$. De plus, puisqu'un temps moyen de $6 s$ pour marcher un aller-retour dans le bac a été observé, c'est ce découpage qui a été utilisé pour le calcul des caractéristiques discriminantes, soit une fenêtre de taille $6\:s \times 60\:Hz = 600$ instances de données pour chaque participant, sur chaque type de sol et pour chaque position ce qui correspond alors à une donnée d'entrée pour l'algorithme d'apprentissage.
+
+\begin{table}[H]
+	\caption{Liste détaillée des ensembles de données produits, où les noms sont exprimés avec la notation \acl{BNF} (\acs{BNF}).}
+	\label{tab:datasets}
 	\begin{center}
-		\caption{Liste des datasets.}
-		\label{tab:datasets}
-		\begin{tabular}{@{}rl@{}}
-			\toprule
-				\textbf{Dataset} & \textbf{Description} \\
-			\midrule
-				\textbf{soil\_type\_{[}\textit{wear\_v1}|\textit{wear\_v2}|\textit{cell}{]}\_{[}\textit{6}|\textit{9}|\textit{12}{]}} & Lorem \\
-				\textbf{soil\_type\_position\_{[}\textit{wear\_v1}|\textit{wear\_v2}|\textit{cell}{]}\_{[}\textit{6}|\textit{9}|\textit{12}{]}} & Lorem \\
-			\bottomrule
-		\end{tabular}
+		\resizebox{.9\textwidth}{!}{%
+			\begin{tabular}{@{}rl@{}}
+				\toprule
+				\textbf{Jeu de données} & \textbf{Description} \\ \midrule
+				\textbf{soil\_type\_{[}\textit{wear\_v1}|\textit{wear\_v2}|\textit{cell}{]}\_{[}\textit{6}|\textit{9}|\textit{12}{]}} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquettée \\[-15pt] avec le type de sol correspondant.\end{tabular} \\
+				\textbf{soil\_type\_position\_{[}\textit{wear\_v1}|\textit{wear\_v2}|\textit{cell}{]}\_{[}\textit{6}|\textit{9}|\textit{12}{]}} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquettée avec le type de sol \\[-15pt] correspondant et la position du wearable device.\end{tabular} \\ \bottomrule
+			\end{tabular}%
+		}
 	\end{center}
 \end{table}
+
+D'autre part, 
+
+% Since we have exploited several positions for the wearable device, we have created one dataset containing every soil types for each given place, being 5 distinct datasets in total. In that sense, we have been able to test the position-independent hypothesis.
 
 \subsection{Résultats obtenus}
 
