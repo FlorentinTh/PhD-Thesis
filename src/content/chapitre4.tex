@@ -184,7 +184,7 @@ Dès lors que les instructions au sujet du positionnement du dispositif ont ét�
 
 % \footnote{\url{https://old.datahub.io/dataset/soil-types-recognition}}
 
-Afin de valider que la méthode de reconnaissance des types de sols proposée dans ce premier travail est suffisamment précise et fiable, il a été nécessaire de produire plusieurs jeux de données, dont la liste est fournie par le tableau \ref{tab:datasets}. En effet, les expérimentations faites par les participants ont seulement permis l'échantillonnage de données brutes à une fréquence stabilisée à $60\:Hz$. De plus, puisqu'un temps moyen de $6 s$ pour marcher un aller-retour dans le bac a été observé, c'est ce découpage qui a été utilisé pour le calcul des caractéristiques discriminantes, soit une fenêtre de taille $6\:s \times 60\:Hz = 600$ instances de données pour chaque participant, sur chaque type de sol et pour chaque position ce qui correspond alors à une donnée d'entrée pour l'algorithme d'apprentissage.
+Afin de valider que la méthode de reconnaissance des types de sols proposée dans ce premier travail est suffisamment précise et fiable, il a été nécessaire de produire plusieurs jeux de données composés des caractéristiques discriminantes et étiquetés distinctement. La liste de ceux-ci est fournie par le tableau \ref{tab:datasets}. En effet, les expérimentations faites par les participants ont seulement permis l'échantillonnage de données brutes à une fréquence stabilisée à $60\:Hz$.
 
 \begin{table}[H]
 	\caption{Liste détaillée des ensembles de données produits, où les noms sont exprimés avec la notation \acl{BNF} (\acs{BNF}).}
@@ -194,16 +194,16 @@ Afin de valider que la méthode de reconnaissance des types de sols proposée da
 			\begin{tabular}{@{}rl@{}}
 				\toprule
 				\textbf{Jeu de données} & \textbf{Description} \\ \midrule
-				\textbf{soil\_type\_{[}\textit{wear\_v1}|\textit{wear\_v2}|\textit{cell}{]}\_{[}\textit{6}|\textit{9}|\textit{12}{]}} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquettée \\[-15pt] avec le type de sol correspondant.\end{tabular} \\
-				\textbf{soil\_type\_position\_{[}\textit{wear\_v1}|\textit{wear\_v2}|\textit{cell}{]}\_{[}\textit{6}|\textit{9}|\textit{12}{]}} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquettée avec le type de sol \\[-15pt] correspondant et la position du wearable device.\end{tabular} \\ \bottomrule
+				\textbf{soil\_type\_{[}\textit{wear\_v1}|\textit{wear\_v2}|\textit{cell}{]}\_{[}\textit{6}|\textit{9}|\textit{12}{]}} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquetée \\[-15pt] avec le type de sol correspondant.\end{tabular} \\
+				\textbf{soil\_type\_position\_{[}\textit{wear\_v1}|\textit{wear\_v2}|\textit{cell}{]}\_{[}\textit{6}|\textit{9}|\textit{12}{]}} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquetée avec le type de sol \\[-15pt] correspondant et la position du wearable device.\end{tabular} \\ \bottomrule
 			\end{tabular}%
 		}
 	\end{center}
 \end{table}
 
-D'autre part, 
+Ainsi, pour effectuer le calcul des caractéristiques il a tout d'abord été nécessaire de définir une fenêtre qui a été déterminée de manière empirique. En effet, puisqu'un temps moyen de $6 s$ pour marcher la distance d'un aller-retour dans le bac a été observé, c'est ce découpage qui a été utilisé pour procéder au calcul des caractéristiques discriminantes, soit une fenêtre de taille $6\:s \times 60\:Hz = 600$ instances de données brutes pour chaque participant, sur chaque type de sols et pour chaque position. Finalement ces jeux de données ont été utilisés en entrée des algorithmes d'apprentissage pour la reconnaissance des types de sols.
 
-% Since we have exploited several positions for the wearable device, we have created one dataset containing every soil types for each given place, being 5 distinct datasets in total. In that sense, we have been able to test the position-independent hypothesis.
+D'autre part, pour vérifier l'hypothèse d'indépendance de positionnement, c'est-à-dire, la capacité pour le système à reconnaitre les types de sols qu'importe l'emplacement du \textit{wearable device}, des ensembles de données distincts ont été produits pour chaque positionnement.
 
 \subsection{Résultats obtenus}
 
