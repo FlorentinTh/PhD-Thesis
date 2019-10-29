@@ -182,12 +182,12 @@ Dès que la connexion est établie, la communication entre le dispositif central
 \begin{figure}[H]
 	\centering
 	\subfloat[Échange de données en mode diffusion]{
-		\includegraphics[width=.9\linewidth]{chapter3/ble_broadcast_process.pdf}
+		\includegraphics[width=.85\linewidth]{chapter3/ble_broadcast_process.pdf}
 		\label{fig:ble_broadcast_process}
     }
-    \\[30pt]
+    \\[10pt]
 	\subfloat[Échange de données en mode connexion]{
-		\includegraphics[width=.9\linewidth]{chapter3/ble_connect_process.pdf}
+		\includegraphics[width=.85\linewidth]{chapter3/ble_connect_process.pdf}
 		\label{fig:ble_connect_process}
 	}
 	\caption{Illustration du processus d'échange de données dans les deux modes de fonctionnement du \acs{BLE}, soit les modes diffusion et connexion.}
@@ -205,13 +205,13 @@ Le protocole \ac{SOAP}, tout comme le modèle \textit{publish/subscribe}, est lu
 
 Un message \ac{SOAP} est un document \ac{XML} qui contient un en-tête (\textit{header}) ainsi qu'un corps (\textit{body}), le tout encapsulé dans une enveloppe. Cette dernière indique que le document XML correspond à un message \ac{SOAP} et identifie le début ainsi que la fin de du message. L'en-tête, qui demeure facultatif, peut contenir différents attributs relatifs au message. Le corps, quant à lui obligatoire, contient les informations soit de la requête faite par le client, soit de la réponse du serveur, ainsi que des informations à propos des erreurs qui pourraient survenir. Les informations contenues dans le corps du message \ac{SOAP} sont organisées sous forme de blocs. La figure \ref{fig:soap_msg} montre un exemple d'échange de messages \ac{SOAP} à travers \ac{HTTP} qui permet d'obtenir la valeur du capteur cardiaque d'un dispositif quelconque.
 
-\begin{figure}[H]
+\begin{figure}[t]
     \centering
 	\subfloat[Requête \acs{SOAP}]{
 		\includegraphics[width=.85\linewidth]{chapter3/soap_req.pdf}
 		\label{fig:soap_req}
     }
-    \\[30pt]
+    \\[20pt]
 	\subfloat[Réponse \acs{SOAP}]{
 		\includegraphics[width=.85\linewidth]{chapter3/soap_res.pdf}
 		\label{fig:soap_res}
