@@ -55,6 +55,7 @@ Le second module principal est l'\textit{\acs{IMU} Recorder}. En fonction de la 
 Le contenu de la mémoire tampon est ensuite envoyé au module de formatage des données toutes les secondes. Finalement, ce composant récupère l'ensemble des données de configuration du module de commande et s'occupe d'écrire les nouvelles données dans un fichier \ac{CSV} qui est stocké sur la carte mémoire. Dans la seconde version du \textit{wearable device}, le module de formatage des données s'occupe également de calculer les angles d'Euler (précession, nutation et rotation propre) grâce aux trois axes supplémentaires fournis par le \textit{LSM9DS1}.
 
 \subsection{Le processus d'apprentissage pour la reconnaissance des types de sols}
+\label{sec:learn}
 
 \subsubsection{Extraction des caractéristiques}
 
@@ -92,16 +93,16 @@ Après que les données aient été enregistrées sur la carte mémoire, le proc
 
 \subsubsection{Apprentissage}
 
-Dès l'obtention des caractéristiques discriminantes, l'étape suivante requise pour réaliser la reconnaissance des sols est le processus d'apprentissage. Selon la littérature qui concerne la reconnaissance d'activités, mais également celle au sujet de la reconnaissance des sols en robotique discutée dans les sections \ref{sec:algos} et \ref{sec:t1-related-work}, la performance de plusieurs algorithmes d'apprentissage a été démontrée. Néanmoins, ce premier travail propose une comparaison entre deux algorithmes qui n'ont pas encore été présentés dans cette thèse : la forêt d'arbres décisionnels (\textit{Random Forest}) et les $k$ plus proches voisins (\acl{KNN} ou \acs{KNN}). Ce choix est motivé par deux raisons principales. La première est que ces deux techniques d'apprentissage appartiennent à deux familles distinctes\textemdash respectivement, les arbres de décision et les algorithmes d'apprentissage \og{}paresseux\fg{}. De plus, ceux-ci constituent tous deux des méthodes non paramétriques, c'est-à-dire, qui ne font aucune supposition quant à la distribution de l'échantillon de données fournies en entrée. De ce fait, ces méthodes demeurent simples, flexibles puissants et efficaces \citep{Russell2010}. Par ailleurs, la performance en termes de taux de reconnaissance obtenue avec ces algorithmes est souvent exposée dans la littérature \citep{Kertesz2016, Vail2004}.
+Dès l'obtention des caractéristiques discriminantes, l'étape suivante requise pour réaliser la reconnaissance des sols est le processus d'apprentissage. Selon la littérature qui concerne la reconnaissance d'activités, mais également celle au sujet de la reconnaissance des sols en robotique discutée dans les sections \ref{sec:algos} et \ref{sec:t1-related-work}, la performance de plusieurs algorithmes d'apprentissage a été démontrée. Néanmoins, ce premier travail propose une comparaison entre deux algorithmes qui n'ont pas encore été présentés dans cette thèse : la forêt d'arbres décisionnels (\textit{random forest}) et les $k$ plus proches voisins (\acl{KNN} ou \acs{KNN}). Ce choix est motivé par deux raisons principales. La première est que ces deux techniques d'apprentissage appartiennent à deux familles distinctes\textemdash respectivement, les arbres de décision et les algorithmes d'apprentissage \og{}paresseux\fg{}. De plus, ceux-ci constituent tous deux des méthodes non paramétriques, c'est-à-dire, qui ne font aucune supposition quant à la distribution de l'échantillon de données fournies en entrée. De ce fait, ces méthodes demeurent simples, flexibles puissants et efficaces \citep{Russell2010}. Par ailleurs, la performance en termes de taux de reconnaissance obtenue avec ces algorithmes est souvent exposée dans la littérature \citep{Kertesz2016, Vail2004}.
 
 Selon \cite{Breiman2001}, une forêt d'arbres décisionnels est une combinaison d'arbres prédicteurs, aussi appelés arbre de décision, où chacun d'eux dépend d'un vecteur de données distinct, mais de même cardinalité. Ce vecteur contient un sous-ensemble aléatoire des données initiales issues de la phase d'extraction des caractéristiques. La décision finale du processus de reconnaissance de cet algorithme est déterminée par un vote majoritaire entre chacune des décisions émises en sortie des arbres de décision qui composent la forêt. La figure \ref{fig:algo_random_forest} illustre un exemple simplifié d'une forêt d'arbres décisionnels utilisant trois arbres.
 
-Pour exploiter la forêt d'arbres décisionnels en tant qu'algorithme d'apprentissage, il est important de définir préalablement au moins trois paramètres principaux. Le premier est le nombre d'arbres que doit comporter la forêt ($B$). Le second correspond au nombre de caractéristiques à considérer dans la division des n\oe{}uds de l'arbre lors de la construction de ce dernier ($F$) et enfin, la fonction nécessaire à la mesure de la qualité de cette division ($C$). En ce qui concerne le nombre de caractéristiques, \citeauthor{Breiman2001} suggère d'utiliser $F_1=\lfloor log_2(m) + 1\rfloor$ ou $m$ fait référence au nombre total d'attributs présents dans le jeu de données fourni en entrée. Néanmoins, il est également possible de trouver d'autres recommandations comme $F_0=\lfloor \frac{1}{2}\sqrt{m}\rfloor$ ou encore $F_2=\lfloor \sqrt{m}\rfloor$. Par ailleurs, en ce qui concerne la mesure de la qualité de la division des n\oe{}uds les fonctions qui sont les plus couramment utilisées sont le calcul du c\oe{}fficient de Gini et l'évaluation du gain en information basé sur l'entropie de Shannon dont les équations sont respectivement rappelées ci-après :
+Pour exploiter la forêt d'arbres décisionnels en tant qu'algorithme d'apprentissage, il est important de définir préalablement au moins trois paramètres principaux. Le premier est le nombre d'arbres que doit comporter la forêt ($B$). Le second correspond au nombre de variables à considérer dans la division des n\oe{}uds de l'arbre lors de la construction de ce dernier ($F$) et enfin, la fonction nécessaire à la mesure de la qualité de cette division ($C$). En ce qui concerne le nombre de caractéristiques, \citeauthor{Breiman2001} suggère d'utiliser $F_1=\lfloor log_2(m) + 1\rfloor$ ou $m$ fait référence au nombre total d'attributs présents dans le jeu de données fourni en entrée. Néanmoins, il est également possible de trouver d'autres recommandations comme $F_0=\lfloor \frac{1}{2}\sqrt{m}\rfloor$ ou encore $F_2=\lfloor \sqrt{m}\rfloor$. Par ailleurs, en ce qui concerne la mesure de la qualité de la division des n\oe{}uds les fonctions qui sont les plus couramment utilisées sont le calcul du c\oe{}fficient de Gini et l'évaluation du gain en information basé sur l'entropie de Shannon dont les équations sont respectivement rappelées ci-après :
 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/algo_random_forest.pdf}
-        \caption{Exemple de l'algorithme \textit{Random Forest} utilisant $B=3$ arbres.}
+        \caption{Exemple de l'algorithme \textit{random forest} utilisant $B=3$ arbres.}
 	\label{fig:algo_random_forest}
 \end{figure}
 
@@ -123,7 +124,7 @@ D'autre part, l'algorithme des $k$ plus proches voisins est considéré comme un
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/algo_knn.pdf}
-        \caption{Exemple de l'algoritme des $k$ plus proches voisins où $k=3$.}
+        \caption{Exemple de l'algorithme des $k$ plus proches voisins où $k=3$.}
 	\label{fig:algo_knn}
 \end{figure}
 
@@ -139,7 +140,7 @@ Dans un premier temps, puisque l'\acs{UQAC} se situe dans une région où les co
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/box.pdf}
-        \caption{Bac utilisé lors des expérimentations rempli de gravier en haut et de sable en bas, de dimensions: $l : 215\; cm \times L : 90\; cm \times H : 15\; cm$.}
+        \caption{Bac utilisé lors des expérimentations rempli de haut en bas, de gravier et de sable et de dimensions: $l : 215\; cm \times L : 90\; cm \times H : 15\; cm$.}
 	\label{fig:box}
 \end{figure}
 
@@ -150,7 +151,7 @@ L'avantage principal de cette méthode réside princiapelement dans la mobilité
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/application.pdf}
-        \caption{Captures d'écran de l'application \textit{Android} qui a permis de piloter et d'étiquetter les données enregistrées exécutée sur $cell\_oper$}
+        \caption{Captures d'écrans de l'application \textit{Android} exécutée sur $cell\_oper$ qui a permis de le pilotage et l'étiquetage les données brutes.}
 	\label{fig:application}
 \end{figure}
 
@@ -167,7 +168,7 @@ Pour effectuer la collecte de données, il était nécessaire que les expérimen
 		\label{fig:positions_a}
     }
 	\hspace*{\fill}
-	\subfloat[De gauche à droite, positionnement du \textit{wearable device} dans les poches de droite (1) et de gauche (2) ainsi qu'à l'intérieur d'un sac à dos ordinaire de 20L.]{
+	\subfloat[De gauche à droite, positionnement du \textit{wearable device} dans les poches de droite (1) et de gauche (2) ainsi qu'à l'intérieur d'un sac à dos ordinaire de $20\:L$.]{
 		\includegraphics[width=.48\linewidth]{chapter4/positions_b.pdf}
 		\label{fig:positions_b}
     }
@@ -193,8 +194,8 @@ Afin de valider que la méthode de reconnaissance des types de sols proposée da
 			\begin{tabular}{@{}rl@{}}
 				\toprule
 				\textbf{Jeu de données} & \textbf{Description} \\ \midrule
-				\textbf{soil\_type\_{[}\textit{wear\_v1}|\textit{wear\_v2}|\textit{cell}{]}\_{[}\textit{6}|\textit{9}|\textit{12}{]}} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquetée \\[-15pt] avec le type de sol correspondant.\end{tabular} \\
-				\textbf{soil\_type\_position\_{[}\textit{wear\_v1}|\textit{wear\_v2}|\textit{cell}{]}\_{[}\textit{6}|\textit{9}|\textit{12}{]}} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquetée avec le type de sol \\[-15pt] correspondant et la position du wearable device.\end{tabular} \\ \bottomrule
+				\textbf{soil\_type\_}\textbf{[ }\textit{wear\_v1}\textbf{ | }\textit{wear\_v2}\textbf{ | }\textit{cell}\textbf{ ]}\_\textbf{[ }\textit{6}\textbf{ | }\textit{9}\textbf{ | }\textit{12}\textbf{ ]} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquetée \\[-15pt] avec le type de sol correspondant \\[-15pt] (\textit{p. ex.} sable).\end{tabular} \\
+				\textbf{soil\_type\_position\_}\textbf{[ }\textit{wear\_v1}\textbf{ | }\textit{wear\_v2}\textbf{ | }\textit{cell}\textbf{ ]}\_\textbf{[ }\textit{6}\textbf{ | }\textit{9}\textbf{ | }\textit{12}\textbf{ ]} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquetée avec le type de sol \\[-15pt] correspondant et la position du wearable device \\[-15pt] (\textit{p. ex.} poche\_droite\_sable).\end{tabular} \\ \bottomrule
 			\end{tabular}%
 		}
 	\end{center}
@@ -206,52 +207,62 @@ D'autre part, pour vérifier l'hypothèse d'indépendance de positionnement, c'e
 
 \subsection{Évaluation de la performance}
 
-La performance de la méthode pour la reconnaissance des types de sols proposée dans ce chapitre a été évaluée selon la validation croisée en $k$ plis. Cette méthode est très largement utilisée dans la littérature de l'apprentissage machine au sens large \citep{Vail2004, Arlot2010, Kertesz2016}. En effet, l'avantage principal de cette technique est qu'elle permet l'utilisation de l'intégralité des données disponibles aussi bien pour la phase d'entraînement que pour la reconnaissance. De plus, celle-ci va permettre de minimiser le biais potentiel d'un ensemble de données de validation construit de manière empirique et ainsi réduire les problèmes liés à une mauvaise distribution de ces données comme le sur-apprentissage.
+La performance de la méthode pour la reconnaissance des types de sols proposée dans ce chapitre a été évaluée selon la validation croisée en $k$ plis. Cette méthode est très largement utilisée dans la littérature de l'apprentissage machine au sens large \citep{Vail2004, Arlot2010, Kertesz2016}. En effet, l'avantage principal de cette technique est qu'elle permet l'utilisation de l'intégralité des données disponibles aussi bien pour la phase d'entraînement que pour la reconnaissance. De plus, celle-ci va permettre de minimiser le biais potentiel d'un ensemble de données de validation construit de manière empirique, c'est-à-dire, réduire les problèmes liés à une mauvaise distribution de ces données comme le sur-apprentissage.
 
-Le fonctionnement de la validation croisée en $k$ plis est relativement simple. Prenons par exemple un ensemble de données binaires (\og $+$ \fg et \og $-$ \fg) sur lequel on souhaite mettre en place un système de reconnaissance grâce à un algorithme d'apprentissage dont la performance est évaluée avec une validation croisée en $k=3$ plis. La première étape consiste à découper cet ensemble de données en $k$ plis mutuellement disjoints où $k=3$ pour cet exemple. Néanmoins, puisque les données dans l'ensemble initial ne sont pas triées, il est important de s'assurer, lors du découpage, que les instances étiquettées soit par un \og $+$ \fg soit par un \og $-$ \fg soient réparties selon la même fréquence dans les $k$ plis. C'est le principe de la stratification des données. Dans cet exemple, trois plis, $A$, $B$ et $C$ sont donc produits, tel qu'illustré par la figure \ref{fig:cross_validation}. Lorsque $k=3$, la deuxième étape de ce processus est d'entraîner une première fois l'algorithme d'apprentissage avec l'ensemble $B\cup C$ et d'évaluer la performance de la reconnaissance avec $A$. Cette mesure est notée $E_A$. Ensuite, cette étape est répétée pour les deux plis restant en utilisant les ensembles $A\cup C$ puis $A\cup B$ pour l'entraînement et respectivement $B$ puis $C$ pour la mesure de la performance de la reconnaissance ce qui permet alors d'obtenir $E_B$ et $E_C$. Enfin, la performance globale de la reconnaissance, notée $E$, est estimée par la moyenne des mesures obtenues pour chaque pli.
+Le fonctionnement de la validation croisée en $k$ plis est relativement simple. Prenons par exemple un ensemble de données binaires (\og $+$ \fg et \og $-$ \fg) sur lequel on souhaite mettre en place un système de reconnaissance grâce à un algorithme d'apprentissage dont la performance est évaluée avec une validation croisée où $k=3$. La première étape consiste à découper cet ensemble de données en trois plis mutuellement disjoints. Néanmoins, puisque les données dans l'ensemble initial ne sont pas triées, il est important de s'assurer, lors du découpage, que les instances étiquetées soit par un \og $+$ \fg soit par un \og $-$ \fg soient réparties selon la même fréquence dans les trois plis. C'est le principe de la stratification des données. Dans cet exemple, les trois plis sont notés $A$, $B$ et $C$, tel qu'illustré par la figure \ref{fig:cross_validation}. La deuxième étape de ce processus est d'entraîner une première fois l'algorithme d'apprentissage avec l'ensemble $B\cup C$ et d'évaluer la performance de la reconnaissance avec $A$. Cette mesure est notée $E_A$. Ensuite, cette étape est répétée pour les deux plis restant en utilisant les ensembles $A\cup C$ puis $A\cup B$ pour l'entraînement et respectivement $B$ puis $C$ pour quantifier la performance de la reconnaissance, ce qui permet alors d'obtenir $E_B$ et $E_C$. Enfin, la performance globale de la reconnaissance ($E$), est estimée par la moyenne des mesures obtenues pour chaque pli.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/cross_validation.pdf}
-        \caption{Expemple d'une validation croisée où $k=3$ plis sur des données binaires.}
+        \caption{Exemple d'une validation croisée où $k=3$ plis sur des données binaires.}
 	\label{fig:cross_validation}
 \end{figure}
 
-Tel que préconisé par \citep{Witten2016}, le nombre de plis qui est devenu un standard avec le temps est $k=10$. Ainsi, pour que l'évaluation du système demeure cohérente avec celles définies pour quantififier les différentes méthodes de reconnaissances proposées depuis plusieurs années, une validation croisée en $10$ plis a été retenue, et ce, quels que soient les algorithmes et leurs paramétrages respectifs utilisés.
+Depuis l'apparition de l'apprentissage machine, de nombreux travaux ce sont concentrer sur l'optimisation de l'évaluation de la performance de ces systèmes \citep{Witten2016}. Ainsi, le nombre de plis à utiliser dans une validation croisée admis comme standard aujourd'hui est $k=10$. De ce fait, pour que l'évaluation du système proposé dans ce chapitre demeure cohérente avec celles définies dans la littérature, une validation croisée en $10$ plis a donc été retenue.
 
 \subsection{Résultats obtenus}
 
 \subsubsection{\textit{Version 1 du wearable device}}
 
+Dans un premier temps, la performance du système de reconnaissance des types de sols a été évaluée sur les données obtenues avec la version 1 du \textit{wearable device}. Pour ce faire, plusieurs modèles d'apprentissage ont été construits en utilisant différents paramètres pour l'algorithme \textit{random forest}. Puisqu'il est préférable qu'une forêt d'arbres décisionnels soit composée d'un grand nombre d'arbres \citep{Breiman2001}, les deux valeurs : $B=150$ et $B=300$ arbres ont été comparées\textemdash ceci dans le but de répondre aux exigences proposées par \cite{Breiman2001}, ainsi que pour conserver un temps de calcul acceptable. En ce qui concerne le paramètre relatif au nombre de variables aléatoire ($F$), les trois valeurs préconisées dans la littérature, $F_0$, $F_1$ et $F_2$ et qui sont décrites à la section \ref{sec:learn} ont également été comparées. Enfin, de par l'implémentation utilisée dans ce système, la fonction employée pour mesurer la qualité de la division des n\oe{}uds de l'arbre ($C$) demeure l’évaluation du gain en information basé sur l’entropie de Shannon, pour chaque expérimentation. La figure \ref{fig:results_wear_v1_rf} montre une représentation graphique des résultats obtenus pour chaque paramétrage de l'algorithme \textit{random forest}, évalué sur les deux ensembles de données.
+
+De la même manière, la performance de l'algorithme des $k$ plus proches voisins a été évaluée afin que les résultats puissent être comparés avec ceux obtenus pour l'algorithme \textit{random forest}. Pour ce faire, les deux mesures de distance : $D_e$ et $D_m$, décrites en section \ref{sec:learn} ont été utilisées. Afin de déterminer le nombre de voisins ($k$) optimal pour ce système de reconnaissance, toutes les valeurs comprises entre $k=1$ et $k=\sqrt{m}$, où $m$ correspond au nombre de caractéristiques discriminantes, ont été essayées et les résultats obtenus ont été comparés de manière empirique. Ainsi, il est apparu que le nombre approprié de voisins à considérer était d'un seul. La figure \ref{fig:results_wear_v1_knn} montre une représentation graphique des résultats obtenus pour chaque paramétrage de l'algorithme \acs{KNN}, évalué grâce à une recherche linéaire du plus proche voisin pour les deux ensembles de données. L'ensemble des résultats de cette expérimentation est fourni en détail dans l'annexe \ref{anx:a}.
+
 \begin{figure}[H]
     \centering
-	\subfloat[$F-Mesure$ obtenue sur les deux ensembles de données avec les différents paramètres définis pour l'algorithme \textit{Random Forest}.]{
+	\subfloat[Les $F\mbox{-} Mesures$ obtenues sur les deux ensembles de données avec différents paramètres pour l'algorithme \textit{random forest}.]{
 		\includegraphics[width=.8\linewidth]{chapter4/results_wear_v1_rf.pdf}
 		\label{fig:results_wear_v1_rf}
     }
     \\[20pt]
-	\subfloat[$F-Mesure$ obtenue sur les deux ensembles de données avec les différents paramètres définis pour l'algorithme des $k$ plus proches voisins]{
+	\subfloat[Les $F\mbox{-} Mesures$ obtenues sur les deux ensembles de données avec différents paramètres pour l'algorithme des $k$ plus proches voisins.]{
 		\includegraphics[width=.8\linewidth]{chapter4/results_wear_v1_knn.pdf}
 		\label{fig:results_wear_v1_knn}
     }
-    \caption{Représentation Graphique de la $F-Mesure$ obtenue sur les deux ensembles de données avec les différents paramètres définis pour les algorithmes \textit{Random Forest} et \acs{KNN} avec la version 1 du \textit{wearable device}.}
+    \caption{Représentation graphique de la $F\mbox{-} Mesure$ obtenue sur les deux ensembles de données avec différents paramètres pour les algorithmes \textit{random forest} et \acs{KNN} avec la version 1 du \textit{wearable device}.}
     \label{fig:results_wear_v1}
 \end{figure}
 
+En s'appuyant sur ces résultats, il est possible d'affirmer que les paramètres optimaux pour la méthode de reconnaissance des types de sols suggérée, lorsqu'elle est réalisée avec l'algorithme \textit{random forest} sont : $B=300$ arbres et un nombre de variables aléatoires équivalent à $F_1=\log_2(m) + 1$, où $m$ correspond au nombre de caractéristiques discriminantes. En effet, c'est avec ces paramètres que les meilleurs résultats ont été observés, c'est-à-dire, une $F\mbox{-}Mesure$ moyenne de $86\%$. De plus, la même $F\mbox{-}Mesure$ moyenne a été obtenue avec l'algorithme \acs{KNN} utilisant la distance de Manhattan et en comparaison, l'emploie de la distance Euclidienne a, quant à elle, montré de moins bons résultats.
+
+Afin de s'assurer que la reconnaissance des sols soit fonctionnelle, et ce, indépendamment de la position choisie par l'utilisateur pour le porter, cinq jeux de données distincts ont été construits, soit un ensemble de données par emplacement. De ce fait, l'évaluation de la performance de reconnaissance a été réalisée avec les deux mêmes algorithmes d'apprentissage, configurés avec les paramètres optimaux identifiés dans l'expérimentation précédente. Les résultats obtenus sont données par les courbes bleues de la figures \ref{fig:pos_ind_wear_v1}. De plus, afin de déterminer si la position du \textit{wearable device} avait un impact significatif sur le taux de reconnaissance, la moyenne des $F\mbox{-}Mesure$ obtenues pour chaque position par rapport au type de sols ont été évaluées à l'aide du jeu de données \og $soil\_type\_position\_wear\_v1\_6$ \fg. Ce sont les courbes de référence représentées en rouge sur la figure \ref{fig:pos_ind_wear_v1}.
+
 \begin{figure}[H]
     \centering
-	\subfloat[RF]{
+	\subfloat[Les $F\mbox{-} Mesures$ obtenues pour l'évaluation de l'indépendance de positionnement avec l'algorithme \textit{random forest}.]{
 		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_rf_wear_1.pdf}
 		\label{fig:pos_ind_rf_wear_1}
     }
     \\[20pt]
-	\subfloat[KNN]{
+	\subfloat[Les $F\mbox{-} Mesures$ obtenues pour l'évaluation de l'indépendance de positionnement avec l'algorithme \acs{KNN}.]{
 		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_knn_wear_1.pdf}
 		\label{fig:pos_ind_knn_wear_1}
     }
-    \caption{Indépendance de posisition.}
+    \caption{Les $F\mbox{-} Mesures$ obtenues par rapport aux valeurs références permettant l'évaluation de l'indépendance de positionnement du \textit{wearable device} dans sa version 1, pour les deux algorithmes : \textit{random forest} et \acs{KNN}.}
     \label{fig:pos_ind_wear_v1}
 \end{figure}
+
+Par l'intermédiaire de ses courbes, 
 
 \subsubsection{\textit{Version 2 du wearable device}}
 
