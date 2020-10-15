@@ -64,28 +64,34 @@ L'augmentation de l'utilisation des \textit{wearable devices} au sein des habita
 \section{Définition du projet de recherche}
 \label{sec:def_proj}
 
-\textbf{\hl{Retravailler cette section}}
-
-Cette thèse s'articule donc autour de l'exploitation des \textit{wearable devices} ainsi que de l'interopérabilité de ces derniers avec l'utilisation de l'intelligence ambiante au sein des habitats intelligents. Plus particulièrement, cette thèse permettra de répondre aux questions suivantes :
+Dans un premier temps, cette thèse propose de s'intéresser à de nouvelles méthodes d'exploitation des \textit{wearable devices} au sein des maisons intelligentes afin d'offrir une meilleure assistance à leurs résidents. Dans un second temps, ce travail propose également la mise en place d'un nouveau type d'architecture pour ces habitats offrant plus une meilleure fiabilité ainsi qu'une meilleure évolutivité matérielle et logicielle. Finalement, afin de réconcilier la cohabitation des capteurs statiques présents dans les habitats intelligents avec les capteurs \textit{wearable devices}, cette thèse introduit un nouvel outil. Ce dernier a pour principal objectif de permettre l'exploitation de différents types de données issus de sources hétérogènes dans le processus d'apprentissage. Cependant, il vise également à simplifier le déploiement de nouveaux composants logiciels ainsi qu'à favoriser la réutilisation de ces composants. Plus particulièrement, cette thèse permettra de répondre aux questions suivantes :
 
 \begin{enumerate}
 	\item
 		\label{question:1}
-		Quels nouveaux apports, en matière d'intelligence, les \textit{wearable devices} vont permettre de proposer aux résidents des habitats intelligents afin d'améliorer l'assistance qui leur est requise ?
-
+		Quels sont les nouveaux apports, en matière d'intelligence, que les \textit{wearable devices} vont permettre de proposer aux résidents des habitats intelligents afin d'améliorer l'assistance qui leur est requise ?
 	\item
 		\label{question:2}
-		Comment optimiser l'intégration des \textit{wearable devices} afin qu'ils puissent être utilisés en combinaison avec les capteurs statiques présents dans les habitats intelligents pour réaliser une reconnaissance basée sur l'interopérabilité de ces deux méthodes ?
-
+		Comment faire évoluer les architectures de mainsons intelligentes pour leur permettre de mieux s'adapter à la fois aux différents capteurs et à la diversité des composants logiciels qu'elles intègrent pour réaliser des processus d'apprentissage ?
 	\item
 		\label{question:3}
-		Comment valoriser la réutilisation des différents algorithmes employés dans la reconnaissance d'activités avec les \textit{wearable devices} afin de faciliter les expérimentations dans un cadre académique ?
+		Comment faire en sorte que ces différents composants logiciels soient facilement réutilisés et déployés au sein de l'architecture ?
 \end{enumerate}
 
-Tout d'abord, différents \textit{wearable devices} permettant de réaliser de nouveaux types de reconnaissances seront développés afin de proposer une meilleure assistance aux résidents de l'habitat intelligents. Ensuite, l'objectif de cette thèse est de mettre en place un framework pour faciliter l'intégration des \textit{wearable devices} au sein des ces environnements. Celui-ci fournira une couche d'abstraction autant envers l'architecture de l'habitat dans lequel il est déployé qu'envers le dispositif lui-même. Enfin, cet outil aura également pour fonction de faciliter l'utilisation de ces appareils, dans un cadre académique, en offrant la possibilité de valider plus rapidement le fonctionnement des prototypes.
+Cette thèse s'articule autour de trois contributions principales qui font l'objet des publications scientifiques suivantes :
+
+\begin{enumerate}
+	\item
+		\label{pub:1}
+		Un article de conférence intitulé : \og Une méthode indépendante de la position pour la reconnaissance des types de sol à partir de données inertielles provenant d'un \textit{wearable device} \fg présenté à la 14\textsuperscript{e} conférence internationalle IEEE : \textit{Ubiquitous Intelligence and Computing (UIC)} qui s'est déroulée en août 2017 à San Francisco aux États-Unis \citep{Thullier2017a}.
+	\item
+		\label{pub:2}
+		Un article de conférence intitulé : \og Comparaison des méthodes d'acquisition de données inertielles pour une reconnaissance des types de sol indépendante de la position \fg présenté à la 15\textsuperscript{e} conférence internationalle IEEE : \textit{Ubiquitous Intelligence and Computing (UIC)} qui s'est déroulée en octobre 2018 à Guangzhou en Chine \citep{Thullier2018}.
+	\item
+		\label{pub:3}
+		Un article de journal intitulé : \og LE2ML : un \textit{workbench} d'apprentissage machine basé sur les microservices au sein d'une architecture agnostique, fiable et évolutive pour les maisons intelligentes \fg soumis et en cours de révision dans le journal : \textit{Journal of Ambient Intelligence and Humanized Computing}.
+\end{enumerate}
 
 \section{Organisation du document}
 
-\textbf{\hl{Retravailler cette section}}
-
-La suite de cette thèse se découpe en trois chapitres. Le \autoref{chap:2} présente, dans un premier temps, les différentes architectures d'habitats intelligents existantes. Dans un second temps, ce chapitre explique plus en détail le processus de reconnaissance d'activité et plus spécifiquement, les différents algorithmes qui sont utilisés pour l'apprentissage et la classification. Ensuite, le \autoref{chap:3} explicite le fonctionnement des \textit{wearable devices} ainsi que les différentes applications de ceux-ci au sein des habitats intelligents.
+La suite de cette thèse se découpe en sept chapitres principaux. Le \autoref{chap:2} présente, dans un premier temps, les différentes architectures d'habitats intelligents existantes. Dans un second temps, ce chapitre explique plus en détail le processus de reconnaissance d'activité et plus spécifiquement, les différents algorithmes qui sont utilisés pour l'apprentissage et la classification. Ensuite, le \autoref{chap:3} explicite le fonctionnement des \textit{wearable devices} ainsi que les différentes applications de ceux-ci au sein des habitats intelligents. Le \autoref{chap:4} présente une première contribution issue de ce projet de recherche. Dans un premier temps, ce chapitre se concentre sur la description de la solution proposée pour réaliser une reconnaissance des sols par le biais d'un \textit{wearable device}. Dans un second temps, l'ensemble des résultats obtenus lors des différentes phases d'expérimentation sont détaillés et discutés. Par ailleurs, le \autoref{chap:5} propose une nouvelle architecture en \textit{cluster} pour les maisons intelligentes et le \autoref{chap:6} introduit LE2ML (LIARA Environment for Modular Machine Learning), un \textit{workbench} modulaire pour l'apprentissage machine, dont la conception repose principalement sur l'architecture proposée. Enfin, le \autoref{chap:conclusion} clôture cette thèse en tirant les conclusions de chacun des travaux présentés dans cette thèse. De plus, ce chapitre propose différentes perspectives d'améliorations qui pourront être adressées dans le futur.
