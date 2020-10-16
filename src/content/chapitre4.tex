@@ -226,17 +226,17 @@ Depuis l'apparition de l'apprentissage machine, de nombreux travaux ce sont conc
 
 Dans un premier temps, la performance du système de reconnaissance des types de sols a été évaluée sur les données obtenues avec la version 1 du \textit{wearable device}. Pour ce faire, plusieurs modèles d'apprentissage ont été construits en utilisant différents paramètres pour l'algorithme \textit{random forest}. Puisqu'il est préférable qu'une forêt d'arbres décisionnels soit composée d'un grand nombre d'arbres \citep{Breiman2001}, les deux valeurs : $B=150$ et $B=300$ arbres ont été comparées\textemdash ceci dans le but de répondre aux exigences proposées par \cite{Breiman2001}, ainsi que pour conserver un temps de calcul acceptable. En ce qui concerne le paramètre relatif au nombre de variables aléatoire ($F$), les trois valeurs préconisées dans la littérature, $F_0=\lfloor \frac{1}{2}\sqrt{m}\rfloor$, $F_1=\lfloor log_2(m) + 1\rfloor$ et $F_2=\lfloor \sqrt{m}\rfloor$ ont également été comparées. Enfin, de par l'implémentation utilisée dans ce système, la fonction employée pour mesurer la qualité de la division des n\oe{}uds de l'arbre ($C$) demeure l’évaluation du gain en information basé sur l’entropie de Shannon, pour chaque expérimentation. La figure \ref{fig:results_wear_v1_rf} montre une représentation graphique des résultats obtenus pour chaque paramétrage de l'algorithme \textit{random forest}, évalué sur les deux ensembles de données.
 
-De la même manière, la performance de l'algorithme des $k$ plus proches voisins a été évaluée afin que les résultats puissent être comparés avec ceux obtenus pour l'algorithme \textit{random forest}. Pour ce faire, les mesures de la distance Euclidienne ($D_e$) ainsi que de la distance de Manhattan ($D_m$) on toutes deux été utilisées. Afin de déterminer le nombre de voisins ($k$) optimal pour ce système de reconnaissance, toutes les valeurs comprises entre $k=1$ et $k=\sqrt{m}$, où $m$ correspond au nombre de caractéristiques discriminantes, ont été essayées et les résultats obtenus ont été comparés de manière empirique. Ainsi, il est apparu que le nombre approprié de voisins à considérer était d'un seul. La figure \ref{fig:results_wear_v1_knn} montre une représentation graphique des résultats obtenus pour chaque paramétrage de l'algorithme \acs{KNN}, évalué grâce à une recherche linéaire du plus proche voisin pour les deux ensembles de données. L'ensemble des résultats de cette expérimentation est fourni en détail, pour les deux algorithmes, dans l'annexe \ref{anx:a1}.
+De la même manière, la performance de l'algorithme des $k$ plus proches voisins a été évaluée afin que les résultats puissent être comparés avec ceux obtenus pour l'algorithme \textit{random forest}. Pour ce faire, les mesures de la distance Euclidienne ($D_e$) ainsi que de la distance de Manhattan ($D_m$) on toutes deux été utilisées. Afin de déterminer le nombre de voisins ($k$) optimal pour ce système de reconnaissance, toutes les valeurs comprises entre $k=1$ et $k=\sqrt{m}$, où $m$ correspond au nombre de caractéristiques discriminantes, ont été essayées et les résultats obtenus ont été comparés de manière empirique. Ainsi, il est apparu que le nombre approprié de voisins à considérer était d'un seul. La figure \ref{fig:results_wear_v1_knn} montre une représentation graphique des résultats obtenus pour chaque paramétrage de l'algorithme \acs{KNN}, évalué grâce à une recherche linéaire du plus proche voisin pour les deux ensembles de données. L'ensemble des résultats de cette expérimentation est fourni en détail, pour les deux algorithmes, dans l'appendice \ref{anx:a}.
 
-\begin{figure}[H]
+\begin{figure}[ht!]
     \centering
 	\subfloat[Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données avec différents paramètres pour l'algorithme \textit{random forest}.]{
-		\includegraphics[width=.8\linewidth]{chapter4/results_wear_v1_rf.pdf}
+		\includegraphics[width=.75\linewidth]{chapter4/results_wear_v1_rf.pdf}
 		\label{fig:results_wear_v1_rf}
     }
     \\[20pt]
 	\subfloat[Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données avec différents paramètres pour l'algorithme des $k$ plus proches voisins.]{
-		\includegraphics[width=.8\linewidth]{chapter4/results_wear_v1_knn.pdf}
+		\includegraphics[width=.75\linewidth]{chapter4/results_wear_v1_knn.pdf}
 		\label{fig:results_wear_v1_knn}
     }
     \caption{Représentation graphique de la $F\mbox{-} mesure$ obtenue sur les deux ensembles de données avec différents paramètres pour les algorithmes \textit{random forest} et \acs{KNN} avec la version 1 du \textit{wearable device}.}
@@ -245,22 +245,22 @@ De la même manière, la performance de l'algorithme des $k$ plus proches voisin
 
 En s'appuyant sur ces résultats, il est possible d'affirmer que les paramètres optimaux pour la méthode de reconnaissance des types de sols suggérée, lorsqu'elle est réalisée avec l'algorithme \textit{random forest} sont : $B=300$ arbres et un nombre de variables aléatoires équivalent à $F_1=\log_2(m) + 1$, où $m$ correspond au nombre de caractéristiques discriminantes. En effet, c'est avec ces paramètres que les meilleurs résultats ont été observés, c'est-à-dire, une $F\mbox{-}mesure$ moyenne de $86\%$. De plus, la même $F\mbox{-}mesure$ moyenne a été obtenue avec l'algorithme \acs{KNN} et la fonction de distance de Manhattan. En comparaison, l'emploie de la fonction de distance Euclidienne a, quant à elle, montré de moins bons résultats.
 
-Afin de s'assurer que la reconnaissance des sols soit fonctionnelle, et ce, indépendamment de la position choisie par l'utilisateur pour le porter, cinq jeux de données distincts ont été construits, soit un ensemble de données par emplacement. De ce fait, l'évaluation de la performance de reconnaissance a été réalisée avec les deux mêmes algorithmes d'apprentissage, configurés avec les paramètres optimaux identifiés dans l'expérimentation précédente. Les résultats obtenus sont données par les courbes continues représentées sur la figure \ref{fig:pos_ind_wear_v1}. De plus, afin de déterminer si la position du \textit{wearable device} avait un impact significatif sur le taux de reconnaissance, la moyenne des $F\mbox{-}mesures$ obtenues pour chaque position par rapport au type de sols ont été évaluées à l'aide du jeu de données \og \texttt{soil\_type\_position\_wear\_v1\_6} \fg. Ce sont les courbes discontinues également représentés sur la figure \ref{fig:pos_ind_wear_v1}. Les courbes constituent alors les valeurs de référence pour chaque position.
-
-\begin{figure}[H]
+\begin{figure}[hb!]
     \centering
 	\subfloat[Les $F\mbox{-} mesures$ obtenues pour l'évaluation de l'indépendance de positionnement avec l'algorithme \textit{random forest}.]{
-		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_rf_wear_1.pdf}
+		\includegraphics[width=.75\linewidth]{chapter4/pos_ind_rf_wear_1.pdf}
 		\label{fig:pos_ind_rf_wear_1}
     }
     \\[20pt]
 	\subfloat[Les $F\mbox{-} mesures$ obtenues pour l'évaluation de l'indépendance de positionnement avec l'algorithme \acs{KNN}.]{
-		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_knn_wear_1.pdf}
+		\includegraphics[width=.75\linewidth]{chapter4/pos_ind_knn_wear_1.pdf}
 		\label{fig:pos_ind_knn_wear_1}
     }
     \caption{Les $F\mbox{-} mesures$ obtenues par rapport aux valeurs références permettant l'évaluation de l'indépendance de positionnement du \textit{wearable device} dans sa version 1, pour les deux algorithmes : \textit{random forest} et \acs{KNN}.}
     \label{fig:pos_ind_wear_v1}
 \end{figure}
+
+Afin de s'assurer que la reconnaissance des sols soit fonctionnelle, et ce, indépendamment de la position choisie par l'utilisateur pour le porter, cinq jeux de données distincts ont été construits, soit un ensemble de données par emplacement. De ce fait, l'évaluation de la performance de reconnaissance a été réalisée avec les deux mêmes algorithmes d'apprentissage, configurés avec les paramètres optimaux identifiés dans l'expérimentation précédente. Les résultats obtenus sont données par les courbes continues représentées sur la figure \ref{fig:pos_ind_wear_v1}. De plus, afin de déterminer si la position du \textit{wearable device} avait un impact significatif sur le taux de reconnaissance, la moyenne des $F\mbox{-}mesures$ obtenues pour chaque position par rapport au type de sols ont été évaluées à l'aide du jeu de données \og \texttt{soil\_type\_position\_wear\_v1\_6} \fg. Ce sont les courbes discontinues également représentés sur la figure \ref{fig:pos_ind_wear_v1}. Les courbes constituent alors les valeurs de référence pour chaque position.
 
 L'expression graphique donnée par ses différentes courbes permet de constater qu'aucune position distincte du \textit{wearable device} n'a un impact significatif sur la performance de la reconnaissance des types de sols. En effet, les différences maximum observés dans les $F\mbox{-}mesures$ sont de $2\%$ et $6\%$, respectivement avec l'algorithme \textit{random forest} et \acs{KNN}. De plus, il est possible, pour chaque algorithme d'observer une similarité entre la courbe exprimant les résultats et la courbe de référence, ce qui permet de confirmer la cohérence des résultats obtenus dans la vérification de l'hypothèse d'indépendance de position.
 
@@ -268,7 +268,7 @@ L'expression graphique donnée par ses différentes courbes permet de constater 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\linewidth]{chapter4/results_wear_v2.pdf}
+	\includegraphics[width=.75\linewidth]{chapter4/results_wear_v2.pdf}
         \caption{Résultats.}
 	\label{fig:results_wear_v2}
 \end{figure}
@@ -276,12 +276,12 @@ L'expression graphique donnée par ses différentes courbes permet de constater 
 \begin{figure}[H]
     \centering
 	\subfloat[RF]{
-		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_rf_wear_2.pdf}
+		\includegraphics[width=.75\linewidth]{chapter4/pos_ind_rf_wear_2.pdf}
 		\label{fig:pos_ind_rf_wear_2}
     }
     \\[20pt]
 	\subfloat[KNN]{
-		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_knn_wear_2.pdf}
+		\includegraphics[width=.75\linewidth]{chapter4/pos_ind_knn_wear_2.pdf}
 		\label{fig:pos_ind_knn_wear_2}
     }
     \caption{Indépendance de posisition.}
@@ -292,7 +292,7 @@ L'expression graphique donnée par ses différentes courbes permet de constater 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\linewidth]{chapter4/results_cell.pdf}
+	\includegraphics[width=.75\linewidth]{chapter4/results_cell.pdf}
         \caption{Résultats.}
 	\label{fig:results_cell}
 \end{figure}
