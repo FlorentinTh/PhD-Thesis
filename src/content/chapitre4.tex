@@ -28,7 +28,7 @@ De ce fait, \cite{Otis2016} ont récemment proposé une méthode basée sur la r
 
 Selon la littérature existante, l'utilisation de centrales inertielles pour réaliser la reconnaissance de sols s'est montré une technique aussi bien fonctionnelle avec des robots qu'avec les individus. De ce fait, la contribution présentée dans ce chapitre s'est, dans un premier temps, axée sur la conception d'un \textit{wearable device} pour y parvenir. L'idée générale est de piloter, par l'intermédiaire d'un téléphone connecté en \acs{BLE} (\texttt{cell\_oper}), le dispositif afin d'enregistrer un volume important de données pendant une marche. Lors de la conception, le choix s'est porté sur le système sur puce (\acl{SOC} ou \acs{SOC}) \textit{Arduino 101} qui embarque le module \textit{Intel Curie}, également accompagné d'un \textit{shield} de prototypage sur lequel est embarqué un lecteur de carte mémoire, tel qu'illustré en figure \ref{fig:device}. Ce choix a été motivé par la composition même du module \textit{Intel Curie}. En effet, ce dernier intègre d'usine un module de communication \acs{BLE}, un \acs{IMU} 6 axes (6-\acl{DOF} ou 6-\acs{DOF}) ainsi qu'une quantité suffisante d'Entrées/Sorties (\acl{IO} ou \acs{IO}) pour connecter des composants supplémentaires et ainsi faciliter l'évolution du dispositif. De plus, les autres avantages au choix de ce matériel demeurent la simplicité et la fiabilité de l'\textit{Arduino 101}, mais également la quantité de ressources disponibles pour cette plateforme. Finalement, la présence d'un lecteur de carte mémoire sur le \textit{shield} de prototypage constitue un moyen simple et efficace pour faire face à la quantité de données inertielles qui doivent être stockées.
 
-Dans une première version, la reconnaissance des types de sols a été réalisée par l'intermédiaire de l'IMU 6-\acs{DOF} directement embarqué sur le \acs{SOC} \textit{Arduino}. Néanmoins, puisque la précision de celui-ci était inconnue avant les premières expérimentations et qu'il manquait les trois axes supplémentaires du magnétomètre, une seconde version du \textit{wearable device} a été proposée. Pour cette dernière, un nouvel IMU 9-\acs{DOF}, le \textit{LSM9DS1}, a été interfacé directement sur le \textit{shield} de prototypage.
+Dans une première version, la reconnaissance des types de sols a été réalisée par l'intermédiaire de l'IMU 6-\acs{DOF} directement embarqué sur le \acs{SOC} \textit{Arduino}. Néanmoins, puisque la précision de celui-ci était inconnue avant les premières expérimentations et qu'il manquait les trois axes supplémentaires du magnétomètre, une seconde version du \textit{wearable device} a été proposée. Pour cette dernière, un nouvel IMU 9-\acs{DOF}, le \texttt{LSM9DS1}, a été interfacé directement sur le \textit{shield} de prototypage.
 
 \begin{figure}[H]
 	\centering
@@ -182,9 +182,7 @@ Dès lors que les instructions au sujet du positionnement du dispositif ont ét�
 
 \subsection{Ensembles de données}
 
-% \footnote{\url{https://old.datahub.io/dataset/soil-types-recognition}}
-
-Afin de valider que la méthode de reconnaissance des types de sols proposée dans ce premier travail demeure suffisamment précise et fiable, il a été nécessaire de produire plusieurs jeux de données composés des caractéristiques discriminantes et des informations de configuration qui constituent l'étiquettage des données. La liste de ceux-ci est fournie par le tableau \ref{tab:datasets}.
+Afin de valider que la méthode de reconnaissance des types de sols proposée dans ce premier travail demeure suffisamment précise et fiable, il a été nécessaire de produire plusieurs jeux de données composés des caractéristiques discriminantes et des informations de configuration qui constituent l'étiquettage des données. L'ensemble des différents jeux de données utilisés dans ces expérimentations sont disponibles en \textit{open source}\footnote{https://github.com/LIARALab/Datasets/tree/master/SoilTypesRecognition}. La liste de ceux-ci est fournie par le tableau \ref{tab:datasets}.
 
 \begin{table}[H]
 	\caption{Liste détaillée des ensembles de données produits, où les noms sont exprimés avec la notation \acl{BNF} (\acs{BNF}).}
@@ -194,8 +192,8 @@ Afin de valider que la méthode de reconnaissance des types de sols proposée da
 			\begin{tabular}{@{}rl@{}}
 				\toprule
 				\textbf{Jeu de données} & \textbf{Description} \\ \midrule
-				\textbf{soil\_type\_}\textbf{[ }\textit{wear\_v1}\textbf{ | }\textit{wear\_v2}\textbf{ | }\textit{cell}\textbf{ ]}\_\textbf{[ }\textit{6}\textbf{ | }\textit{9}\textbf{ | }\textit{12}\textbf{ ]} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquetée \\[-15pt] avec le type de sol correspondant \\[-15pt] (\textit{p. ex.} sable).\end{tabular} \\
-				\textbf{soil\_type\_position\_}\textbf{[ }\textit{wear\_v1}\textbf{ | }\textit{wear\_v2}\textbf{ | }\textit{cell}\textbf{ ]}\_\textbf{[ }\textit{6}\textbf{ | }\textit{9}\textbf{ | }\textit{12}\textbf{ ]} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquetée avec le type de sol \\[-15pt] correspondant et la position du wearable device \\[-15pt] (\textit{p. ex.} poche\_droite\_sable).\end{tabular} \\ \bottomrule
+				\texttt{soil\_type\_}\texttt{[ }\texttt{wear\_v1}\texttt{ | }\texttt{wear\_v2}\texttt{ | }\texttt{cell}\texttt{ ]}\_\texttt{[ }\texttt{6}\texttt{ | }\texttt{9}\texttt{ | }\texttt{12}\texttt{ ]} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquetée \\[-15pt] avec le type de sol correspondant \\[-15pt] (\textit{p. ex.} \texttt{sable}).\end{tabular} \\
+				\texttt{soil\_type\_position\_}\texttt{[ }\texttt{wear\_v1}\texttt{ | }\texttt{wear\_v2}\texttt{ | }\texttt{cell}\texttt{ ]}\_\texttt{[ }\texttt{6}\texttt{ | }\texttt{9}\texttt{ | }\texttt{12}\texttt{ ]} & \begin{tabular}[c]{@{}l@{}}Chaque instance est étiquetée avec le type de sol \\[-15pt] correspondant et la position du wearable device \\[-15pt] (\textit{p. ex.} \texttt{poche\_droite\_sable}).\end{tabular} \\ \bottomrule
 			\end{tabular}%
 		}
 	\end{center}
@@ -207,11 +205,13 @@ D'autre part, pour vérifier l'hypothèse d'indépendance de positionnement, c'e
 
 \subsection{Évaluation de la performance}
 
-La performance de la méthode pour la reconnaissance des types de sols proposée dans ce chapitre a été évaluée selon la validation croisée en $k$ plis. Cette méthode est très largement utilisée dans la littérature de l'apprentissage machine au sens large \citep{Vail2004, Arlot2010, Kertesz2016}. En effet, l'avantage principal de cette technique est qu'elle permet l'utilisation de l'intégralité des données disponibles aussi bien pour la phase d'entraînement que pour la reconnaissance. De plus, celle-ci va permettre de minimiser le biais potentiel d'un ensemble de données de validation construit de manière empirique, c'est-à-dire, réduire les problèmes liés à une mauvaise distribution de ces données comme le sur-apprentissage.
+La performance de la méthode pour la reconnaissance des types de sols proposée dans ce chapitre a été évaluée selon plusieurs méthodes d'apprentissage. Celles-ci ont été réalisées grâce au \textit{workbench} d'apprentissage machine \acs{WEKA} (\acl{WEKA}) \citep{Holmes1994} qui a été employé en tant que librairie dans une application de type \ac{CLI} développée en Java\footnote{https://github.com/FlorentinTh/Soil-Types-Detection}. Ainsi, l'évaluation de la performance de la reconnaissance a été déterminée selon la validation croisée en $k$-plis, par le biais de cette application.
 
-Le fonctionnement de la validation croisée en $k$ plis est relativement simple. Prenons par exemple un ensemble de données binaires (\og $+$ \fg et \og $-$ \fg) sur lequel on souhaite mettre en place un système de reconnaissance grâce à un algorithme d'apprentissage dont la performance est évaluée avec une validation croisée où $k=3$. La première étape consiste à découper cet ensemble de données en trois plis mutuellement disjoints. Néanmoins, puisque les données dans l'ensemble initial ne sont pas triées, il est important de s'assurer, lors du découpage, que les instances étiquetées soit par un \og $+$ \fg soit par un \og $-$ \fg soient réparties selon la même fréquence dans les trois plis. C'est le principe de la stratification des données. Dans cet exemple, les trois plis sont notés $A$, $B$ et $C$, tel qu'illustré par la figure \ref{fig:cross_validation}. La deuxième étape de ce processus est d'entraîner une première fois l'algorithme d'apprentissage avec l'ensemble $B\cup C$ et d'évaluer la performance de la reconnaissance avec $A$. Cette mesure est notée $E_A$. Ensuite, cette étape est répétée pour les deux plis restant en utilisant les ensembles $A\cup C$ puis $A\cup B$ pour l'entraînement et respectivement $B$ puis $C$ pour quantifier la performance de la reconnaissance, ce qui permet alors d'obtenir $E_B$ et $E_C$. Enfin, la performance globale de la reconnaissance ($E$), est estimée par la moyenne des mesures obtenues pour chaque pli.
+La méthode de la validation croisée en $k$-plis est très largement utilisée dans la littérature de l'apprentissage machine au sens large \citep{Vail2004, Arlot2010, Kertesz2016}. En effet, l'avantage principal de cette technique est qu'elle permet l'utilisation de l'intégralité des données disponibles aussi bien pour la phase d'entraînement que pour la reconnaissance. De plus, celle-ci va permettre de minimiser le biais potentiel d'un ensemble de données de validation construit de manière empirique, c'est-à-dire, réduire les problèmes liés à une mauvaise distribution de ces données comme le sur-apprentissage.
 
-\begin{figure}[H]
+Le fonctionnement de la validation croisée en $k$-plis est relativement simple. Prenons par exemple un ensemble de données binaires (\og $+$ \fg et \og $-$ \fg) sur lequel on souhaite mettre en place un système de reconnaissance grâce à un algorithme d'apprentissage dont la performance est évaluée avec une validation croisée où $k=3$. La première étape consiste à découper cet ensemble de données en trois plis mutuellement disjoints. Néanmoins, puisque les données dans l'ensemble initial ne sont pas triées, il est important de s'assurer, lors du découpage, que les instances étiquetées soit par un \og $+$ \fg soit par un \og $-$ \fg soient réparties selon la même fréquence dans les trois plis. C'est le principe de la stratification des données. Dans cet exemple, les trois plis sont notés $A$, $B$ et $C$, tel qu'illustré par la figure \ref{fig:cross_validation}. La deuxième étape de ce processus est d'entraîner une première fois l'algorithme d'apprentissage avec l'ensemble $B\cup C$ et d'évaluer la performance de la reconnaissance avec $A$. Cette mesure est notée $E_A$. Ensuite, cette étape est répétée pour les deux plis restant en utilisant les ensembles $A\cup C$ puis $A\cup B$ pour l'entraînement et respectivement $B$ puis $C$ pour quantifier la performance de la reconnaissance, ce qui permet alors d'obtenir $E_B$ et $E_C$. Enfin, la performance globale de la reconnaissance ($E$), est estimée par la moyenne des mesures obtenues pour chaque pli.
+
+\begin{figure}[t]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/cross_validation.pdf}
         \caption{Exemple d'une validation croisée où $k=3$ plis sur des données binaires.}
@@ -224,19 +224,19 @@ Depuis l'apparition de l'apprentissage machine, de nombreux travaux ce sont conc
 
 \subsubsection{\textit{Version 1 du wearable device}}
 
-Dans un premier temps, la performance du système de reconnaissance des types de sols a été évaluée sur les données obtenues avec la version 1 du \textit{wearable device}. Pour ce faire, plusieurs modèles d'apprentissage ont été construits en utilisant différents paramètres pour l'algorithme \textit{random forest}. Puisqu'il est préférable qu'une forêt d'arbres décisionnels soit composée d'un grand nombre d'arbres \citep{Breiman2001}, les deux valeurs : $B=150$ et $B=300$ arbres ont été comparées\textemdash ceci dans le but de répondre aux exigences proposées par \cite{Breiman2001}, ainsi que pour conserver un temps de calcul acceptable. En ce qui concerne le paramètre relatif au nombre de variables aléatoire ($F$), les trois valeurs préconisées dans la littérature, $F_0=\lfloor \frac{1}{2}\sqrt{m}\rfloor$, $F_1=\lfloor log_2(m) + 1\rfloor$ et $F_2=\lfloor \sqrt{m}\rfloor$ ont également été comparées. Enfin, de par l'implémentation utilisée dans ce système, la fonction employée pour mesurer la qualité de la division des n\oe{}uds de l'arbre ($C$) demeure l’évaluation du gain en information basé sur l’entropie de Shannon, pour chaque expérimentation. La figure \ref{fig:results_wear_v1_rf} montre une représentation graphique des résultats obtenus pour chaque paramétrage de l'algorithme \textit{random forest}, évalué sur les deux ensembles de données.
+Dans un premier temps, la performance du système de reconnaissance des types de sols a été évaluée sur les données obtenues avec la version 1 du \textit{wearable device}. Pour ce faire, plusieurs modèles d'apprentissage ont été construits en utilisant différents paramètres pour l'algorithme \textit{random forest}. Puisqu'il est préférable qu'une forêt d'arbres décisionnels soit composée d'un grand nombre d'arbres \citep{Breiman2001}, les deux valeurs : $B=150$ et $B=300$ arbres ont été comparées\textemdash ceci dans le but de répondre aux exigences proposées par \cite{Breiman2001}, ainsi que pour conserver un temps de calcul acceptable. En ce qui concerne le paramètre relatif au nombre de variables aléatoires ($F$), les trois valeurs préconisées dans la littérature, soit $F_0=\lfloor \frac{1}{2}\sqrt{m}\rfloor$, $F_1=\lfloor log_2(m) + 1\rfloor$ et $F_2=\lfloor \sqrt{m}\rfloor$ ont également été comparées. Enfin, de par l'implémentation utilisée dans ce système, la fonction employée pour mesurer la qualité de la division des n\oe{}uds de l'arbre ($C$) demeure l’évaluation du gain en information basé sur l’entropie de Shannon, pour chaque expérimentation. La figure \ref{fig:results_wear_v1_rf} montre une représentation graphique des résultats obtenus pour chaque paramétrage de l'algorithme \textit{random forest}, évalué sur les deux ensembles de données.
 
-De la même manière, la performance de l'algorithme des $k$ plus proches voisins a été évaluée afin que les résultats puissent être comparés avec ceux obtenus pour l'algorithme \textit{random forest}. Pour ce faire, les mesures de la distance Euclidienne ($D_e$) ainsi que de la distance de Manhattan ($D_m$) on toutes deux été utilisées. Afin de déterminer le nombre de voisins ($k$) optimal pour ce système de reconnaissance, toutes les valeurs comprises entre $k=1$ et $k=\sqrt{m}$, où $m$ correspond au nombre de caractéristiques discriminantes, ont été essayées et les résultats obtenus ont été comparés de manière empirique. Ainsi, il est apparu que le nombre approprié de voisins à considérer était d'un seul. La figure \ref{fig:results_wear_v1_knn} montre une représentation graphique des résultats obtenus pour chaque paramétrage de l'algorithme \acs{KNN}, évalué grâce à une recherche linéaire du plus proche voisin pour les deux ensembles de données. L'ensemble des résultats de cette expérimentation est fourni en détail, pour les deux algorithmes, dans l'appendice \ref{anx:a}.
+De la même manière, la performance de l'algorithme des $k$ plus proches voisins a été évaluée afin que les résultats puissent être comparés avec ceux obtenus pour l'algorithme \textit{random forest}. Pour ce faire, les mesures de la distance Euclidienne ($D_e$) ainsi que de la distance de Manhattan ($D_m$) on toutes deux été utilisées. Afin de déterminer le nombre de voisins ($k$) optimal pour ce système de reconnaissance, toutes les valeurs comprises entre $k=1$ et $k=\sqrt{m}$, où $m$ correspond au nombre de caractéristiques discriminantes, ont été essayées et les résultats obtenus ont été comparés de manière empirique. Ainsi, il est apparu que le nombre approprié de voisins à considérer était d'un seul. La figure \ref{fig:results_wear_v1_knn} montre une représentation graphique des résultats obtenus pour chaque paramétrage de l'algorithme \acs{KNN}, évalué grâce à une recherche linéaire du plus proche voisin pour les deux ensembles de données. Par ailleurs, l'ensemble des résultats de cette première expérimentation est fourni en détail, pour les deux algorithmes, dans l'appendice \ref{anx:a1}.
 
 \begin{figure}[ht!]
     \centering
 	\subfloat[Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données avec différents paramètres pour l'algorithme \textit{random forest}.]{
-		\includegraphics[width=.75\linewidth]{chapter4/results_wear_v1_rf.pdf}
+		\includegraphics[width=.8\linewidth]{chapter4/results_wear_v1_rf.pdf}
 		\label{fig:results_wear_v1_rf}
     }
     \\[20pt]
 	\subfloat[Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données avec différents paramètres pour l'algorithme des $k$ plus proches voisins.]{
-		\includegraphics[width=.75\linewidth]{chapter4/results_wear_v1_knn.pdf}
+		\includegraphics[width=.8\linewidth]{chapter4/results_wear_v1_knn.pdf}
 		\label{fig:results_wear_v1_knn}
     }
     \caption{Représentation graphique de la $F\mbox{-} mesure$ obtenue sur les deux ensembles de données avec différents paramètres pour les algorithmes \textit{random forest} et \acs{KNN} avec la version 1 du \textit{wearable device}.}
@@ -245,55 +245,64 @@ De la même manière, la performance de l'algorithme des $k$ plus proches voisin
 
 En s'appuyant sur ces résultats, il est possible d'affirmer que les paramètres optimaux pour la méthode de reconnaissance des types de sols suggérée, lorsqu'elle est réalisée avec l'algorithme \textit{random forest} sont : $B=300$ arbres et un nombre de variables aléatoires équivalent à $F_1=\log_2(m) + 1$, où $m$ correspond au nombre de caractéristiques discriminantes. En effet, c'est avec ces paramètres que les meilleurs résultats ont été observés, c'est-à-dire, une $F\mbox{-}mesure$ moyenne de $86\%$. De plus, la même $F\mbox{-}mesure$ moyenne a été obtenue avec l'algorithme \acs{KNN} et la fonction de distance de Manhattan. En comparaison, l'emploie de la fonction de distance Euclidienne a, quant à elle, montré de moins bons résultats.
 
-\begin{figure}[hb!]
+Afin de s'assurer que la reconnaissance des sols soit fonctionnelle, et ce, indépendamment de la position choisie par l'utilisateur pour le porter, cinq jeux de données distincts ont été construits à partir des ensembles de données initiaux utilisés dans l'expérience précédente. Ainsi, ils constituent un ensemble de données par emplacement. Ensuite, l'évaluation de la performance de reconnaissance a été réalisée avec les deux mêmes algorithmes d'apprentissage, configurés avec les paramètres qui ont été déterminés optimaux dans l'expérimentation précédente. Les résultats obtenus sont données par les courbes continues représentées sur la figure \ref{fig:pos_ind_wear_v1}. De plus, afin de déterminer si la position du \textit{wearable device} avait un impact significatif sur le taux de reconnaissance, la moyenne des $F\mbox{-}mesures$ obtenues pour chaque position par rapport au type de sols ont été évaluées à l'aide du jeu de données \og \texttt{soil\_type\_position\_wear\_v1\_6} \fg. Ce sont les courbes discontinues également représentés sur la figure \ref{fig:pos_ind_wear_v1}. Les courbes constituent alors les valeurs de référence pour chaque position.
+
+\begin{figure}[ht!]
     \centering
 	\subfloat[Les $F\mbox{-} mesures$ obtenues pour l'évaluation de l'indépendance de positionnement avec l'algorithme \textit{random forest}.]{
-		\includegraphics[width=.75\linewidth]{chapter4/pos_ind_rf_wear_1.pdf}
+		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_rf_wear_1.pdf}
 		\label{fig:pos_ind_rf_wear_1}
     }
     \\[20pt]
 	\subfloat[Les $F\mbox{-} mesures$ obtenues pour l'évaluation de l'indépendance de positionnement avec l'algorithme \acs{KNN}.]{
-		\includegraphics[width=.75\linewidth]{chapter4/pos_ind_knn_wear_1.pdf}
+		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_knn_wear_1.pdf}
 		\label{fig:pos_ind_knn_wear_1}
     }
     \caption{Les $F\mbox{-} mesures$ obtenues par rapport aux valeurs références permettant l'évaluation de l'indépendance de positionnement du \textit{wearable device} dans sa version 1, pour les deux algorithmes : \textit{random forest} et \acs{KNN}.}
     \label{fig:pos_ind_wear_v1}
 \end{figure}
 
-Afin de s'assurer que la reconnaissance des sols soit fonctionnelle, et ce, indépendamment de la position choisie par l'utilisateur pour le porter, cinq jeux de données distincts ont été construits, soit un ensemble de données par emplacement. De ce fait, l'évaluation de la performance de reconnaissance a été réalisée avec les deux mêmes algorithmes d'apprentissage, configurés avec les paramètres optimaux identifiés dans l'expérimentation précédente. Les résultats obtenus sont données par les courbes continues représentées sur la figure \ref{fig:pos_ind_wear_v1}. De plus, afin de déterminer si la position du \textit{wearable device} avait un impact significatif sur le taux de reconnaissance, la moyenne des $F\mbox{-}mesures$ obtenues pour chaque position par rapport au type de sols ont été évaluées à l'aide du jeu de données \og \texttt{soil\_type\_position\_wear\_v1\_6} \fg. Ce sont les courbes discontinues également représentés sur la figure \ref{fig:pos_ind_wear_v1}. Les courbes constituent alors les valeurs de référence pour chaque position.
 
 L'expression graphique donnée par ses différentes courbes permet de constater qu'aucune position distincte du \textit{wearable device} n'a un impact significatif sur la performance de la reconnaissance des types de sols. En effet, les différences maximum observés dans les $F\mbox{-}mesures$ sont de $2\%$ et $6\%$, respectivement avec l'algorithme \textit{random forest} et \acs{KNN}. De plus, il est possible, pour chaque algorithme d'observer une similarité entre la courbe exprimant les résultats et la courbe de référence, ce qui permet de confirmer la cohérence des résultats obtenus dans la vérification de l'hypothèse d'indépendance de position.
 
 \subsubsection{\textit{Version 2 du wearable device}}
 
-\begin{figure}[H]
+Dans un second temps, les deux expérimentations précédentes ont été reproduites selon la même procédure avec la version 2 du \textit{wearable device}. Puisque cette version offre un plus grand nombre d'axes pour la centrale inertielle, l'objectif était de vérifier l'impact des axes supplémentaires sur la reconnaissance des types de sols afin de proposer l'implémentation matérielle la plus précise possible pour le \textit{wearable device}. La figure \ref{fig:results_wear_v2} présente les résultats pour les deux algorithmes configurés avec les paramètres optimaux identifiés précédemment pour les deux jeux de données différents. Pour atténuer la perte d'information dans cette expérimentation comparativement à la première, les données de l'\acs{IMU} avec seulement 6 axes ont également été traitées.
+
+\begin{figure}[ht!]
 	\centering
-	\includegraphics[width=.75\linewidth]{chapter4/results_wear_v2.pdf}
-        \caption{Résultats.}
+	\includegraphics[width=.8\linewidth]{chapter4/results_wear_v2.pdf}
+        \caption{Représentation graphique de la $F\mbox{-} mesure$ obtenue sur les deux ensembles de données enregistrés avec la version 2 du \textit{wearable device} pour les algorithmes \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux.}
 	\label{fig:results_wear_v2}
 \end{figure}
 
+Premièrement, ces résultats montrent que la perte d'information entre les expériences réalisées avec la première version du dispositif et la seconde n'ont pas un impact significatif sur la reconnaissance des types de sols. En effet, la même $F\mbox{-}mesure$ a été obtenue avec l'algorithme \textit{random forest}. Bien que la $F\mbox{-}mesures$ obtenue pour l'algorithme des $k$ plus proches voisins ait augmentée de 6\%, ce résultat était attendu principalement en raison du fonctionnement même de l'algorithme. De plus, le \texttt{LSM9DS1} est, en théorie, une centrale inertielle beaucoup plus précise que celle utilisée lors de l'expérimentation avec la version 1 du dispositif. Par ailleurs, une amélioration de la reconnaissance a été constatée avec le jeu de données produit par l'\acs{IMU} 9-axes, tandis qu'une amélioration négligeable a été observée avec l'ensemble de données contenant les angles d'Euler. Enfin, les résultats détaillés fournis en appendice \ref{anx:a2}, permettent de confirmer que les paramètres utilisés dans la configuration des deux algorithmes pour cette expérimentation sont toujours les plus optimaux.
+
+En ce qui concerne l'indépendance du positionnement du \textit{wearble device} dans sa seconde version, les mêmes observations peuvent être établies selon les résultats qui ont été obtenus. Ils sont exposés en figure \ref{fig:pos_ind_wear_v2}. En effet, les mêmes similarités sont visibles entre les tendances des courbes exprimant les résultats et celles de référence.
+
 \begin{figure}[H]
     \centering
-	\subfloat[RF]{
-		\includegraphics[width=.75\linewidth]{chapter4/pos_ind_rf_wear_2.pdf}
+	\subfloat[Les $F\mbox{-} mesures$ obtenues pour l'évaluation de l'indépendance de positionnement avec l'algorithme \textit{random forest}.]{
+		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_rf_wear_2.pdf}
 		\label{fig:pos_ind_rf_wear_2}
     }
     \\[20pt]
-	\subfloat[KNN]{
-		\includegraphics[width=.75\linewidth]{chapter4/pos_ind_knn_wear_2.pdf}
+	\subfloat[Les $F\mbox{-} mesures$ obtenues pour l'évaluation de l'indépendance de positionnement avec l'algorithme \acs{KNN}.]{
+		\includegraphics[width=.8\linewidth]{chapter4/pos_ind_knn_wear_2.pdf}
 		\label{fig:pos_ind_knn_wear_2}
     }
-    \caption{Indépendance de posisition.}
+    \caption{Les $F\mbox{-} mesures$ obtenues par rapport aux valeurs références permettant l'évaluation de l'indépendance de positionnement du \textit{wearable device} dans sa version 2, pour les deux algorithmes : \textit{random forest} et \acs{KNN}.}
     \label{fig:pos_ind_wear_v2}
 \end{figure}
 
 \subsubsection{\textit{Téléphone intelligent}}
 
+En dernier lieu, l'analyse de la performance de la reconnaissance des types de sols a été reproduite selon la même procédure, en utilisant un téléphone intelligent. Les résultats obtenus avec les paramètres optimaux pour les deux algorithmes sont illustrés en figure \ref{fig:results_cell}. Néanmoins, l'appendice \ref{anx:a3} présente de façon plus précise l'ensemble des résultats acquis pour tous les jeux de données et toutes les configurations possibles pour les algorithmes de reconnaissance. Ces résultats montrent une excellente performance de reconnaissance globale. Bien que ces résultats demeurent principalement comparables à ceux obtenus avec le \textit{wearable device}, le taux de reconnaissance, dans cette configuration, ne semble pas affecté ni par le nombre d'axes admis par la centrale inertielle, ni par l'algorithme de reconnaissance et ses paramètres.
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.75\linewidth]{chapter4/results_cell.pdf}
-        \caption{Résultats.}
+	\includegraphics[width=.8\linewidth]{chapter4/results_cell.pdf}
+        \caption{Représentation graphique de la $F\mbox{-} mesure$ obtenue sur les deux ensembles de données enregistrés avec le téléphone intelligent pour les algorithmes \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux.}
 	\label{fig:results_cell}
 \end{figure}
 
