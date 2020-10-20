@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: texlive:latest
-    container_name: latex
+    container_name: thesis
     environment: 
       CLEAN: ${CLEAN}
     networks: 
