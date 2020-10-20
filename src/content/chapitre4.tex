@@ -28,20 +28,20 @@ De ce fait, \cite{Otis2016} ont récemment proposé une méthode basée sur la r
 
 Selon la littérature existante, l'utilisation de centrales inertielles pour réaliser la reconnaissance de sols s'est montré une technique aussi bien fonctionnelle avec des robots qu'avec les individus. De ce fait, la contribution présentée dans ce chapitre s'est, dans un premier temps, axée sur la conception d'un \textit{wearable device} pour y parvenir. L'idée générale est de piloter, par l'intermédiaire d'un téléphone connecté en \acs{BLE} (\texttt{cell\_oper}), le dispositif afin d'enregistrer un volume important de données pendant une marche. Lors de la conception, le choix s'est porté sur le système sur puce (\acl{SOC} ou \acs{SOC}) \textit{Arduino 101} qui embarque le module \textit{Intel Curie}, également accompagné d'un \textit{shield} de prototypage sur lequel est embarqué un lecteur de carte mémoire, tel qu'illustré en figure \ref{fig:device}. Ce choix a été motivé par la composition même du module \textit{Intel Curie}. En effet, ce dernier intègre d'usine un module de communication \acs{BLE}, un \acs{IMU} 6-axes (6-\acl{DOF} ou 6-\acs{DOF}) ainsi qu'une quantité suffisante d'Entrées/Sorties (\acl{IO} ou \acs{IO}) pour connecter des composants supplémentaires et ainsi faciliter l'évolution du dispositif. De plus, les autres avantages au choix de ce matériel demeurent la simplicité et la fiabilité de l'\textit{Arduino 101}, mais également la quantité de ressources disponibles pour cette plateforme. Finalement, la présence d'un lecteur de carte mémoire sur le \textit{shield} de prototypage constitue un moyen simple et efficace pour gérer à la quantité de données inertielles qui doivent être stockées.
 
-Dans une première version, la reconnaissance des types de sols a été réalisée par l'intermédiaire de l'IMU 6-axes directement embarqué sur le \acs{SOC} \textit{Arduino}. Néanmoins, puisque la précision de celui-ci était inconnue avant les premières expérimentations et qu'il manquait les trois axes supplémentaires du magnétomètre, une seconde version du \textit{wearable device} a été proposée. Pour cette dernière, un nouvel IMU 9-axes, le \texttt{LSM9DS1}, a été interfacé directement sur le \textit{shield} de prototypage.
-
-\begin{figure}[H]
+\begin{figure}[b!]
 	\centering
 	\includegraphics[width=.8\linewidth]{chapter4/device.pdf}
         \caption{\acs{SOC} Arduino 101 et son \textit{shield} de prototypage incluant une carte mémoire (1) ainsi que la centrale inertielle \textit{LSM9DS1} (2) présente sur la version 2 du dispositif.}
 	\label{fig:device}
 \end{figure}
 
+Dans une première version, la reconnaissance des types de sols a été réalisée par l'intermédiaire de l'IMU 6-axes directement embarqué sur le \acs{SOC} \textit{Arduino}. Néanmoins, puisque la précision de celui-ci était inconnue avant les premières expérimentations et qu'il manquait les trois axes supplémentaires du magnétomètre, une seconde version du \textit{wearable device} a été proposée. Pour cette dernière, un nouvel IMU 9-axes, le \texttt{LSM9DS1}, a été interfacé directement sur le \textit{shield} de prototypage.
+
 \subsection{Le \textit{firmware}}
 
 Pour assurer le bon fonctionnement du matériel qui compose le \textit{wearable device} il était tout d'abord nécessaire de développer un \textit{firmware} \footnote{\url{https://github.com/FlorentinTh/SoilTypesRecognition-WearableFirmware}}. Le fonctionnement de celui-ci s'articule autour de trois composants logiciels principaux qui sont illustrés en figure \ref{fig:soil_types_firmware}.
 
-\begin{figure}[H]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width=12cm]{chapter4/soil_types_firmware.pdf}
         \caption{Représentation graphique de l'implémentation du \textit{firmware} embarqué sur le \textit{wearable device}.}
@@ -57,7 +57,7 @@ Le premier est le module de \texttt{commande}. Il est en charge des communicatio
 
 Après que les données aient été enregistrées sur la carte mémoire, le processus d'apprentissage pour la reconnaissance des types de sol peut débuter et sa première phase demeure l'extraction des caractéristiques. En ce sens, cette solution propose d'utiliser les caractéristiques temporelles et fréquentielles les plus employées dans le domaine de la reconnaissance d'activités tel que discuté à la section \ref{sec:prel_steps} et qui sont rappelées par le tableau \ref{tab:features}.
 
-\begin{table}[H]
+\begin{table}[t!]
 	\caption{Récapitulatif de toutes les caractéristiques utilisées par la solution proposée en fonction du nombre d'axes offerts par la centrale inertielle.}
 	\label{tab:features}
 	\resizebox{\textwidth}{!}{%
@@ -85,7 +85,7 @@ Après que les données aient été enregistrées sur la carte mémoire, le proc
 	}
 \end{table}
 
-\noindent La première opération consiste en une simple moyenne non pondérée sur chacun des axes tant \og{}physiques\fg{} des capteurs de l'\acs{IMU} (gyroscope, accéléromètre et magnétomètre si 9-axes) que \og{}logiques\fg{} (angles d'Euler), s'ils existent. Ensuite, la moyenne générale de chacune de ces caractéristiques est calculée pour l'ensemble des axes. De la même manière, cette procédure a été appliquée à plusieurs autres calculs statistiques : l'écart type, l'asymétrie (équation \ref{eq:asymetrie}), le kurtosis (équation \ref{eq:kurtosis}), le \textit{Zero Crossing Rate} et la corrélation entre toutes les combinaisons possibles d'axes par capteurs de l'\acs{IMU} (équation \ref{eq:correlation}). Dans un second temps, une transformation du domaine temporel vers le domaine fréquentiel a été nécessaire pour obtenir les caractéristiques suivantes : la composante continue, l'énergie spectrale (équation \ref{eq:energy_spec}) et l'entropie  (équation \ref{eq:entropy}). Ce passage d'un domaine à l'autre a été réalisée en utilisant la transformation de Fourier rapide (\acs{FFT}) selon l'algorithme de Bluestein \citep{Bluestein1970}. Ainsi, en fonction de la centrale inertielle exploitée (6-axes, 9-axes ou 9-axes avec les trois angles d'Euler), ce sont 70, 105 ou 140 caractéristiques qui sont calculées sur chaque fenêtre temporelle rectangulaire et non chevauchante, dont la taille est fixée à 60 secondes. La taille de la fenêtre a été déterminée par une évaluation du temps moyen nécessaire pour marcher une distance de $4.3\: m$, ce qui correspond à un aller-retour dans le bac utilisé lors des expérimentations et dont le protocole est décrit à la section \ref{sec:expe}.
+La première opération consiste en une simple moyenne non pondérée sur chacun des axes tant \og{}physiques\fg{} des capteurs de l'\acs{IMU} (gyroscope, accéléromètre et magnétomètre si 9-axes) que \og{}logiques\fg{} (angles d'Euler), s'ils existent. Ensuite, la moyenne générale de chacune de ces caractéristiques est calculée pour l'ensemble des axes. De la même manière, cette procédure a été appliquée à plusieurs autres calculs statistiques : l'écart type, l'asymétrie (équation \ref{eq:asymetrie}), le kurtosis (équation \ref{eq:kurtosis}), le \textit{Zero Crossing Rate} et la corrélation entre toutes les combinaisons possibles d'axes par capteurs de l'\acs{IMU} (équation \ref{eq:correlation}). Dans un second temps, une transformation du domaine temporel vers le domaine fréquentiel a été nécessaire pour obtenir les caractéristiques suivantes : la composante continue, l'énergie spectrale (équation \ref{eq:energy_spec}) et l'entropie  (équation \ref{eq:entropy}). Ce passage d'un domaine à l'autre a été réalisée en utilisant la transformation de Fourier rapide (\acs{FFT}) selon l'algorithme de Bluestein \citep{Bluestein1970}. Ainsi, en fonction de la centrale inertielle exploitée (6-axes, 9-axes ou 9-axes avec les trois angles d'Euler), ce sont 70, 105 ou 140 caractéristiques qui sont calculées sur chaque fenêtre temporelle rectangulaire et non chevauchante, dont la taille est fixée à 60 secondes. La taille de la fenêtre a été déterminée par une évaluation du temps moyen nécessaire pour marcher une distance de $4.3\: m$, ce qui correspond à un aller-retour dans le bac utilisé lors des expérimentations et dont le protocole est décrit à la section \ref{sec:expe}.
 
 \subsubsection{Apprentissage}
 
@@ -93,15 +93,14 @@ Dès l'obtention des caractéristiques discriminantes, l'étape suivante requise
 
 Selon \cite{Breiman2001}, une forêt d'arbres décisionnels est une combinaison d'arbres prédicteurs, aussi appelés arbre de décision, où chacun d'eux dépend d'un vecteur de données distinct, mais de même cardinalité. Ce vecteur contient un sous-ensemble aléatoire des données initiales issues de la phase d'extraction des caractéristiques. La décision finale du processus de reconnaissance de cet algorithme est déterminée par un vote majoritaire entre chacune des décisions émises en sortie des arbres de décision qui composent la forêt. La figure \ref{fig:algo_random_forest} illustre un exemple simplifié d'une forêt d'arbres décisionnels utilisant trois arbres.
 
-Pour exploiter la forêt d'arbres décisionnels en tant qu'algorithme d'apprentissage, il est important de définir préalablement au moins trois paramètres principaux. Le premier est le nombre d'arbres que doit comporter la forêt ($B$). Le second correspond au nombre de variables à considérer dans la division des n\oe{}uds de l'arbre lors de la construction de ce dernier ($F$) et enfin, la fonction nécessaire à la mesure de la qualité de cette division ($C$). En ce qui concerne le nombre de caractéristiques, \citeauthor{Breiman2001} suggère d'utiliser $F_1=\lfloor log_2(m) + 1\rfloor$ ou $m$ fait référence au nombre total d'attributs présents dans le jeu de données fourni en entrée. Néanmoins, il est également possible de trouver d'autres recommandations comme $F_0=\lfloor \frac{1}{2}\sqrt{m}\rfloor$ ou encore $F_2=\lfloor \sqrt{m}\rfloor$. Par ailleurs, en ce qui concerne la mesure de la qualité de la division des n\oe{}uds les fonctions qui sont les plus couramment utilisées sont le calcul du c\oe{}fficient de Gini et l'évaluation du gain en information basé sur l'entropie de Shannon dont les équations sont respectivement rappelées ci-après :
-
-\begin{figure}[t]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/algo_random_forest.pdf}
         \caption{Exemple de l'algorithme \textit{random forest} utilisant $B=3$ arbres.}
 	\label{fig:algo_random_forest}
 \end{figure}
 
+Pour exploiter la forêt d'arbres décisionnels en tant qu'algorithme d'apprentissage, il est important de définir préalablement au moins trois paramètres principaux. Le premier est le nombre d'arbres que doit comporter la forêt ($B$). Le second correspond au nombre de variables à considérer dans la division des n\oe{}uds de l'arbre lors de la construction de ce dernier ($F$) et enfin, la fonction nécessaire à la mesure de la qualité de cette division ($C$). En ce qui concerne le nombre de caractéristiques, \citeauthor{Breiman2001} suggère d'utiliser $F_1=\lfloor log_2(m) + 1\rfloor$ ou $m$ fait référence au nombre total d'attributs présents dans le jeu de données fourni en entrée. Néanmoins, il est également possible de trouver d'autres recommandations comme $F_0=\lfloor \frac{1}{2}\sqrt{m}\rfloor$ ou encore $F_2=\lfloor \sqrt{m}\rfloor$. Par ailleurs, en ce qui concerne la mesure de la qualité de la division des n\oe{}uds les fonctions qui sont les plus couramment utilisées sont le calcul du c\oe{}fficient de Gini et l'évaluation du gain en information basé sur l'entropie de Shannon dont les équations sont respectivement rappelées ci-après :
 
 \begin{equation}
 	\label{eq:gini}
@@ -144,7 +143,7 @@ Dans un deuxième temps, une application\footnote{\url{https://github.com/Floren
 
 L'avantage principal de cette méthode réside princiapelement dans la mobilité qu'offre l'utilisation d'un téléphone intelligent par rapport à un ordinateur traditionnel\textemdash ce qui a fortement facilité la tâche de supervision des expérimentations. De plus, l'application a pu être réutilisée sans subir de modifications aussi bien avec les deux versions du \textit{wearable device} (\texttt{wear\_v1} et \texttt{wear\_v2}) qu'avec le téléphone intelligent utilisé pour l'enregistrement de données (\texttt{cell}).
 
-\begin{figure}[H]
+\begin{figure}[t]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/application.pdf}
         \caption{Captures d'écrans de l'application \textit{Android} exécutée sur \texttt{cell\_oper} qui a permis de le pilotage et l'étiquetage les données brutes.}
@@ -295,7 +294,7 @@ En ce qui concerne l'indépendance du positionnement du \textit{wearble device} 
 
 En dernier lieu, l'analyse de la performance de la reconnaissance des types de sols a été reproduite selon la même procédure, en utilisant un téléphone intelligent. Les résultats obtenus avec les paramètres optimaux pour les deux algorithmes sont illustrés en figure \ref{fig:results_cell}. Néanmoins, l'appendice \ref{anx:a3} présente de façon plus précise l'ensemble des résultats acquis pour tous les jeux de données et toutes les configurations possibles pour les algorithmes de reconnaissance. Ces résultats montrent une excellente performance de reconnaissance globale. Bien que ces résultats demeurent principalement comparables à ceux obtenus avec le \textit{wearable device}, le taux de reconnaissance, dans cette configuration, ne semble pas affecté ni par le nombre d'axes admis par la centrale inertielle, ni par l'algorithme de reconnaissance et ses paramètres.
 
-\begin{figure}[H]
+\begin{figure}[t!]
 	\centering
 	\includegraphics[width=.8\linewidth]{chapter4/results_cell.pdf}
         \caption{Représentation graphique de la $F\mbox{-} mesure$ obtenue sur les deux ensembles de données enregistrés avec le téléphone intelligent pour les algorithmes \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux.}

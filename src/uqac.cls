@@ -112,6 +112,7 @@
 \RequirePackage{rotating}
 \RequirePackage{microtype}
 \RequirePackage{chngcntr}
+\RequirePackage{geometry}
 
 \ifthenelse{\equal{\@uqacfrench}{true}}{%
   \RequirePackage[lined,boxed,linesnumbered,french,onelanguage,resetcount,algochapter]{algorithm2e}
@@ -144,13 +145,15 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-\setlength{\oddsidemargin}{1cm}
-\setlength{\evensidemargin}{0.35cm}
-\setlength{\topmargin}{-0.25cm}
-\setlength{\textwidth}{14.6cm}
-\setlength{\textheight}{23.45cm}
-\addtolength{\topmargin}{-\headheight}
-\addtolength{\topmargin}{-\headsep}
+% \setlength{\oddsidemargin}{1cm}
+% \setlength{\evensidemargin}{0.35cm}
+% \setlength{\topmargin}{-0.25cm}
+% \setlength{\textwidth}{14.6cm}
+% \setlength{\textheight}{23.45cm}
+% \addtolength{\topmargin}{-\headheight}
+% \addtolength{\topmargin}{-\headsep}
+
+\geometry{left=3.5cm, right=2.5cm, top=3cm}
 
 %%%%%%%  End of margins and formatting params %%%
 
@@ -158,7 +161,7 @@
 
 % Ne pas paginer les pages vides
 % Code for creating empty pages
-% No headers on empty pages before new chapt  er
+% No headers on empty pages before new chapter
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
     \hbox{}
     \thispagestyle{empty}
