@@ -27,9 +27,7 @@ Grâce aux progrès technologiques et plus particulièrement à la miniaturisati
 
 \subsection{Les capteurs de courbure et de force}
 
-Certains dispositifs considérés comme des \textit{wearable devices} tels que les gants présentés par \cite{Sanford2015} et \cite{Zheng2016} ainsi que les chaussures conçues par \cite{Bamberg2008} et \cite{Bae2013}, ont nécessité l'utilisation de capteurs de courbure (\textit{flex sensors}) et de force (\aclp{FSR} ou \acsp{FSR}). Ces capteurs fonctionnent grâce à des résistances dont la valeur change respectivement en fonction de la courbe qui est donnée au capteur ou de la pression qui est appliquée sur la surface de contact. Ainsi, comme illustré par ces différentes recherches, ces capteurs se sont montrés utiles dans certaines applications de réadaptation et de reconnaissance de gestes et d'activités. La figure \ref{fig:flex_force_sensors} montre respectivement un capteur de courbure (\ref{fig:flex_sensor}) ainsi qu'un capteur de force (\ref{fig:force_sensor}).
-
-\begin{figure}[t]
+\begin{figure}[b!]
     \centering
 	\subfloat[Capteur de courbure]{
 		\includegraphics[width=.35\linewidth]{chapter3/flex_sensor.pdf}
@@ -43,6 +41,8 @@ Certains dispositifs considérés comme des \textit{wearable devices} tels que l
     \caption{Exemples de capteurs de courbure (a) et de force (b).}
     \label{fig:flex_force_sensors}
 \end{figure}
+
+Certains dispositifs considérés comme des \textit{wearable devices} tels que les gants présentés par \cite{Sanford2015} et \cite{Zheng2016} ainsi que les chaussures conçues par \cite{Bamberg2008} et \cite{Bae2013}, ont nécessité l'utilisation de capteurs de courbure (\textit{flex sensors}) et de force (\aclp{FSR} ou \acsp{FSR}). Ces capteurs, respectivement montrés en figures \ref{fig:flex_sensor} et \ref{fig:force_sensor} fonctionnent grâce à des résistances dont la valeur change respectivement en fonction de la courbe qui est donnée au capteur ou de la pression qui est appliquée sur la surface de contact. Ainsi, comme illustré par ces différentes recherches, ces capteurs se sont montrés utiles dans certaines applications de réadaptation et de reconnaissance de gestes et d'activités.
 
 \subsection{Les capteurs environnementaux}
 
@@ -128,9 +128,7 @@ La limitation de cette technologie en termes de distance ne fait pas du \acs{NFC
 
 \subsection{Bilan des technologies de communication sans-fil}
 
-Dans cette section, les technologies de communications sans-fil les plus utilisées par les \textit{wearable devices} ont été présentées. Puisqu'elles admettent des caractéristiques différentes, il convient donc d'en proposer une synthèse. Pour ce faire, le tableau \ref{tab:wireless_tech} illustre les différences techniques pertinentes pour ces technologies. La consommation énergétique est identifiée, pour chacune d'elles, par les valeurs théoriques de la consommation moyenne ainsi que du pic de consommation, c'est-à-dire, la valeur maximum de l'intensité du courant. De plus, la latence théorique y est également proposée. Puisque cette dernière caractéristique permet de mesurer le temps nécessaire à la transmission d'un signal entre un émetteur et son récepteur, elle aura donc un impact significatif sur la consommation énergétique. En effet, une forte latence va permettre de consommer moins d'énergie et inversement dans le cas d'une latence faible.
-
-\begin{table}[t]
+\begin{table}[b!]
     \caption{Caractéristiques des différentes technologies de communication sans-fil employées par les \textit{wearable devices}}
     \label{tab:wireless_tech}
     \resizebox{\columnwidth}{!}{
@@ -145,6 +143,8 @@ Dans cette section, les technologies de communications sans-fil les plus utilis�
         \end{tabular}
     }
 \end{table}
+
+Dans cette section, les technologies de communications sans-fil les plus utilisées par les \textit{wearable devices} ont été présentées. Puisqu'elles admettent des caractéristiques différentes, il convient donc d'en proposer une synthèse. Pour ce faire, le tableau \ref{tab:wireless_tech} illustre les différences techniques pertinentes pour ces technologies. La consommation énergétique est identifiée, pour chacune d'elles, par les valeurs théoriques de la consommation moyenne ainsi que du pic de consommation, c'est-à-dire, la valeur maximum de l'intensité du courant. De plus, la latence théorique y est également proposée. Puisque cette dernière caractéristique permet de mesurer le temps nécessaire à la transmission d'un signal entre un émetteur et son récepteur, elle aura donc un impact significatif sur la consommation énergétique. En effet, une forte latence va permettre de consommer moins d'énergie et inversement dans le cas d'une latence faible.
 
 Dans le vaste monde des technologies sans-fil et plus particulièrement celles à faible consommation d'énergie, seules quelques-unes d'entres elles se sont popularisées avec le développement de l'\acs{IoT} et des \textit{wearable devices}. Parmi celles-ci, il est possible de retrouver le Wi-Fi, le \acs{BLE}, le ZigBee et le \acs{NFC}. Bien que chacune d'elles puisse être utilisée avec ces dispositifs ayant une autonomie de fonctionnement limitée, elles admettent des capacités de portée, de débit et de robustesse différentes. Ces variations de performances impliquent que chaque méthode de communication possède un cas d'application qui lui est propre. Le choix de la technologie à adopter dans le processus de conception de \textit{wearable devices} est donc crucial et doit être effectué rigoureusement en fonction de l'utilisation qui doit en être faite.
 
@@ -205,7 +205,7 @@ Le protocole \ac{SOAP}, tout comme le modèle \textit{publish/subscribe}, est lu
 
 Un message \ac{SOAP} est un document \ac{XML} qui contient un en-tête (\textit{header}) ainsi qu'un corps (\textit{body}), le tout encapsulé dans une enveloppe. Cette dernière indique que le document XML correspond à un message \ac{SOAP} et identifie le début ainsi que la fin de du message. L'en-tête, qui demeure facultatif, peut contenir différents attributs relatifs au message. Le corps, quant à lui obligatoire, contient les informations soit de la requête faite par le client, soit de la réponse du serveur, ainsi que des informations à propos des erreurs qui pourraient survenir. Les informations contenues dans le corps du message \ac{SOAP} sont organisées sous forme de blocs. La figure \ref{fig:soap_msg} montre un exemple d'échange de messages \ac{SOAP} à travers \ac{HTTP} qui permet d'obtenir la valeur du capteur cardiaque d'un dispositif quelconque.
 
-\begin{figure}[t]
+\begin{figure}[b!]
     \centering
 	\subfloat[Requête \acs{SOAP}]{
 		\includegraphics[width=.85\linewidth]{chapter3/soap_req.pdf}

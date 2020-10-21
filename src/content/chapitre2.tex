@@ -105,12 +105,7 @@ Dans le cas où les données comprendraient des valeurs partiellement manquantes
 De plus, il est admis que les capteurs \ac{RFID} et les accéléromètres sont connus pour être les deux types de capteurs (ambiant et portable) les plus sujets au bruit. Or, de nombreux travaux se basent sur l'exploitation de ceux-ci dans le but de reconnaître des activités \citep{Ravi2005, Stikic2008, Buettner2009, Khan2011, Mannini2017}. De ce fait, \cite{Wang2011} ont comparé quatre filtres différents ayant pour but de réduire le bruit dans les données générées par un accéléromètre, soit : un filtre médian \citep{Huang1979}, un filtre passe-bas de type \textit{Butterworth} \citep{Butterworth1930}, une transformée en ondelettes discrète spécifique (\ac{DWPD}) \citep{Mallat1989} et un filtre de Kalman \citep{Welch2006}, où ce dernier s'est révélé comme le plus efficace. \cite{Abreu2014} ont, quant à eux, montré que le filtre de Kalman était également le plus performant pour réduire le bruit présent dans le leur système de localisation intérieure basé sur des capteurs \acs{RFID}.
 
 \subsubsection{Segmentation des données}
-
-Dans le processus d'apprentissage, la segmentation des données peut intervenir, soit après la première phase de prétraitement, soit directement sur les données brutes si celles-ci ne sont pas altérées. Cette opération consiste à découper un signal donné en plusieurs fragments plus petits. En d'autres termes, le signal est morcelé en une séquence de segments qui sont délimités par un temps de départ et un temps d'arrivée. Du point de vue du traitement de signal, cette opération est appelée le fenêtrage. Ainsi, il est possible d'observer le signal d'origine $x\left(t\right)$ de longueur théoriquement infinie, sur une durée finie $T$ en le multipliant par une fonction fenêtre d'observation $w\left(t\right)$ tel que,
-\begin{equation}
-    x_w\left(t\right) = x\left(t\right)w\left(t\right), \quad 0 \leq t \leq T - 1 .
-\end{equation}
-
+%%%
 % Dans le processus d'apprentissage, la segmentation des données peut intervenir, soit après la première phase de prétraitement, soit directement sur les données brutes si celles-ci ne sont pas altérées. Cette opération consiste à découper un signal donné $X$ en plusieurs fragments plus petits $x_i$. Chaque segment $x_i = (T_1, T_2)$ est alors délimité par un temps de départ $T_1$ et un temps d'arrivée $T_2$. Le signal est donc morcelé en une séquence de segments tel que,
 
 % \begin{equation}
@@ -119,6 +114,12 @@ Dans le processus d'apprentissage, la segmentation des données peut intervenir,
 
 % \noindent Du point de vue du traitement de signal, cette opération est appelée le fenêtrage. Ainsi, il est possible d'observer le signal d'origine $x\left(t\right)$ de longueur théoriquement infinie, sur une durée finie $T$ en le multipliant par une fonction fenêtre d'observation $w\left(t\right)$ tel que,
 
+Dans le processus d'apprentissage, la segmentation des données peut intervenir, soit après la première phase de prétraitement, soit directement sur les données brutes si celles-ci ne sont pas altérées. Cette opération consiste à découper un signal donné en plusieurs fragments plus petits. En d'autres termes, le signal est morcelé en une séquence de segments qui sont délimités par un temps de départ et un temps d'arrivée. Du point de vue du traitement de signal, cette opération est appelée le fenêtrage. Ainsi, il est possible d'observer le signal d'origine $x\left(t\right)$ de longueur théoriquement infinie, sur une durée finie $T$ en le multipliant par une fonction fenêtre d'observation $w\left(t\right)$ tel que,
+
+\begin{equation}
+    x_w\left(t\right) = x\left(t\right)w\left(t\right), \quad 0 \leq t \leq T - 1.
+\end{equation}
+
 En ce qui concerne la reconnaissance d'activités, il est possible de regrouper les techniques de segmentation en trois groupes distincts : la segmentation basée sur les activités, la segmentation basée sur des évènements et la segmentation par fenêtre glissante \citep{Banos2014}.
 
 La segmentation basée sur les activités revient à partitionner le signal selon la détection d'un changement significatif correspondant à une activité. Un tel découpage peut-être réalisé grâce à l'analyse du domaine fréquentiel du signal ou de son énergie \citep{Sekine2000, Guenterberg2009}.
@@ -126,6 +127,7 @@ La segmentation basée sur les activités revient à partitionner le signal selo
 La segmentation basée sur les évènements exploite, quant à elle, un découpage du signal selon la manifestation d'évènements spécifiques. Par exemple, cette méthode est souvent utilisée dans la reconnaissance de la marche ou d'autres activités similaires comme courir, monter ou descendre des escaliers, \textit{etc. } Puisque ces activités sont cycliques et requièrent des actions inévitables (\textit{p. ex., } le contact du pied sur le sol), il est possible de segmenter le signal par l'analyse de l'accélération \citep{SantAnna2010}, mais également en exploitant d'autres types de données comme celles issues de capteurs de pression \citep{Crea2012}.
 
 Enfin, la segmentation par fenêtre glissante peut se traduire comme étant la translation d'une fenêtre sur l'axe temporel du signal, où chaque déplacement de la fenêtre représente un segment. Une fenêtre est définie par une fonction mathématique, une taille ainsi qu'un pourcentage de superposition. En ce qui concerne ce dernier, si une fenêtre est définie comme ayant une taille de 100 secondes avec un pourcentage de superposition de 50\%, le premier intervalle sera $\left[0,100\right]$ tandis que le second sera $\left[50,150\right]$ et ainsi de suite. Parmi les fonctions de fenêtrage les plus fréquemment utilisées, il est possible de mentionner, la fenêtre de Hamming ($w(t)_H$), celle de Kaiser ($w(t)_K$), de Hann ($w(t)_N$) ou encore la fenêtre de Blackman ($w(t)_B$) respectivement exprimées par :
+
 \begin{equation}
 	\label{eq:hamming}
 	w\left(t\right)_H = \left\{
@@ -202,6 +204,7 @@ D'autre part, afin d'exploiter des caractéristiques issues du domaine fréquent
 \end{equation}
 
 \noindent où $n$ représente un vecteur de nombres complexes de taille $N$ issu de la \acs{FFT}, $n_i$ est le $i^{\grave{e}me}$ élément du vecteur et $P_i$ est la probabilité de $n_i$ donnée par l'équation suivante :
+
 \begin{equation}
 	\label{eq:pi}
 	 P_i = \frac{n_i}{N - E}
@@ -228,20 +231,22 @@ Les algorithmes d'apprentissage, également qualifiés d'algorithmes de reconnai
 
 Dans l'univers des algorithmes probabilistes, il est possible de retrouver méthodes bayésiennes qui constituent des méthodes supervisées probabilistes. Celles-ci s'articulent autour des réseaux bayésiens. Un réseau bayésien est définis par un graphe orienté acyclique dans lequel, chacun des n\oe{}uds (sommets) représente une variable aléatoire et chacune des arêtes correspond à la dépendance conditionnelle existante entre un ou plusieurs n\oe{}uds du graphe \citep{Heckerman1995}. Pour appliquer ce principe dans un système de reconnaissance d'activités, il s'agit de considérer que les n\oe{}uds du graphe correspondent aux actions ou aux activités et que les arêtes sont les liens qui lient des actions aux activités. Ces actions peuvent être conjointes à plusieurs activités. Par conséquent, si la probabilité de chaque activité ainsi que les probabilités conditionnelles des n\oe{}uds sont connues, il est alors possible de mettre à jour la probabilité de chacune des activités en fonction des observations faites dans l’environnement.
 
-\begin{figure}[b]
+De manière plus concrète, la figure \ref{fig:learn_bayes} illustre l'exemple d'un système de reconnaissance s'appuyant sur un réseau bayésien. Celui-ci est en charge de reconnaître lorsqu'un résident est en train de réaliser trois activités dans la cuisine d'un environnement intelligent soit, \og \textit{faire du thé} \fg ($A_1$), \og \textit{faire du riz} \fg ($A_2$)} et \og \textit{faire du café} \fg ($A_3$)}. Grâce à l'observation des habitudes de l'habitant, il est possible de définir les probabilités initiales des activités ainsi que les probabilités conditionnelles. Elles sont respectivement données dans la figure \ref{fig:learn_bayes}, au-dessus de chaque activité à reconnaître et sous chacune des actions nécessaires à leur réalisation. Ensuite, si l'évènement $e_2$ correspondant à l'action \og \textit{sortir le riz} \fg est observé, les probabilités de chaque activité selon cet évènement $p(A_i|e_2)$ sont calculées en appliquant la formule de Bayes définie par :
+
+\begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{chapter2/learn_bayes.pdf}
 	\caption{Schématisation d'un exemple de réseau bayésien naïf.}
 	\label{fig:learn_bayes}
 \end{figure}
 
-De manière plus concrète, la figure \ref{fig:learn_bayes} illustre l'exemple d'un système de reconnaissance s'appuyant sur un réseau bayésien. Celui-ci est en charge de reconnaître lorsqu'un résident est en train de réaliser trois activités dans la cuisine d'un environnement intelligent soit, \og \textit{faire du thé} \fg ($A_1$), \og \textit{faire du riz} \fg ($A_2$)} et \og \textit{faire du café} \fg ($A_3$)}. Grâce à l'observation des habitudes de l'habitant, il est possible de définir les probabilités initiales des activités ainsi que les probabilités conditionnelles. Elles sont respectivement données dans la figure \ref{fig:learn_bayes}, au-dessus de chaque activité à reconnaître et sous chacune des actions nécessaires à leur réalisation. Ensuite, si l'évènement $e_2$ correspondant à l'action \og \textit{sortir le riz} \fg est observé, les probabilités de chaque activité selon cet évènement $p(A_i|e_2)$ sont calculées en appliquant la formule de Bayes définie par :
 \begin{equation}
 	\label{eq:baye_net}
 		p(A_i|e_n) = \frac{p(e_n|A_i)\times p(A_i)}{\sum\limits_{j=1}^{J}p(e_j|A_j)\times p(A_j)}
 \end{equation}
 
 \noindent où $p(A_i)$ est la probabilité initiale de l'activité $A_i$ et $p(e_n|A_i)$ est la probabilités conditionnelles de l'activité $A_i$ selon l'évènement $e_n$. Grâce aux données fournie par cet exemple, il est donc possible de réaliser l'application numérique suivante à l'aide de l'équation \ref{eq:baye_net} :
+
 \begin{align*}
 		p(A_1|e_2)	& = \frac{p(e_2|A_1)\times p(A_1)}{p(e_2|A_1)\times p(A_1) + p(e_2|A_2)\times p(A_2) + p(e_2|A_3)\times p(A_3)} \\[10pt]
 					& = \frac{0\times 0.2}{0\times 0.2 + 1\times 0.6 + 0\times 0.2} = 0 \\[20pt]
@@ -263,7 +268,7 @@ Par ailleurs, les \acsp{CRF} permettent, quant à eux, de modéliser les dépend
 
 Les arbres de décision appartiennent à la catégorie des méthodes d'apprentissage supervisées. Comme illustré par la figure \ref{fig:learn_dtree}, la classification des données est faite par une suite de choix logiques représentée sous forme d'un arbre, où chacun de ses n\oe{}uds possède un unique parent excepté le n\oe{}ud racine. Ainsi, les feuilles de l'arbre correspondent aux classes des activités à reconnaître et les n\oe{}uds non terminaux sont des règles de classification qui doivent être vérifiées grâce aux attributs de la donnée qui est testée.
 
-\begin{figure}[t]
+\begin{figure}[ht!]
 	\centering
 	\includegraphics[width=0.7\linewidth]{chapter2/learn_dtree.pdf}
 	\caption{Schématisation d'un exemple d'arbre de décision binaire.}
@@ -272,7 +277,7 @@ Les arbres de décision appartiennent à la catégorie des méthodes d'apprentis
 
 Dans le domaine de la reconnaissance d'activités, les algorithmes d'arbres de décision qui sont les plus fréquemment utilisés sont, \ac{ID3} ainsi que son extension, \texttt{C4.5} \citep{QuinlanRoss1993}. Les principales différences entre ces deux algorithmes sont qu'à l'inverse d'\acs{ID3}, \texttt{C4.5} accepte les variables continues en plus des variables discrètes et ce dernier est également capable de gérer les données manquantes de façon automatique. Enfin, il permet de réduire le risque de sur-apprentissage, qui est très élevé avec l'algorithme \acs{ID3}, grâce à une technique de \textit{pruning} \citep{Bao2004, Ravi2005, Tapia2007}. Ce phénomène intervient lorsque le modèle d'apprentissage est trop similaire aux données d'entraînement et donc plus suffisamment générique pour reconnaître correctement de nouvelles activités. Malgré ces différences, le fonctionnement de ces deux algorithmes reste très similaire. Pour chaque attribut de l'ensemble de données qui n'a pas déjà été traité, son entropie $H$ (\textit{cf. } équation \ref{eq:entropy}) est calculée. Ensuite, l'attribut ayant l'entropie la plus faible est sélectionné et une séparation des données est faite en fonction de celui-ci (\textit{p. ex.} \og \textit{la casserole est sur la cuisinière} \fg ou \og \textit{la casserole n'est pas sur la cuisinière} \fg). Enfin, la structure finale de l'arbre est créée de manière récursive en ne considérant uniquement les attributs qui n'ont jamais été sélectionnés, pour chaque sous-ensemble de données. Ceci vient donc conclure la phase d'entraînement d'un arbre de décision. La phase de reconnaissance, quant à elle, ne nécessite qu'un simple parcours de l'arbre. Ainsi, en reprenant l'exemple de la figure \ref{fig:learn_dtree}\textemdash si les données de l'instance à reconnaître correspondent au positionnement de la casserole sur la cuisinière de l'habitat intelligent, alors l'activité réalisée par le résident est \og \textit{faire du riz} \fg.
 
-L'utilisation des arbres de décision offre plusieurs avantages. Dans un premier temps, ceux-ci restent relativement simples à implémenter, mais surtout, ils offrent une très grande facilité de compréhension. De plus, ils ont démontré une excellente performance tant en termes de rapidité d'exécution qu'en termes de taux de reconnaissance \citep{Bao2004}. En revanche, ils se sont révélés beaucoup moins efficaces dans des systèmes impliquant la reconnaissance d'un très grand nombre d'activités parmi lesquelles certaines peuvent se ressembler. De plus, les arbres de décision concèdent deux autres limites importantes qui sont, la nécessité d'avoir un très grand nombre de données pour être entraînés correctement et l'obligation de répéter la phase d'entraînement après chaque ajout d'une nouvelle activité ou après la modification des données d'une activité existante. 
+L'utilisation des arbres de décision offre plusieurs avantages. Dans un premier temps, ceux-ci restent relativement simples à implémenter, mais surtout, ils offrent une très grande facilité de compréhension. De plus, ils ont démontré une excellente performance tant en termes de rapidité d'exécution qu'en termes de taux de reconnaissance \citep{Bao2004}. En revanche, ils se sont révélés beaucoup moins efficaces dans des systèmes impliquant la reconnaissance d'un très grand nombre d'activités parmi lesquelles certaines peuvent se ressembler. De plus, les arbres de décision concèdent deux autres limites importantes qui sont, la nécessité d'avoir un très grand nombre de données pour être entraînés correctement et l'obligation de répéter la phase d'entraînement après chaque ajout d'une nouvelle activité ou après la modification des données d'une activité existante.
 
 \subsubsection{Le \textit{clustering}}
 

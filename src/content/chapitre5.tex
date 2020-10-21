@@ -77,6 +77,8 @@ Puisque les réseaux superposés attribuent dynamiquement une adresse \acl{VIP} 
 
 \subsection{Proxy inverse}
 
+Puisque notre architecture est composée d'un \textit{cluster} de cinq n\oe{}uds, tous les services déployés sont accessibles par cinq points d'entrée différents, étant donné que les ports de ces services demeurent ouverts sur tous les n\oe{}uds du \textit{cluster} grâce à l'orchestrateur.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\linewidth]{chapter5/arch_reverse_proxy.pdf}

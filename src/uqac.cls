@@ -402,6 +402,10 @@
 \RequirePackage{etoolbox}
 \RequirePackage{caption, subfig}
 
+%% Espacements avant et après les équations
+\BeforeBeginEnvironment{equation}{\vspace{-0.5cm}}
+\AfterEndEnvironment{equation}{\vspace{-0.5cm}}
+
 %% Espacements avant et après les figures
 \BeforeBeginEnvironment{figure}{\vspace{1cm}}
 \AfterEndEnvironment{figure}{\vspace{-0.5cm}}
