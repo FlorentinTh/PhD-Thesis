@@ -427,7 +427,9 @@
 
 %% Formatage des captions pour les figures et les tableaux
 \captionsetup[figure]{position=bottom, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, justification=centering}
+
 \captionsetup[subfloat]{labelfont={small, stretch=1.17}, textfont={small, stretch=1.17}, justification=centering}
+
 \captionsetup[table]{position=top, margin=0.5cm, labelfont={bf, small, stretch=1.17}, labelsep=colon, textfont={bf, small, stretch=1.17}, aboveskip=6pt, belowskip=12pt, justification=centering}
 
 \DeclareCaptionLabelSeparator{colon}{ : }
