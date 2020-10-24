@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Date de création: Janvier 2018
-%% Auteur: Florentin Thullier 
+%% Auteur: Florentin Thullier
 
 %%%%%%%%%%%%%%%%%
 %%
@@ -531,6 +531,51 @@
 
 %%%%%%%%%%%%%%%%%%%%
 %%
+%% Liste des algorithmes
+%%
+%%%%%%%%%%%%%%%%%%%%
+
+% \let\oldl@algocf\l@algocf
+% \renewcommand{\l@algocf}[2]{\oldl@algocf{\MakeUppercase{algorithme} #1}{#2}}
+
+% \titlecontents{algorithm}[2.74cm]
+%   {}
+%   {
+%   	\makebox[-3pt][r]{%
+%       \makebox[2.78cm][l]{\MakeUppercase{algorithm}\space\l@algocf}%
+%     }%
+%   }
+%   {}
+%   {\titlerule*[8pt]{.}\contentspage}
+
+% \let\svcaption\caption
+% \let\svalgo\algorithm
+% \def\algorithm{\algocaps\svalgo}
+% \def\algocaps{%
+%   \renewcommand\caption[2][]{\svcaption[\MakeUppercase{##2}]{##2}}
+% }
+
+% \renewcommand\listofalgorithms{%
+% {
+%     \baselineskip=\simpleinter
+%     \if@twocolumn
+%       \@restonecoltrue\onecolumn
+%     \else
+%       \@restonecolfalse
+%     \fi
+%     \chapter*{\textbf{\UpperRef{\listalgorithmcfname}}
+%       \@mkboth{\UpperRef{\listalgorithmcfname}}%
+%               {\UpperRef{\listalgorithmcfname}}}%
+%     \addtocontents{toc}{\protect\vspace{1.5ex}}
+%     \addcontentsline{toc}{chapter}{\bfseries\UpperRef{\listalgorithmcfname}}
+%     \vspace*{.35cm}
+%     \@starttoc{loa}%
+%     \if@restonecol\twocolumn\fi
+%     }
+% }
+
+%%%%%%%%%%%%%%%%%%%%
+%%
 %% Liste des figures
 %%
 %%%%%%%%%%%%%%%%%%%%
@@ -538,11 +583,11 @@
 %% Préfixer la référence de la figure par le mot "figure" en majuscules
 %% et gestion de l'indentation lorsque la légende admet plusieurs lignes.
 
-\titlecontents{figure}[2.74cm]
+\titlecontents{figure}[2.72cm]
   {}
   {
   	\makebox[-3pt][r]{%
-      \makebox[2.78cm][l]{\MakeUppercase{figure}\space\thecontentslabel\protect\space\textendash}%
+      \makebox[2.77cm][l]{\MakeUppercase{figure}\space\thecontentslabel\protect\space\textendash}%
     }%
   }
   {}
