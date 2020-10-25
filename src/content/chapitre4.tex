@@ -177,7 +177,7 @@ Dès lors que les instructions au sujet du positionnement du dispositif ont ét�
 
 \subsection{Ensembles de données}
 
-Afin de valider que la méthode de reconnaissance des types de sols proposée dans ce premier travail demeure suffisamment précise et fiable, il a été nécessaire de produire plusieurs jeux de données composés des caractéristiques discriminantes et des informations de configuration qui constituent l'étiquettage des données. L'ensemble des différents jeux de données utilisés dans ces expérimentations sont disponibles en \textit{open source}\footnote{https://github.com/LIARALab/Datasets/tree/master/SoilTypesRecognition} et la liste de ceux-ci est fournie par le tableau \ref{tab:datasets}.
+Afin de valider que la méthode de reconnaissance des types de sols proposée dans ce premier travail demeure suffisamment précise et fiable, il a été nécessaire de produire plusieurs jeux de données composés des caractéristiques discriminantes et des informations de configuration qui constituent l'étiquettage des données. L'ensemble des différents jeux de données utilisés dans ces expérimentations sont disponibles en \textit{open source}\footnote{\url{https://github.com/LIARALab/Datasets/tree/master/SoilTypesRecognition}} et la liste de ceux-ci est fournie par le tableau \ref{tab:datasets}.
 
 \begin{table}[H]
 	\caption{Liste détaillée des ensembles de données produits, où les noms sont exprimés avec la notation \acl{BNF} (\acs{BNF}).}
@@ -200,7 +200,7 @@ D'autre part, pour vérifier l'hypothèse d'indépendance de positionnement, c'e
 
 \subsection{Évaluation de la performance}
 
-La performance de la méthode pour la reconnaissance des types de sols proposée dans ce chapitre a été évaluée selon plusieurs méthodes d'apprentissage. Celles-ci ont été réalisées grâce au \textit{workbench} d'apprentissage machine \acs{WEKA} (\acl{WEKA}) \citep{Holmes1994} qui a été employé en tant que librairie dans une application\footnote{https://github.com/FlorentinTh/Soil-Types-Detection} de type \ac{CLI} développée en Java. Ainsi, l'évaluation de la performance de la reconnaissance a été déterminée selon la validation croisée en $k$-plis, par le biais de cette application.
+La performance de la méthode pour la reconnaissance des types de sols proposée dans ce chapitre a été évaluée selon plusieurs méthodes d'apprentissage. Celles-ci ont été réalisées grâce au \textit{workbench} d'apprentissage machine \acs{WEKA} (\acl{WEKA}) \citep{Holmes1994} qui a été employé en tant que librairie dans une application\footnote{\url{https://github.com/FlorentinTh/SoilTypesDetection}} de type \ac{CLI} développée en Java. Ainsi, l'évaluation de la performance de la reconnaissance a été déterminée selon la validation croisée en $k$-plis, par le biais de cette application.
 
 La méthode de la validation croisée en $k$-plis est très largement utilisée dans la littérature de l'apprentissage machine au sens large \citep{Vail2004, Arlot2010, Kertesz2016}. En effet, l'avantage principal de cette technique est qu'elle permet l'utilisation de l'intégralité des données disponibles aussi bien pour la phase d'entraînement que pour la reconnaissance. De plus, celle-ci va permettre de minimiser le biais potentiel d'un ensemble de données de validation construit de manière empirique, c'est-à-dire, réduire les problèmes liés à une mauvaise distribution de ces données comme le sur-apprentissage.
 
