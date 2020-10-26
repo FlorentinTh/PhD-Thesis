@@ -16,7 +16,7 @@ Le \acs{LIARA} \citep{Bouchard2014} et le Laboratoire \acs{DOMUS} \citep{Giroux2
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\linewidth]{chapter2/archi_liara_domus.pdf}
-	\caption{Schématisation de l'architecture utilisée par le \acs{LIARA} et le laboratoire \acs{DOMUS}.}
+	\caption{Architecture du \acs{LIARA} et du laboratoire \acs{DOMUS}.}
 	\label{fig:archi_liara_domus}
 \end{figure}
 
@@ -32,7 +32,9 @@ L'habitat Gator-Tech a pour objectif de répondre à une problématique des habi
 
 Ce même fonctionnement est utilisé par l'habitat intelligent Amiqual4home. Cet environnement s'appuie sur \ac{openHAB}\footnote{\url{www.openhab.org}}, un \textit{middleware open source} dédié aux habitats intelligents, qui s'appuie sur un environnement \acs{OSGi} ainsi que sur le \textit{framework} Eclipse SmartHome\footnote{\url{www.eclipse.org/smarthome}} spécifiquement conçu pour fonctionner dans cet environnement. Ainsi, comme illustré par la figure \ref{fig:archi_amiqual4home}, \acs{openHAB} permet de créer une couche d'abstraction autour des couches service, connaissance et logicielle visibles sur la figure \ref{fig:archi_gator_tech}.
 
-\begin{figure}[ht!]
+Le principal avantage de ce type d'architectures est qu'elles supportent parfaitement la mise à l'échelle de l'environnement dans le cas d'ajouts ou de remplacements de capteurs. Il semble également que l'intégration de \textit{wearable devices} soit possible, sans effort particulier, grâce à la flexibilité offerte par les architectures basées composants. De plus, l'exploitation de données fortement abstraites facilite le développement de programmes de reconnaissance et d'assistance, puisqu'un raisonnement sur ce type de données demeure plus simple que d'exploiter les données brutes directement \citep{Helal2005}. Enfin, il est possible que le coût d'un tel habitat soit considérablement réduit en comparaison à un habitat basé sur une architecture industrielle. En effet, dans le cas de Gator-Tech, son architecture requiert toujours un serveur central. Néanmoins, elle n'implique pas l'utilisation d'un automate ou d'îlots, et les capteurs utilisés au sein de cet environnement sont basés sur des plateformes à faible coût \citep{Helal2005}. Cependant, tout comme pour les habitats de type industriels, Gator-Tech et les autres architectures basées composant souffrent du même inconvénient majeur, c'est-à-dire, le recourt à un serveur central comme seule unité de calcul. Dans le cas présent, ce dernier provoque la création d'un goulot d'étranglement. En effet, un large flux de données qui transitent par le serveur peut entraîner un ralentissement de celui-ci. Il devient alors surchargé et l'assistance pour le résident n'est plus réalisée convenablement.
+
+\begin{figure}[H]
 	\centering
 	\subfloat[Gator-Tech]{
 		\includegraphics[width=.8\linewidth]{chapter2/archi_gator_tech.pdf}
@@ -43,19 +45,17 @@ Ce même fonctionnement est utilisé par l'habitat intelligent Amiqual4home. Cet
 		\includegraphics[width=.8\linewidth]{chapter2/archi_amiqual4home.pdf}
 		\label{fig:archi_amiqual4home}
 	}
-	\caption{Schématisation des architectures utilisées par les habitats Gator-Tech et Amiqual4home}
+	\caption{Architectures des habitats intelligents Gator-Tech et Amiqual4home}
 \end{figure}
-
-Le principal avantage de ce type d'architectures est qu'elles supportent parfaitement la mise à l'échelle de l'environnement dans le cas d'ajouts ou de remplacements de capteurs. Il semble également que l'intégration de \textit{wearable devices} soit possible, sans effort particulier, grâce à la flexibilité offerte par les architectures basées composants. De plus, l'exploitation de données fortement abstraites facilite le développement de programmes de reconnaissance et d'assistance, puisqu'un raisonnement sur ce type de données demeure plus simple que d'exploiter les données brutes directement \citep{Helal2005}. Enfin, il est possible que le coût d'un tel habitat soit considérablement réduit en comparaison à un habitat basé sur une architecture industrielle. En effet, dans le cas de Gator-Tech, son architecture requiert toujours un serveur central. Néanmoins, elle n'implique pas l'utilisation d'un automate ou d'îlots, et les capteurs utilisés au sein de cet environnement sont basés sur des plateformes à faible coût \citep{Helal2005}. Cependant, tout comme pour les habitats de type industriels, Gator-Tech et les autres architectures basées composant souffrent du même inconvénient majeur, c'est-à-dire, le recourt à un serveur central comme seule unité de calcul. Dans le cas présent, ce dernier provoque la création d'un goulot d'étranglement. En effet, un large flux de données qui transitent par le serveur peut entraîner un ralentissement de celui-ci. Il devient alors surchargé et l'assistance pour le résident n'est plus réalisée convenablement.
 
 \subsection{Réseau Maillé}
 
 Grâce aux récentes avancées des technologies de communication sans-fil, de nouveaux types d'habitats intelligents ont émergés. Ainsi, des initiatives telles que CASAS \citep{Cook2013}, ou encore celles proposées par \cite{Zhihua2016} et \cite{Zhenyu2011} ont été proposées. Toutes s'articulent autour d'un réseau maillé ZigBee, une technologie de communication sans fil qui sera expliqué plus en détail dans la figure \ref{subec:com_zigbee}. Bien qu'ils admettent des différences, ces trois habitats demeurent sensiblement identiques dans la conception de l'architecture qu'ils proposent. De ce fait, cette section ne traite exclusivement du cas de CASAS, puisque celui-ci reste le plus connus d'entre eux. En introduisant CASAS, \cite{Cook2013} voulaient principalement résoudre le problème du coût que représentent les habitats intelligents, mais également en faciliter leur installation. C'est ainsi que le concept d'habitat intelligent en boîte est né. Comme montré par la figure \ref{fig:archi_casas}, l'architecture de CASAS se décompose en quatre composants principaux. Tout d'abord, il y a la couche physique qui contient le réseau maillé ZigBee. Dans le cas de cet habitat, il s'agit d'une topologie de réseau sans-fil où tous les n\oe{}uds, c'est-à-dire les capteurs et les effecteurs, sont connectés pair à pair et collaborent pour s'échanger des données. Le réseau maillé communique ensuite avec un service de messagerie au travers un pont ZigBee. Ce dernier a pour but de transformer les données des capteurs en messages \ac{XMPP} de plus haut niveau. Le service de messagerie étant de type \textit{publish/subscribe}, il offre alors la possibilité à d'autres services de s'y connecter. C'est notamment le cas du service d'archivage. Ce dernier récupère, par l'intermédiaire du pont scribe, certains évènements qui se produisent dans l'habitat afin de les enregistrer dans une base de données d'archives. Finalement, les applications de reconnaissance et d'assistance exploitent les données du \textit{middleware} en les récupérant \textit{via} le pont applicatif.
 
-\begin{figure}[t]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\linewidth]{chapter2/archi_casas.pdf}
-	\caption{Schématisation de l'architecture utilisée par l'habitat CASAS.}
+	\caption{Architecture de l'habitat intelligent CASAS.}
 	\label{fig:archi_casas}
 \end{figure}
 
@@ -71,7 +71,7 @@ Le principal inconvénient partagé par toutes les architectures de maisons inte
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.8\linewidth]{chapter2/archi_smart_transd.pdf}
-	\caption{Schématisation de l'architecture qui repose sur l'utilisation de transducteurs intelligents.}
+	\caption{Architecture qui repose sur l'utilisation de transducteurs intelligents.}
 	\label{fig:archi_smart_transd}
 \end{figure}
 
@@ -85,7 +85,7 @@ L'avantage principal de cette récente implémentation d'architecture est qu'ell
 \begin{figure}[b!]
 	\centering
 	\includegraphics[width=\linewidth]{chapter2/ar_process.pdf}
-	\caption{Schématisation du processus d'apprentissage pour la reconnaissance d'activités.}
+	\caption{Processus d'apprentissage pour la reconnaissance d'activités.}
 	\label{fig:ar_process}
 \end{figure}
 
@@ -236,7 +236,7 @@ De manière plus concrète, la figure \ref{fig:learn_bayes} illustre l'exemple d
 \begin{figure}[t!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{chapter2/learn_bayes.pdf}
-	\caption{Schématisation d'un exemple de réseau bayésien naïf.}
+	\caption{Exemple de réseau bayésien naïf.}
 	\label{fig:learn_bayes}
 \end{figure}
 
@@ -268,14 +268,14 @@ Par ailleurs, les \acsp{CRF} permettent, quant à eux, de modéliser les dépend
 
 Les arbres de décision appartiennent à la catégorie des méthodes d'apprentissage supervisées. Comme illustré par la figure \ref{fig:learn_dtree}, la classification des données est faite par une suite de choix logiques représentée sous forme d'un arbre, où chacun de ses n\oe{}uds possède un unique parent excepté le n\oe{}ud racine. Ainsi, les feuilles de l'arbre correspondent aux classes des activités à reconnaître et les n\oe{}uds non terminaux sont des règles de classification qui doivent être vérifiées grâce aux attributs de la donnée qui est testée.
 
-\begin{figure}[ht!]
+Dans le domaine de la reconnaissance d'activités, les algorithmes d'arbres de décision qui sont les plus fréquemment utilisés sont, \ac{ID3} ainsi que son extension, \texttt{C4.5} \citep{QuinlanRoss1993}. Les principales différences entre ces deux algorithmes sont qu'à l'inverse d'\acs{ID3}, \texttt{C4.5} accepte les variables continues en plus des variables discrètes et ce dernier est également capable de gérer les données manquantes de façon automatique. Enfin, il permet de réduire le risque de sur-apprentissage, qui est très élevé avec l'algorithme \acs{ID3}, grâce à une technique de \textit{pruning} \citep{Bao2004, Ravi2005, Tapia2007}. Ce phénomène intervient lorsque le modèle d'apprentissage est trop similaire aux données d'entraînement et donc plus suffisamment générique pour reconnaître correctement de nouvelles activités. Malgré ces différences, le fonctionnement de ces deux algorithmes reste très similaire. Pour chaque attribut de l'ensemble de données qui n'a pas déjà été traité, son entropie $H$ (\textit{cf. } équation \ref{eq:entropy}) est calculée. Ensuite, l'attribut ayant l'entropie la plus faible est sélectionné et une séparation des données est faite en fonction de celui-ci (\textit{p. ex.} \og \textit{la casserole est sur la cuisinière} \fg ou \og \textit{la casserole n'est pas sur la cuisinière} \fg). Enfin, la structure finale de l'arbre est créée de manière récursive en ne considérant uniquement les attributs qui n'ont jamais été sélectionnés, pour chaque sous-ensemble de données. Ceci vient donc conclure la phase d'entraînement d'un arbre de décision. La phase de reconnaissance, quant à elle, ne nécessite qu'un simple parcours de l'arbre. Ainsi, en reprenant l'exemple de la figure \ref{fig:learn_dtree}\textemdash si les données de l'instance à reconnaître correspondent au positionnement de la casserole sur la cuisinière de l'habitat intelligent, alors l'activité réalisée par le résident est \og \textit{faire du riz} \fg.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{chapter2/learn_dtree.pdf}
-	\caption{Schématisation d'un exemple d'arbre de décision binaire.}
+	\caption{Exemple d'un arbre de décision binaire.}
 	\label{fig:learn_dtree}
 \end{figure}
-
-Dans le domaine de la reconnaissance d'activités, les algorithmes d'arbres de décision qui sont les plus fréquemment utilisés sont, \ac{ID3} ainsi que son extension, \texttt{C4.5} \citep{QuinlanRoss1993}. Les principales différences entre ces deux algorithmes sont qu'à l'inverse d'\acs{ID3}, \texttt{C4.5} accepte les variables continues en plus des variables discrètes et ce dernier est également capable de gérer les données manquantes de façon automatique. Enfin, il permet de réduire le risque de sur-apprentissage, qui est très élevé avec l'algorithme \acs{ID3}, grâce à une technique de \textit{pruning} \citep{Bao2004, Ravi2005, Tapia2007}. Ce phénomène intervient lorsque le modèle d'apprentissage est trop similaire aux données d'entraînement et donc plus suffisamment générique pour reconnaître correctement de nouvelles activités. Malgré ces différences, le fonctionnement de ces deux algorithmes reste très similaire. Pour chaque attribut de l'ensemble de données qui n'a pas déjà été traité, son entropie $H$ (\textit{cf. } équation \ref{eq:entropy}) est calculée. Ensuite, l'attribut ayant l'entropie la plus faible est sélectionné et une séparation des données est faite en fonction de celui-ci (\textit{p. ex.} \og \textit{la casserole est sur la cuisinière} \fg ou \og \textit{la casserole n'est pas sur la cuisinière} \fg). Enfin, la structure finale de l'arbre est créée de manière récursive en ne considérant uniquement les attributs qui n'ont jamais été sélectionnés, pour chaque sous-ensemble de données. Ceci vient donc conclure la phase d'entraînement d'un arbre de décision. La phase de reconnaissance, quant à elle, ne nécessite qu'un simple parcours de l'arbre. Ainsi, en reprenant l'exemple de la figure \ref{fig:learn_dtree}\textemdash si les données de l'instance à reconnaître correspondent au positionnement de la casserole sur la cuisinière de l'habitat intelligent, alors l'activité réalisée par le résident est \og \textit{faire du riz} \fg.
 
 L'utilisation des arbres de décision offre plusieurs avantages. Dans un premier temps, ceux-ci restent relativement simples à implémenter, mais surtout, ils offrent une très grande facilité de compréhension. De plus, ils ont démontré une excellente performance tant en termes de rapidité d'exécution qu'en termes de taux de reconnaissance \citep{Bao2004}. En revanche, ils se sont révélés beaucoup moins efficaces dans des systèmes impliquant la reconnaissance d'un très grand nombre d'activités parmi lesquelles certaines peuvent se ressembler. De plus, les arbres de décision concèdent deux autres limites importantes qui sont, la nécessité d'avoir un très grand nombre de données pour être entraînés correctement et l'obligation de répéter la phase d'entraînement après chaque ajout d'une nouvelle activité ou après la modification des données d'une activité existante.
 
@@ -283,10 +283,10 @@ L'utilisation des arbres de décision offre plusieurs avantages. Dans un premier
 
 Les méthodes de \textit{clustering} représentent une large partie des algorithmes d'apprentissage non-supervisés \citep{Witten2016}. Le fonctionnement général de toutes les techniques de \textit{clustering} existantes consiste en la division homogène d'un ensemble de données en différents \textit{clusters} qui doivent partager des caractéristiques communes. Les \textit{clusters} sont donc des sous-ensembles des données d'apprentissage. La séparation des données en \textit{clusters} est réalisée, à la fois par minimisation de la distance intra-classe ; c'est-à-dire, la distance entre tous les éléments d'un même \textit{cluster}, ainsi que par la maximisation de la distance inter-classe, qui correspond à la distance entre tous les \textit{clusters}. Ensuite, pour chaque cluster, une donnée représentative lui est attribuée. En fonction de l'algorithme qui est employé, cette dernière peut être déterminée différemment. Dans certains cas, une nouvelle valeur (le barycentre) est calculée à l'aide des données déjà présentes dans le \textit{cluster}. Dans d'autres cas, c'est une donnée existante qui sera élue comme la plus représentative pour chaque \textit{cluster}. Un exemple d'une méthode de \textit{clustering} utilisant le calcul des barycentres est illustré en figure \ref{fig:learn_clustering}.
 
-\begin{figure}[hb!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{chapter2/learn_clustering.pdf}
-	\caption{Schématisation d'un exemple d'algorithme de clustering.}
+	\caption{Exemple d'un algorithme de \textit{clustering}.}
 	\label{fig:learn_clustering}
 \end{figure}
 
@@ -319,7 +319,7 @@ Les machines à support de vecteurs (\ac{SVM}) font partie des techniques d'appr
 		\includegraphics[width=.45\linewidth]{chapter2/learn_svm_b.pdf}
 		\label{fig:learn_svm_b}
 	}
-	\caption{Schématisation d'un SVM linéaire ainsi que d'un SVM utilisant une fonction de noyau.}
+	\caption{Exemple d'un SVM linéaire ainsi que d'un SVM utilisant une fonction de noyau.}
 \end{figure}
 
 Les \acs{SVM} sont souvent considérés comme des boîtes noires, car ils ne permettent pas l'extraction d'un modèle compréhensible, à l'inverse des arbres de décision, par exemple. Néanmoins, ils sont fréquemment utilisés dans le domaine de la reconnaissance d'activités pour plusieurs raisons \citep{He2009, Anguita2012}. La première est qu'ils permettent d'obtenir des taux de reconnaissance très élevés. De plus, le processus de reconnaissance est très efficace en termes de consommation des ressources et peut donc facilement être réalisé sur des systèmes portables. Toutefois, les machines à support de vecteurs ne sont pas adaptées pour traiter un très gros volume de données lors du processus d'apprentissage\textemdash ce dernier impliquant de lourds calculs pour construire le modèle.
@@ -331,7 +331,7 @@ Les réseaux neurones artificiels (\aclp{ANN} ou \acsp{ANN}) sont des méthodes 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{chapter2/learn_ann.pdf}
-	\caption{Schématisation d'un exemple de réseau de neurones artificiels.}
+	\caption{Exemple de réseau de neurones artificiels.}
 	\label{fig:learn_ann}
 \end{figure}
 

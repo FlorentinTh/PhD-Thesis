@@ -36,14 +36,14 @@ Dans sa première version, \acs{WEKA} était uniquement exploitable au travers d
 
 RapidMiner, également connu sous le nom de \acs{YALE} (\acl{YALE}) \citep{Ritthoo2003,Hofmann2014}, a été développé à partir de 2001 puis rebaptisé en RapidMiner en 2007.  De la même manière que \acs{WEKA}, RapidMiner propose un environnement qui repose sur du code Java pour mettre en \oe{}uvre des techniques d'apprentissage machine. Cependant, contrairement à \acs{WEKA}, cet outil n'offre qu'une seule interface qui permet de définir des flux opérationnels à la façon de l'interface \textit{knowledge flow}. En effet, ces processus sont décrits à partir de blocs élémentaires appelés opérateurs. Il est alors possible pour l'utilisateur de composer une chaîne d'opérateurs en plaçant ces blocs sur un canevas et en câblant leurs ports d'entrée et de sortie, comme le montre la figure \ref{fig:rapid_miner}. Bien que \acs{WEKA} soit intégré dans RapidMiner en tant que dépendance utilisée pour plusieurs blocs, la majorité d'entre eux permettent d'étendre nombreux aspects de l'apprentissage machine qui ne sont pas nécessairement couverts par \acs{WEKA}.
 
+Par ailleurs, RapidMiner inclut également la possibilité d'ajouter des paquets développés par des tiers afin d'améliorer ses capacités initiales. De plus, il permet l'utilisation d'un bloc de script où il est possible d'écrire du code en syntaxe Java ou Groovy. En ce sens, RapidMiner apparait tout aussi flexible que \acs{WEKA}. Cependant, puisqu'il repose sur une conception logicielle comparable et un langage de programmation de base identique, ce \textit{workbench} souffre des mêmes inconvénients. En outre, il est possible de dire que RapidMiner ne convient pas au déploiement d'applications expérimentales dans un contexte de recherche, car il ne dispose pas d'interface en ligne de commande et il n'est pas possible de l'utiliser comme une librairie dans une application.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.9\linewidth]{chapter6/rapid_miner.jpg}
         \caption{Exemple de chaîne d'opérateurs dans l'outil RapidMiner qui décrit un processus de classification sur le jeu de données iris avec l'algorithme \acs{KNN} où $k=1$ voisin et évaluée selon la technique de la séparation $80/20$.}
 	\label{fig:rapid_miner}
 \end{figure}
-
-Par ailleurs, RapidMiner inclut également la possibilité d'ajouter des paquets développés par des tiers afin d'améliorer ses capacités initiales. De plus, il permet l'utilisation d'un bloc de script où il est possible d'écrire du code en syntaxe Java ou Groovy. En ce sens, RapidMiner apparait tout aussi flexible que \acs{WEKA}. Cependant, puisqu'il repose sur une conception logicielle comparable et un langage de programmation de base identique, ce \textit{workbench} souffre des mêmes inconvénients. En outre, il est possible de dire que RapidMiner ne convient pas au déploiement d'applications expérimentales dans un contexte de recherche, car il ne dispose pas d'interface en ligne de commande et il n'est pas possible de l'utiliser comme une librairie dans une application.
 
 \subsection{Orange}
 
