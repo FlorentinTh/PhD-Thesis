@@ -1,4 +1,4 @@
-\documentclass[12pt,times,these,french]{uqac}
+\documentclass[12pt,times,twoside,these,french]{uqac}
 
 %%%%%%%%%%%%%%%%%%%%%
 % Acronyms file path
@@ -51,14 +51,18 @@
 %% Page préliminaires
 %%%%%%%%%%%%%%%%%%%%%
 \opening
-
+\let\cleardoublepage\clearpage
 \include{content/resume}
+\let\cleardoublepage\clearpage
 \tableofcontents
 \listoftables
 \listoffigures
 % \listofalgorithms
+\let\cleardoublepage\clearpage
 \listofacro
+\let\cleardoublepage\clearpage
 \include{content/dedicace}
+\let\cleardoublepage\clearpage
 \include{content/remerciements}
 %\include{content/avant_propos}
 
@@ -67,13 +71,21 @@
 %%%%%%%%%%%%%%%%%%%%%
 \maincontent
 
+\let\cleardoublepage\clearpage
 \include{content/chapitre1}
+\let\cleardoublepage\clearpage
 \include{content/chapitre2}
+\let\cleardoublepage\clearpage
 \include{content/chapitre3}
+\let\cleardoublepage\clearpage
 \include{content/chapitre4}
+\let\cleardoublepage\clearpage
 \include{content/chapitre5}
+\let\cleardoublepage\clearpage
 \include{content/chapitre6}
+\let\cleardoublepage\clearpage
 \include{content/conclusion}
+\let\cleardoublepage\clearpage
 
 %%%%%%%%%%%%%
 %% Références
