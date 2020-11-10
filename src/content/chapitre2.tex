@@ -16,7 +16,7 @@ Le \acs{LIARA} \citep{Bouchard2014} et le Laboratoire \acs{DOMUS} \citep{Giroux2
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{chapter2/archi_liara_domus.pdf}
-	\caption{Architecture du \acs{LIARA} et du laboratoire \acs{DOMUS}.}
+	\caption[Architecture du \acs{LIARA} et du laboratoire \acs{DOMUS}.]{Architecture du \acs{LIARA} \citep{Bouchard2014} et du laboratoire \acs{DOMUS} \citep{Giroux2009}.}
 	\label{fig:archi_liara_domus}
 \end{figure}
 
@@ -45,7 +45,7 @@ Le principal avantage de ce type d'architectures est qu'elles supportent parfait
 		\includegraphics[width=.8\linewidth]{chapter2/archi_amiqual4home.pdf}
 		\label{fig:archi_amiqual4home}
 	}
-	\caption{Architectures des habitats intelligents Gator-Tech et Amiqual4home}
+	\caption[Architectures des habitats intelligents Gator-Tech et Amiqual4home.]{Architectures des habitats intelligents Gator-Tech \citep{Helal2005} et Amiqual4home \citep{Lago2017}.}
 \end{figure}
 
 \subsection{Réseau Maillé}
@@ -55,7 +55,7 @@ Grâce aux récentes avancées des technologies de communication sans-fil, de no
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\linewidth]{chapter2/archi_casas.pdf}
-	\caption{Architecture de l'habitat intelligent CASAS.}
+	\caption[Architecture de l'habitat intelligent CASAS.]{Architecture de l'habitat intelligent CASAS \citep{Cook2013}.}
 	\label{fig:archi_casas}
 \end{figure}
 
@@ -71,7 +71,7 @@ Le principal inconvénient partagé par toutes les architectures de maisons inte
 \begin{figure}[ht!]
 	\centering
 	\includegraphics[width=.8\linewidth]{chapter2/archi_smart_transd.pdf}
-	\caption{Architecture qui repose sur l'utilisation de transducteurs intelligents.}
+	\caption[Architecture qui repose sur l'utilisation de transducteurs intelligents.]{Architecture qui repose sur l'utilisation de transducteurs intelligents \citep{Plantevin2018}.}
 	\label{fig:archi_smart_transd}
 \end{figure}
 
@@ -231,16 +231,7 @@ Les algorithmes d'apprentissage, également qualifiés d'algorithmes de reconnai
 
 Dans l'univers des algorithmes probabilistes, il est possible de retrouver méthodes bayésiennes qui constituent des méthodes supervisées probabilistes. Celles-ci s'articulent autour des réseaux bayésiens. Un réseau bayésien est définis par un graphe orienté acyclique dans lequel, chacun des n\oe{}uds (sommets) représente une variable aléatoire et chacune des arêtes correspond à la dépendance conditionnelle existante entre un ou plusieurs n\oe{}uds du graphe \citep{Heckerman1995}. Pour appliquer ce principe dans un système de reconnaissance d'activités, il s'agit de considérer que les n\oe{}uds du graphe correspondent aux actions ou aux activités et que les arêtes sont les liens qui lient des actions aux activités. Ces actions peuvent être conjointes à plusieurs activités. Par conséquent, si la probabilité de chaque activité ainsi que les probabilités conditionnelles des n\oe{}uds sont connues, il est alors possible de mettre à jour la probabilité de chacune des activités en fonction des observations faites dans l’environnement.
 
-De manière plus concrète, la Figure \ref{fig:learn_bayes} illustre l'exemple d'un système de reconnaissance s'appuyant sur un réseau bayésien. Celui-ci est en charge de reconnaître lorsqu'un résident est
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\linewidth]{chapter2/learn_bayes.pdf}
-	\caption{Exemple de réseau bayésien naïf.}
-	\label{fig:learn_bayes}
-\end{figure}
-
-\noindent train de réaliser trois activités dans la cuisine d'un environnement intelligent soit, \og \textit{faire du thé} \fg ($A_1$), \og \textit{faire du riz} \fg ($A_2$)} et \og \textit{faire du café} \fg ($A_3$)}. Grâce à l'observation des habitudes de l'habitant, il est possible de définir les probabilités initiales des activités ainsi que les probabilités conditionnelles. Elles sont respectivement données dans la Figure \ref{fig:learn_bayes}, au-dessus de chaque activité à reconnaître et sous chacune des actions nécessaires à leur réalisation. Ensuite, si l'évènement $e_2$ correspondant à l'action \og \textit{sortir le riz} \fg est observé, les probabilités de chaque activité selon cet évènement $p(A_i|e_2)$ sont calculées en appliquant la formule de Bayes définie par :
+De manière plus concrète, la Figure \ref{fig:learn_bayes} illustre l'exemple d'un système de reconnaissance s'appuyant sur un réseau bayésien. Celui-ci est en charge de reconnaître lorsqu'un résident est train de réaliser trois activités dans la cuisine d'un environnement intelligent soit, \og \textit{faire du thé} \fg ($A_1$), \og \textit{faire du riz} \fg ($A_2$)} et \og \textit{faire du café} \fg ($A_3$)}. Grâce à l'observation des habitudes de l'habitant, il est possible de définir les probabilités initiales des activités ainsi que les probabilités conditionnelles. Elles sont respectivement données dans la Figure \ref{fig:learn_bayes}, au-dessus de chaque activité à reconnaître et sous chacune des actions nécessaires à leur réalisation. Ensuite, si l'évènement $e_2$ correspondant à l'action \og \textit{sortir le riz} \fg est observé, les probabilités de chaque activité selon cet évènement $p(A_i|e_2)$ sont calculées en appliquant la formule de Bayes définie par :
 
 \begin{equation}
 	\label{eq:baye_net}
@@ -260,7 +251,14 @@ De manière plus concrète, la Figure \ref{fig:learn_bayes} illustre l'exemple d
 
 \noindent Finalement, les probabilités sont mises à jour et il apparaît que l’activité \og \textit{faire du riz} \fg ($A_2$) est la seule activité possible puisque celle-ci admet une probabilité de $1$ lorsque l'évènement \og \textit{sortir le riz} \fg ($e_2$) est observé. Le système conclut donc que le résident de l'habitat intelligent est en train de préparer une portion de riz.
 
-Les principaux avantages dans l'utilisation des réseaux bayésiens sont, la simplicité de leur implémentation ainsi que leur performance, tant en termes de taux de reconnaissance dans le cas des activités au sein d'un habitat intelligent, qu'en termes de temps d'exécution et de consommation d'espace mémoire \citep{Friedman1997}. Néanmoins, ceux-ci nécessitent de connaître l'ensemble des activités, des actions et des probabilités conditionnelles qui les relient pour fonctionner ; ce qui constitue un inconvénient majeur, car ces informations ne sont pas toujours disponibles.
+Les principaux avantages dans l'utilisation des réseaux bayésiens sont, la simplicité de leur implémentation ainsi que leur performance, tant en termes de taux de reconnaissance dans le cas des activités au sein d'un habitat intelligent, qu'en termes de temps d'exécution et de consommation d'espace mémoire \citep{Friedman1997}. Néanmoins, ceux-ci nécessitent de connaître l'ensemble des activités, des actions et des probabilités conditionnelles qui les relient  pour fonctionner ; ce qui constitue un inconvénient majeur, car ces informations ne sont pas toujours disponibles.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{chapter2/learn_bayes.pdf}
+	\caption{Exemple de réseau bayésien naïf.}
+	\label{fig:learn_bayes}
+\end{figure}
 
 Les modèles de Markov cachés (\aclp{HMM} ou \acsp{HMM}) ainsi que les champs aléatoires conditionnels (\aclp{CRF} ou \acsp{CRF}) sont d'autres exemples d'algorithmes statistiques qui ont été utilisés pour la reconnaissance d'activités au sein des habitats intelligents \citep{Oliver2004, Nazerfard2010, VanKasteren2011}. Les \acsp{HMM} peuvent être représentés comme des automates probabilistes à états finis dont l'évolution au cours du temps est entièrement déterminée par une probabilité initiale et des probabilités de transitions entre états. De plus, l'état du système, soit l'activité à reconnaître, n'est pas directement observable, mais caché par un processus d'observation. Autrement dit, au temps $t$, le système qui est dans l'état invisible $q_t$ émet l'observation $O_t$. Ces observations sont, quant à elles, visibles et elles peuvent, par exemple, correspondre à la valeur d'un capteur. Tout comme pour les réseaux bayésiens, les \acsp{HMM} offrent d’excellentes performances de reconnaissance et d’exécution. Néanmoins, la complexité de leur mise en place et de leur compréhension ainsi que la connaissance initiale requise pour leur fonctionnement sont autant de facteurs limitant leur utilisation à la reconnaissance d'un nombre très restreint d’activités.
 
@@ -270,8 +268,6 @@ Par ailleurs, les \acsp{CRF} permettent, quant à eux, de modéliser les dépend
 
 Les arbres de décision appartiennent à la catégorie des méthodes d'apprentissage supervisées. Comme illustré par la Figure \ref{fig:learn_dtree}, la classification des données est faite par une suite de choix logiques représentée sous forme d'un arbre, où chacun de ses n\oe{}uds possède un unique parent excepté le n\oe{}ud racine. Ainsi, les feuilles de l'arbre correspondent aux classes des activités à reconnaître et les n\oe{}uds non terminaux sont des règles de classification qui doivent être vérifiées grâce aux attributs de la donnée qui est testée.
 
-Dans le domaine de la reconnaissance d'activités, les algorithmes d'arbres de décision qui sont les plus fréquemment utilisés sont, \ac{ID3} ainsi que son extension, \texttt{C4.5} \citep{QuinlanRoss1993}. Les principales différences entre ces deux algorithmes sont qu'à l'inverse d'\acs{ID3}, \texttt{C4.5} accepte les variables continues en plus des variables discrètes et ce dernier est également capable de gérer les données manquantes de façon automatique.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{chapter2/learn_dtree.pdf}
@@ -279,13 +275,15 @@ Dans le domaine de la reconnaissance d'activités, les algorithmes d'arbres de d
 	\label{fig:learn_dtree}
 \end{figure}
 
-\noindent Enfin, il permet de réduire le risque de sur-apprentissage, qui est très élevé avec l'algorithme \acs{ID3}, grâce à une technique de \textit{pruning} \citep{Bao2004, Ravi2005, Tapia2007}. Ce phénomène intervient lorsque le modèle d'apprentissage est trop similaire aux données d'entraînement et donc plus suffisamment générique pour reconnaître correctement de nouvelles activités. Malgré ces différences, le fonctionnement de ces deux algorithmes reste très similaire. Pour chaque attribut de l'ensemble de données qui n'a pas déjà été traité, son entropie $H$ (\textit{cf. } Équation \ref{eq:entropy}) est calculée. Ensuite, l'attribut ayant l'entropie la plus faible est sélectionné et une séparation des données est faite en fonction de celui-ci (\textit{p. ex.} \og \textit{la casserole est sur la cuisinière} \fg ou \og \textit{la casserole n'est pas sur la cuisinière} \fg). Enfin, la structure finale de l'arbre est créée de manière récursive en ne considérant uniquement les attributs qui n'ont jamais été sélectionnés, pour chaque sous-ensemble de données. Ceci vient donc conclure la phase d'entraînement d'un arbre de décision. La phase de reconnaissance, quant à elle, ne nécessite qu'un simple parcours de l'arbre. Ainsi, en reprenant l'exemple de la Figure \ref{fig:learn_dtree}\textemdash si les données de l'instance à reconnaître correspondent au positionnement de la casserole sur la cuisinière de l'habitat intelligent, alors l'activité réalisée par le résident est \og \textit{faire du riz} \fg.
+Dans le domaine de la reconnaissance d'activités, les algorithmes d'arbres de décision qui sont les plus fréquemment utilisés sont, \ac{ID3} ainsi que son extension, \texttt{C4.5} \citep{QuinlanRoss1993}. Les principales différences entre ces deux algorithmes sont qu'à l'inverse d'\acs{ID3}, \texttt{C4.5} accepte les variables continues en plus des variables discrètes et ce dernier est également capable de gérer les données manquantes de façon automatique. Enfin, il permet de réduire le risque de sur-apprentissage, qui est très élevé avec l'algorithme \acs{ID3}, grâce à une technique de \textit{pruning} \citep{Bao2004, Ravi2005, Tapia2007}. Ce phénomène intervient lorsque le modèle d'apprentissage est trop similaire aux données d'entraînement et donc plus suffisamment générique pour reconnaître correctement de nouvelles activités. Malgré ces différences, le fonctionnement de ces deux algorithmes reste très similaire. Pour chaque attribut de l'ensemble de données qui n'a pas déjà été traité, son entropie $H$ (\textit{cf. } Équation \ref{eq:entropy}) est calculée. Ensuite, l'attribut ayant l'entropie la plus faible est sélectionné et une séparation des données est faite en fonction de celui-ci (\textit{p. ex.} \og \textit{la casserole est sur la cuisinière} \fg ou \og \textit{la casserole n'est pas sur la cuisinière} \fg). Enfin, la structure finale de l'arbre est créée de manière récursive en ne considérant uniquement les attributs qui n'ont jamais été sélectionnés, pour chaque sous-ensemble de données. Ceci vient donc conclure la phase d'entraînement d'un arbre de décision. La phase de reconnaissance, quant à elle, ne nécessite qu'un simple parcours de l'arbre. Ainsi, en reprenant l'exemple de la Figure \ref{fig:learn_dtree}\textemdash si les données de l'instance à reconnaître correspondent au positionnement de la casserole sur la cuisinière de l'habitat intelligent, alors l'activité réalisée par le résident est \og \textit{faire du riz} \fg.
 
 L'utilisation des arbres de décision offre plusieurs avantages. Dans un premier temps, ceux-ci restent relativement simples à implémenter, mais surtout, ils offrent une très grande facilité de compréhension. De plus, ils ont démontré une excellente performance tant en termes de rapidité d'exécution qu'en termes de taux de reconnaissance \citep{Bao2004}. En revanche, ils se sont révélés beaucoup moins efficaces dans des systèmes impliquant la reconnaissance d'un très grand nombre d'activités parmi lesquelles certaines peuvent se ressembler. De plus, les arbres de décision concèdent deux autres limites importantes qui sont, la nécessité d'avoir un très grand nombre de données pour être entraînés correctement et l'obligation de répéter la phase d'entraînement après chaque ajout d'une nouvelle activité ou après la modification des données d'une activité existante.
 
 \subsubsection{Le \textit{clustering}}
 
 Les méthodes de \textit{clustering} représentent une large partie des algorithmes d'apprentissage non-supervisés \citep{Witten2016}. Le fonctionnement général de toutes les techniques de \textit{clustering} existantes consiste en la division homogène d'un ensemble de données en différents \textit{clusters} qui doivent partager des caractéristiques communes. Les \textit{clusters} sont donc des sous-ensembles des données d'apprentissage. La séparation des données en \textit{clusters} est réalisée, à la fois par minimisation de la distance intra-classe ; c'est-à-dire, la distance entre tous les éléments d'un même \textit{cluster}, ainsi que par la maximisation de la distance inter-classe, qui correspond à la distance entre tous les \textit{clusters}. Ensuite, pour chaque cluster, une donnée représentative lui est attribuée. En fonction de l'algorithme qui est employé, cette dernière peut être déterminée différemment. Dans certains cas, une nouvelle valeur (le barycentre) est calculée à l'aide des données déjà présentes dans le \textit{cluster}. Dans d'autres cas, c'est une donnée existante qui sera élue comme la plus représentative pour chaque \textit{cluster}. Un exemple d'une méthode de \textit{clustering} utilisant le calcul des barycentres est illustré en Figure \ref{fig:learn_clustering}.
+
+L'algorithme de \textit{clustering} le plus utilisé dans le domaine de la reconnaissance d'activités est l'algorithme des $K$-moyennes \citep{Messing2009, Kovashka2010}. Cet algorithme requiert que le nombre total de \textit{clusters} $K$ soit fixé à l'avance. Ainsi, l'algorithme d'apprentissage commence par initialiser les barycentres, où la valeur qui leur est attribuée peut varier en fonction du problème à traiter. En effet, ceux-ci peuvent être initialisés à nul, avec des valeurs purement aléatoires ou encore avec des valeurs prises parmi les données exis-
 
 \begin{figure}[H]
 	\centering
@@ -294,7 +292,7 @@ Les méthodes de \textit{clustering} représentent une large partie des algorith
 	\label{fig:learn_clustering}
 \end{figure}
 
-L'algorithme de \textit{clustering} le plus utilisé dans le domaine de la reconnaissance d'activités est l'algorithme des $K$-moyennes \citep{Messing2009, Kovashka2010}. Cet algorithme requiert que le nombre total de \textit{clusters} $K$ soit fixé à l'avance. Ainsi, l'algorithme d'apprentissage commence par initialiser les barycentres, où la valeur qui leur est attribuée peut varier en fonction du problème à traiter. En effet, ceux-ci peuvent être initialisés à nul, avec des valeurs purement aléatoires ou encore avec des valeurs prises parmi les données existantes. Lorsque les barycentres sont définis, l'algorithme va, de manière itérative, commencer par calculer la distance de chaque instance de l'ensemble de données par rapport à chacun des $K$ barycentres. Chacune d'elles sera alors associée à son barycentre le plus proche. L'étape suivante consiste à mettre à jour la valeur des barycentres en fonction des \textit{clusters} qui se sont formés. Enfin, ce processus est répété jusqu'à l'obtention d'une convergence, c'est-à-dire, jusqu'à la stabilisation des valeurs des barycentres ; ce qui conduit à l'obtention du modèle d'apprentissage. Comme illustré dans l'exemple de la Figure \ref{fig:learn_clustering}, ce modèle d'apprentissage admet trois \textit{clusters}, où chacun d'eux correspond au regroupement des données selon les trois mêmes activités qui sont utilisées depuis le début de ce chapitre. Dès lors, la classification d'une nouvelle instance nécessite de calculer la distance entre cette dernière et tous les barycentres. La plus petite distance obtenue détermine donc à quelle classe d'activité cette nouvelle donnée appartient. Dans cet exemple, la nouvelle donnée correspond donc à l'activité \og \textit{faire du café}\fg. Parmi toutes les mesures de distance qu'il est possible d'utiliser, celles qui sont les plus fréquemment utilisées dans l'algorithme des $K$-moyennes lorsque les données ont $n$ dimensions sont, la distance Euclidienne $D_e$ et la distance de Manhattan $D_m$, respectivement rappelées par les Équations \ref{eq:dist_euclidean} et \ref{eq:dist_manhattan} tel que,
+\noindent tantes. Lorsque les barycentres sont définis, l'algorithme va, de manière itérative, commencer par calculer la distance de chaque instance de l'ensemble de données par rapport à chacun des $K$ barycentres. Chacune d'elles sera alors associée à son barycentre le plus proche. L'étape suivante consiste à mettre à jour la valeur des barycentres en fonction des \textit{clusters} qui se sont formés. Enfin, ce processus est répété jusqu'à l'obtention d'une convergence, c'est-à-dire, jusqu'à la stabilisation des valeurs des barycentres ; ce qui conduit à l'obtention du modèle d'apprentissage. Comme illustré dans l'exemple de la Figure \ref{fig:learn_clustering}, ce modèle d'apprentissage admet trois \textit{clusters}, où chacun d'eux correspond au regroupement des données selon les trois mêmes activités qui sont utilisées depuis le début de ce chapitre. Dès lors, la classification d'une nouvelle instance nécessite de calculer la distance entre cette dernière et tous les barycentres. La plus petite distance obtenue détermine donc à quelle classe d'activité cette nouvelle donnée appartient. Dans cet exemple, la nouvelle donnée correspond donc à l'activité \og \textit{faire du café}\fg. Parmi toutes les mesures de distance qu'il est possible d'utiliser, celles qui sont les plus fréquemment utilisées dans l'algorithme des $K$-moyennes lorsque les données ont $n$ dimensions sont, la distance Euclidienne $D_e$ et la distance de Manhattan $D_m$, respectivement rappelées par les Équations \ref{eq:dist_euclidean} et \ref{eq:dist_manhattan} tel que,
 
 \begin{equation}
 	\label{eq:dist_euclidean}

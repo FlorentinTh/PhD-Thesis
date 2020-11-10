@@ -12,7 +12,7 @@ Pour se faire, ce chapitre commence par présenter un état de l'art des recherc
 \section{État de l'art}
 \label{sec:t1-related-work}
 
-L'idée de reconnaître des types de sols par le biais de données produites par une centrale inertielle provient du domaine de la robotique. En effet, \cite{Vail2004} ont tout d'abord expérimenté la détection de surface grâce à des données inertielles produites par un robot quadrupède. Pour réaliser l'apprentissage, les auteurs ont opté pour un algorithme dont le modèle est un arbre de décision (\texttt{C4.5}), car ils estiment qu'il s'agit d'un algorithme suffisamment rapide et facile à représenter et à implémenter. Pour quantifier la précision de leur modèle d'apprentissage, \citeauthor{Vail2004} ont utilisé la technique de la validation croisée en 10-plis \citep{Kohavi1995}, ce qui leur a permis d'obtenir un taux de reconnaissance global de 84.9\% (ciment: 91\%; tapis: 81.2\%; champs: 81.2\%). Par la suite, \cite{Kertesz2016} a également présenté une méthode permettant de reconnaître des sols avec un accéléromètre embarqué sur un robot quadrupède. Il a obtenu un taux de confiance de 96.2\% en utilisant une forêt d’arbres décisionnels (\acl{RF} ou \acs{RF}) et en évaluant la précision de l'apprentissage avec la même technique que celle utilisé par \citeauthor{Vail2004}. La différence majeure entre les deux travaux réside principalement dans le fait que les premiers ont utilisé des caractéristiques temporelles du signal inertiel (variance et correlation) pour concevoir leur modèle d'apprentissage, tandis que le second a utilisé des caractéristiques fréquentielles obtenues grâce à une \acs{FFT}.
+L'idée de reconnaître des types de sols par le biais de données produites par une centrale inertielle provient du domaine de la robotique. En effet, \cite{Vail2004} ont tout d'abord expérimenté la détection de surface grâce à des données inertielles produites par un robot quadrupède. Pour réaliser l'apprentissage, les auteurs ont opté pour un algorithme dont le modèle est un arbre de décision (\texttt{C4.5}), car ils estiment qu'il s'agit d'un algorithme suffisamment rapide et facile à représenter et à implémenter. Pour quantifier la précision de leur modèle d'apprentissage, \citeauthor{Vail2004} ont utilisé la technique de la validation croisée en 10-plis \citep{Kohavi1995}, ce qui leur a permis d'obtenir un taux de reconnaissance global de 84.9\% (ciment: 91\%; tapis: 81.2\%; champs: 81.2\%). Par la suite, \cite{Kertesz2016} a également présenté une méthode permettant de reconnaître des sols avec un accéléromètre embarqué sur un robot quadrupède. Il a obtenu un taux de reconnaissance de 96.2\% en utilisant une forêt d’arbres décisionnels (\acl{RF} ou \acs{RF}) et en évaluant la précision de l'apprentissage avec la même technique que celle utilisé par \citeauthor{Vail2004}. La différence majeure entre les deux travaux réside principalement dans le fait que les premiers ont utilisé des caractéristiques temporelles du signal inertiel (variance et correlation) pour concevoir leur modèle d'apprentissage, tandis que le second a utilisé des caractéristiques fréquentielles obtenues grâce à une \acs{FFT}.
 
 Par ailleurs, \cite{Bibuli2007} ont proposé une méthode de reconnaissance des sols pour un robot à quatre roues équipé de plusieurs types de capteurs, dont une centrale inertielle. Pour ce faire, ils ont tout d'abord calculé les composantes fréquentielles du signal inertiel \textit{via} l'algorithme de la transformée de Fourrier discrète (\acl{DFT} ou \acs{DFT}), pour chacun des axes du capteur. Ensuite, chaque ensemble de données résultant de cette transformation a été entraîné distinctement par un réseau de neurones artificiels (\acs{ANN}). Par conséquent, les meilleurs résultats ont été obtenus avec les données de l'axe $x$ du gyroscope, soit respectivement 90\%, 71.2\%, 70\%, 98.8\% et 83.5\% pour les sols en graviers, gazon, sable, pavés et terre.
 
@@ -31,7 +31,7 @@ Selon la littérature existante, l'utilisation de centrales inertielles pour ré
 \begin{figure}[b!]
 	\centering
 	\includegraphics[width=.8\linewidth]{chapter4/device.pdf}
-        \caption{\acs{SOC} Arduino 101 et son \textit{shield} de prototypage incluant une carte mémoire (1) ainsi que la centrale inertielle \textit{LSM9DS1} (2) présente sur la version 2 du dispositif.}
+        \caption[\acs{SOC} Arduino 101 et son \textit{shield} de prototypage incluant une carte mémoire (1) ainsi que la centrale inertielle \textit{LSM9DS1} (2) présente sur la version 2 du dispositif.]{\acs{SOC} Arduino 101 et son \textit{shield} de prototypage incluant une carte mémoire (1) ainsi que la centrale inertielle \textit{LSM9DS1} (2) présente sur la version 2 du dispositif \citep{Thullier2017}.}
 	\label{fig:device}
 \end{figure}
 
@@ -41,14 +41,14 @@ Dans une première version, la reconnaissance des types de sols a été réalis�
 
 Pour assurer le bon fonctionnement du matériel qui compose le \textit{wearable device} il était tout d'abord nécessaire de développer un \textit{firmware} \footnote{\url{https://github.com/FlorentinTh/SoilTypesRecognition-WearableFirmware}}. Le fonctionnement de celui-ci s'articule autour de trois composants logiciels principaux qui sont illustrés en Figure \ref{fig:soil_types_firmware}.
 
-\begin{figure}[t]
+Le premier est le module de \texttt{commande}. Il est en charge des communications entre le téléphone (\texttt{cell\_oper}) et le \textit{wearable device}, par l'intermédiaire du module radio \acs{BLE}. Ainsi, un téléphone ou n'importe quel autre dispositif compatible avec la technologie \acs{BLE} peut être utilisé pour étiqueter les ensembles de données enregistrés avec les informations de configuration requises (le type de sol, l'identifiant anonyme du participant et l'emplacement du dispositif). Le second module principal est l'\texttt{\acs{IMU} Recorder}. En fonction de la version du dispositif, il a pour rôle de stocker dans une mémoire tampon les valeurs de l'\acs{IMU} qui transitent soit par un bus de données \ac{SPI} dans sa première version, soit \textit{via} un bus de données \ac{I2C}, à une fréquence stabilisée à 60 Hz. Le contenu de la mémoire tampon est ensuite envoyé au module de \texttt{formatage des données} toutes les secondes. Finalement, ce composant récupère l'ensemble des données de configuration du module de commande et s'occupe d'écrire les nouvelles données dans un fichier \ac{CSV} qui est stocké sur la carte mémoire. Dans la seconde version du \textit{wearable device}, le module de \texttt{formatage des données} s'occupe également de calculer les angles d'Euler (précession, nutation et rotation propre) grâce aux trois axes supplémentaires fournis par le \texttt{LSM9DS1}.
+
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=12cm]{chapter4/soil_types_firmware.pdf}
-        \caption{Implémentation du \textit{firmware} embarqué sur le \textit{wearable device}.}
+        \caption[Implémentation du \textit{firmware} embarqué sur le \textit{wearable device}.]{Implémentation du \textit{firmware} embarqué sur le \textit{wearable device} \citep{Thullier2017}.}
 	\label{fig:soil_types_firmware}
 \end{figure}
-
-Le premier est le module de \texttt{commande}. Il est en charge des communications entre le téléphone (\texttt{cell\_oper}) et le \textit{wearable device}, par l'intermédiaire du module radio \acs{BLE}. Ainsi, un téléphone ou n'importe quel autre dispositif compatible avec la technologie \acs{BLE} peut être utilisé pour étiqueter les ensembles de données enregistrés avec les informations de configuration requises (le type de sol, l'identifiant anonyme du participant et l'emplacement du dispositif). Le second module principal est l'\texttt{\acs{IMU} Recorder}. En fonction de la version du dispositif, il a pour rôle de stocker dans une mémoire tampon les valeurs de l'\acs{IMU} qui transitent soit par un bus de données \ac{SPI} dans sa première version, soit \textit{via} un bus de données \ac{I2C}, à une fréquence stabilisée à 60 Hz. Le contenu de la mémoire tampon est ensuite envoyé au module de \texttt{formatage des données} toutes les secondes. Finalement, ce composant récupère l'ensemble des données de configuration du module de commande et s'occupe d'écrire les nouvelles données dans un fichier \ac{CSV} qui est stocké sur la carte mémoire. Dans la seconde version du \textit{wearable device}, le module de \texttt{formatage des données} s'occupe également de calculer les angles d'Euler (précession, nutation et rotation propre) grâce aux trois axes supplémentaires fournis par le \texttt{LSM9DS1}.
 
 \subsection{Le processus d'apprentissage pour la reconnaissance des types de sols}
 \label{sec:learn}
@@ -59,7 +59,7 @@ Après que les données aient été enregistrées sur la carte mémoire, le proc
 
 La première opération consiste en une simple moyenne non pondérée sur chacun des axes tant \og{}physiques\fg{} des capteurs de l'\acs{IMU} (gyroscope, accéléromètre et magnétomètre si 9-axes) que \og{}logiques\fg{} (angles d'Euler), s'ils existent. Ensuite, la moyenne générale de chacune de ces caractéristiques est calculée pour l'ensemble des axes. De la même manière, cette procédure a été appliquée à plusieurs autres calculs statistiques : l'écart type, l'asymétrie (Équation \ref{eq:asymetrie}), l'aplatissement (Équation \ref{eq:kurtosis}), le \textit{Zero Crossing Rate} et la corrélation entre toutes les combinaisons possibles d'axes par capteurs de l'\acs{IMU} (Équation \ref{eq:correlation}). Dans un second temps, une transformation du domaine temporel vers le domaine fréquentiel a été nécessaire pour obtenir les caractéristiques suivantes : la composante continue, l'énergie spectrale (Équation \ref{eq:energy_spec}) et l'entropie  (Équation \ref{eq:entropy}). Ce passage d'un domaine à l'autre a été réalisée en utilisant la transformation de Fourier rapide (\acs{FFT}) selon l'algorithme de Bluestein \citep{Bluestein1970}. Ainsi, en fonction de la centrale inertielle exploitée (6-axes, 9-axes ou 9-axes avec les trois angles d'Euler), ce sont 70, 105 ou 140 caractéristiques qui sont calculées sur chaque fenêtre temporelle rectangulaire et non chevauchante, dont la taille est fixée à 60 secondes. La taille de la fenêtre a été déterminée par une évaluation du temps moyen nécessaire pour marcher une distance de $4.3\: m$, ce qui correspond à un aller-retour dans le bac utilisé lors des expérimentations et dont le protocole est décrit à la Section \ref{sec:expe}.
 
-\begin{table}[t!]
+\begin{table}[H]
 	\caption{Récapitulatif de toutes les caractéristiques utilisées par la solution proposée en fonction du nombre d'axes offerts par la centrale inertielle.}
 	\label{tab:features}
 	\resizebox{\textwidth}{!}{%
@@ -96,11 +96,11 @@ Selon \cite{Breiman2001}, une forêt d'arbres décisionnels est une combinaison 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/algo_random_forest.pdf}
-        \caption{Exemple de l'algorithme \textit{random forest} utilisant $B=3$ arbres.}
+  \caption[Exemple de l'algorithme \textit{random forest} utilisant $B=3$ arbres.]{Exemple de l'algorithme \textit{random forest} utilisant $B=3$ arbres \citep{Thullier2017}.}
 	\label{fig:algo_random_forest}
 \end{figure}
 
-Pour exploiter la forêt d'arbres décisionnels en tant qu'algorithme d'apprentissage, il est important de définir préalablement au moins trois paramètres principaux. Le premier est le nombre d'arbres que doit comporter la forêt ($B$). Le second correspond au nombre de variables à considérer dans la division des n\oe{}uds de l'arbre lors de la construction de ce dernier ($F$) et enfin, la fonction nécessaire à la mesure de la qualité de cette division ($C$). En ce qui concerne le nombre de caractéristiques, \citeauthor{Breiman2001} suggère d'utiliser $F_1=\lfloor log_2(m) + 1\rfloor$ où $m$ fait référence au nombre total d'attributs présents dans le jeu de données fourni en entrée. Néanmoins, il est également possible de trouver d'autres recommandations comme $F_0=\lfloor \frac{1}{2}\sqrt{m}\rfloor$ ou encore $F_2=\lfloor \sqrt{m}\rfloor$. Par ailleurs, en ce qui concerne la mesure de la qualité de la division des n\oe{}uds les fonctions qui sont les plus couramment utilisées sont le calcul du c\oe{}fficient de Gini et l'évaluation du gain en information basé sur l'entropie de Shannon dont les équations sont respectivement rappelées ci-après :
+Pour exploiter la forêt d'arbres décisionnels en tant qu'algorithme d'apprentissage, il est important de définir préalablement au moins trois paramètres principaux. Le premier est le nombre d'arbres que doit comporter la forêt ($B$). Le second correspond au nombre de caractéristiques à considérer dans la division des n\oe{}uds de l'arbre lors de la construction de ce dernier ($F$) et enfin, la fonction nécessaire à la mesure de la qualité de cette division ($C$). En ce qui concerne le nombre de caractéristiques, \citeauthor{Breiman2001} suggère d'utiliser $F_1=\lfloor log_2(m) + 1\rfloor$ où $m$ fait référence au nombre total d'attributs présents dans le jeu de données fourni en entrée. Néanmoins, il est également possible de trouver d'autres recommandations comme $F_0=\lfloor \frac{1}{2}\sqrt{m}\rfloor$ ou encore $F_2=\lfloor \sqrt{m}\rfloor$. Par ailleurs, en ce qui concerne la mesure de la qualité de la division des n\oe{}uds les fonctions qui sont les plus couramment utilisées sont le calcul du c\oe{}fficient de Gini et l'évaluation du gain en information basé sur l'entropie de Shannon dont les équations sont respectivement rappelées ci-après :
 
 \begin{equation}
 	\label{eq:gini}
@@ -124,7 +124,7 @@ Les expérimentations mises en place pour valider le système de reconnaissance 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/algo_knn.pdf}
-        \caption{Exemple de l'algorithme des $k$ plus proches voisins où $k=3$.}
+        \caption[Exemple de l'algorithme des $k$ plus proches voisins où $k=3$.]{Exemple de l'algorithme des $k$ plus proches voisins où $k=3$ \citep{Thullier2017}.}
 	\label{fig:algo_knn}
 \end{figure}
 
@@ -137,7 +137,7 @@ Dans un premier temps, puisque l'\acs{UQAC} se situe dans une région où les co
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/box.pdf}
-        \caption{Bac utilisé lors des expérimentations rempli de haut en bas, de gravier et de sable (dimensions: $l : 215\; cm \times L : 90\; cm \times H : 15\; cm$).}
+        \caption[Bac utilisé lors des expérimentations rempli de haut en bas, de gravier et de sable (dimensions: $l : 215\; cm \times L : 90\; cm \times H : 15\; cm$).]{Bac utilisé lors des expérimentations rempli de haut en bas, de gravier et de sable (dimensions: $l : 215\; cm \times L : 90\; cm \times H : 15\; cm$) \citep{Thullier2017}.}
 	\label{fig:box}
 \end{figure}
 
@@ -150,7 +150,7 @@ Par ailleurs, le fonctionnement de la seconde application\footnote{\url{https://
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/application.pdf}
-        \caption{Captures d'écrans de l'application \textit{Android} exécutée sur \texttt{cell\_oper} qui a permis de le pilotage et l'étiquetage les données brutes.}
+        \caption[Captures d'écrans de l'application \textit{Android} exécutée sur \texttt{cell\_oper} qui a permis de le pilotage et l'étiquetage les données brutes.]{Captures d'écrans de l'application \textit{Android} exécutée sur \texttt{cell\_oper} qui a permis de le pilotage et l'étiquetage les données brutes \citep{Thullier2017}.}
 	\label{fig:application}
 \end{figure}
 
@@ -168,7 +168,7 @@ Pour effectuer la collecte de données, il était nécessaire que les expérimen
 		\includegraphics[width=.48\linewidth]{chapter4/positions_b.pdf}
 		\label{fig:positions_b}
     }
-    \caption{Les cinq emplacements où le \textit{wearable device} a été positionné pendant l'expérimentation.}
+    \caption[Les cinq emplacements où le \textit{wearable device} a été positionné pendant l'expérimentation.]{Les cinq emplacements où le \textit{wearable device} a été positionné pendant l'expérimentation \citep{Thullier2017}.}
     \label{fig:positions}
 \end{figure}
 
@@ -239,7 +239,7 @@ En s'appuyant sur ces résultats, il est possible d'affirmer que les paramètres
 		\includegraphics[width=.7\linewidth]{chapter4/results_wear_v1_knn.pdf}
 		\label{fig:results_wear_v1_knn}
     }
-    \caption{Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données avec les différentes configurations pour les algorithmes \textit{random forest} et \acs{KNN} avec la version 1 du \textit{wearable device}.}
+    \caption[Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données avec les différentes configurations pour les algorithmes \textit{random forest} et \acs{KNN} avec la version 1 du \textit{wearable device}.]{Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données avec les différentes configurations pour les algorithmes \textit{random forest} et \acs{KNN} avec la version 1 du \textit{wearable device} \citep{Thullier2017}.}
     \label{fig:results_wear_v1}
 \end{figure}
 
@@ -258,7 +258,7 @@ L'expression graphique donnée par ses différentes courbes permet de constater 
   \includegraphics[width=.7\linewidth]{chapter4/pos_ind_knn_wear_1.pdf}
   \label{fig:pos_ind_knn_wear_1}
   }
-  \caption{Les $F\mbox{-} mesures$ pour chaque position par rapport aux valeurs références permettant l'évaluation de l'indépendance de positionnement du \textit{wearable device} dans sa version 1, pour les deux algorithmes : \textit{random forest} et \acs{KNN}.}
+  \caption[Les $F\mbox{-} mesures$ pour chaque position par rapport aux valeurs références permettant l'évaluation de l'indépendance de positionnement du \textit{wearable device} dans sa version 1, pour les deux algorithmes : \textit{random forest} et \acs{KNN}.]{Les $F\mbox{-} mesures$ pour chaque position par rapport aux valeurs références permettant l'évaluation de l'indépendance de positionnement du \textit{wearable device} dans sa version 1, pour les deux algorithmes : \textit{random forest} et \acs{KNN} \citep{Thullier2017}.}
   \label{fig:pos_ind_wear_v1}
 \end{figure}
 
@@ -270,7 +270,7 @@ Dans un second temps, les deux expérimentations précédentes ont été reprodu
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/results_wear_v2.pdf}
-        \caption{Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données enregistrés avec la version 2 du \textit{wearable device} pour les algorithmes \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux.}
+        \caption[Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données enregistrés avec la version 2 du \textit{wearable device} pour les algorithmes \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux.]{Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données enregistrés avec la version 2 du \textit{wearable device} pour les algorithmes \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux \citep{Thullier2017}.}
 	\label{fig:results_wear_v2}
 \end{figure}
 
@@ -289,7 +289,7 @@ En ce qui concerne l'indépendance du positionnement du \textit{wearble device} 
 		\includegraphics[width=.7\linewidth]{chapter4/pos_ind_knn_wear_2.pdf}
 		\label{fig:pos_ind_knn_wear_2}
     }
-    \caption{Les $F\mbox{-} mesures$ obtenues par rapport aux valeurs références permettant l'évaluation de l'indépendance de positionnement du \textit{wearable device} dans sa version 2, pour les deux algorithmes : \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux.}
+    \caption[Les $F\mbox{-} mesures$ obtenues par rapport aux valeurs références permettant l'évaluation de l'indépendance de positionnement du \textit{wearable device} dans sa version 2, pour les deux algorithmes : \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux.]{Les $F\mbox{-} mesures$ obtenues par rapport aux valeurs références permettant l'évaluation de l'indépendance de positionnement du \textit{wearable device} dans sa version 2, pour les deux algorithmes : \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux \citep{Thullier2017}.}
     \label{fig:pos_ind_wear_v2}
 \end{figure}
 
@@ -300,7 +300,7 @@ En dernier lieu, l'analyse de la performance de la reconnaissance des types de s
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{chapter4/results_cell.pdf}
-        \caption{Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données enregistrés avec le téléphone intelligent pour les algorithmes \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux.}
+        \caption[Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données enregistrés avec le téléphone intelligent pour les algorithmes \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux.]{Les $F\mbox{-} mesures$ obtenues sur les deux ensembles de données enregistrés avec le téléphone intelligent pour les algorithmes \textit{random forest} et \acs{KNN} configurés avec les paramètres optimaux \citep{Thullier2017}.}
 	\label{fig:results_cell}
 \end{figure}
 

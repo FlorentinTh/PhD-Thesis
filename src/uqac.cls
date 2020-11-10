@@ -593,12 +593,15 @@
   {}
   {\titlerule*[8pt]{.}\contentspage}
 
-\let\svcaption\caption
-\let\svfigure\figure
-\def\figure{\figurecaps\svfigure}
-\def\figurecaps{%
-  \renewcommand\caption[2][]{\svcaption[\MakeUppercase{##2}]{##2}}
-}
+  \let\svcaption\caption
+  \let\svfigure\figure
+  \def\figure{\figurecaps\svfigure}
+  \def\figurecaps{%
+    \renewcommand\caption[2][\shortcaption]{
+      \def\shortcaption{##2}
+      \svcaption[\MakeUppercase{##1}]{##2}
+    }
+  }
 
 \renewcommand\listoffigures{%
 {
@@ -659,7 +662,10 @@
 \let\svtable\table
 \def\table{\tablecaps\svtable}
 \def\tablecaps{%
-  \renewcommand\caption[2][]{\svcaption[\MakeUppercase{##2}]{##2}}
+  \renewcommand\caption[2][\shortcaption]{
+    \def\shortcaption{##2}
+    \svcaption[\MakeUppercase{##1}]{##2}
+  }
 }
 
 \renewcommand\listoftables{%
