@@ -306,7 +306,7 @@
 	\addto\captionsfrench{%
 	   \renewcommand\chaptername{Chapitre}}
 	\addto\captionsfrench{%
-	   \renewcommand\appendixname{Appendice}}
+	   \renewcommand\appendixname{Annexe}}
 	\addto\captionsfrench{%
 	   \renewcommand\abstractname{R\'esum\'e}}
 }{%
@@ -861,7 +861,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%
-%% Environnement Appendice
+%% Environnement Annexe
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%
 
