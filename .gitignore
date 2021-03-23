@@ -400,6 +400,11 @@ $RECYCLE.BIN/
 # End of https://www.gitignore.io/api/latex,archlinuxpackages,linux,macos,osx,visualstudiocode,windows,microsoftoffice
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
+*~$*.pptx
 
-/misc/examples/
+/misc/examples/*.pdf
 /misc/tools/
+/misc/defence/*.pdf
+/misc/reviews/**/*_rapport.pdf
+/misc/slides/base/
+/misc/slides/examples/
